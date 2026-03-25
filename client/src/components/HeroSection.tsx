@@ -9,6 +9,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 
@@ -18,12 +19,13 @@ export default function HeroSection() {
   const [isHoveringPortrait, setIsHoveringPortrait] = useState(false);
   const [isHoveringSignature, setIsHoveringSignature] = useState(false);
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
 
   const welcomeLines = [
-    "Hello and welcome to my website!",
-    "I hope you'll take some time to look around",
-    "and enjoy the insights, photos, videos and updates.",
-    "Thanks for stopping by.",
+    t("hero.welcome1"),
+    t("hero.welcome2"),
+    t("hero.welcome3"),
+    t("hero.welcome4"),
   ];
 
   const goToArchitect = () => {
@@ -97,7 +99,7 @@ export default function HeroSection() {
                 transition={{ duration: 0.3 }}
               >
                 <span className="font-cormorant-garamond italic text-lg tracking-wider px-4 py-2 rounded font-semibold" style={{ color: BRAND_GOLD, backgroundColor: "rgba(13, 27, 42, 0.8)" }}>
-                  Explore
+                  {t("hero.explore")}
                 </span>
               </motion.div>
             </div>
@@ -135,7 +137,7 @@ export default function HeroSection() {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 2.5 }}
           >
-            Love,
+            {t("hero.love")}
           </motion.p>
 
           {/* Golden Gothic Signature - Using image for exact font match */}
@@ -166,7 +168,7 @@ export default function HeroSection() {
               animate={{ opacity: isHoveringSignature ? 1 : 0, y: isHoveringSignature ? 0 : -5 }}
               transition={{ duration: 0.2 }}
             >
-              Click to explore
+              {t("hero.clickExplore")}
             </motion.span>
           </motion.div>
         </motion.div>
@@ -180,7 +182,7 @@ export default function HeroSection() {
         transition={{ duration: 0.6, delay: 3.0 }}
       >
         <span className="font-cormorant text-xs tracking-[0.3em] uppercase font-semibold" style={{ color: "rgba(255, 255, 255, 0.4)" }}>
-          Scroll
+          {t("hero.scroll")}
         </span>
         <motion.div
           className="w-px h-12"

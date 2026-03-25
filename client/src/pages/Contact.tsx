@@ -12,6 +12,7 @@ import { Linkedin, Instagram, MessageCircle, Mail, Send, MapPin, ExternalLink } 
 import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
@@ -20,14 +21,14 @@ const socialLinks = [
   {
     name: "LinkedIn",
     icon: Linkedin,
-    url: "https://linkedin.com",
+    url: "https://linkedin.com/in/drianzhu",
     handle: "@DrIanZhu",
     description: "Professional network & thought leadership",
   },
   {
     name: "Instagram",
     icon: Instagram,
-    url: "https://instagram.com",
+    url: "https://instagram.com/drianzhu",
     handle: "@dr.ian.zhu",
     description: "Behind the scenes & global engagements",
   },
@@ -56,6 +57,7 @@ export default function Contact() {
   const heroInView = useInView(heroRef, { once: true });
   const formInView = useInView(formRef, { once: true, margin: "-80px" });
   const socialInView = useInView(socialRef, { once: true, margin: "-80px" });
+  const { t } = useLanguage();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -68,15 +70,15 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
-      toast.error("Please fill in all required fields.");
+      toast.error(t("contactPage.form.required"));
       return;
     }
     if (!acceptTerms) {
-      toast.error("Please accept the terms and conditions.");
+      toast.error(t("contactPage.form.termsRequired"));
       return;
     }
-    toast.success("Message sent successfully", {
-      description: "Thank you for your enquiry. We will respond within 48 hours.",
+    toast.success(t("contactPage.form.success"), {
+      description: t("contactPage.form.successDesc"),
     });
     setFormData({ name: "", email: "", enquiryType: "", message: "" });
     setAcceptTerms(false);
@@ -119,7 +121,7 @@ export default function Contact() {
               className="font-cinzel text-5xl md:text-7xl tracking-[0.15em] mb-8"
               style={{ color: BRAND_GOLD }}
             >
-              CONTACT
+              {t("contactPage.hero.title")}
             </h1>
 
             {/* Gold divider */}
@@ -136,10 +138,7 @@ export default function Contact() {
               className="font-cormorant text-xl md:text-2xl leading-relaxed font-medium"
               style={{ color: "rgba(245, 245, 245, 0.7)" }}
             >
-              For enquiries, please use the form below or reach out through
-              the social channels listed. Due to the volume of submissions,
-              a response cannot be guaranteed for every message — but every
-              one is read.
+              {t("contactPage.hero.desc")}
             </p>
           </motion.div>
         </div>
@@ -165,7 +164,7 @@ export default function Contact() {
                     className="block font-cormorant text-xs tracking-[0.25em] uppercase mb-3 font-bold"
                     style={{ color: BRAND_GOLD }}
                   >
-                    Full Name *
+                    {t("contactPage.form.name")} *
                   </label>
                   <input
                     type="text"
@@ -188,7 +187,7 @@ export default function Contact() {
                     className="block font-cormorant text-xs tracking-[0.25em] uppercase mb-3 font-bold"
                     style={{ color: BRAND_GOLD }}
                   >
-                    Email Address *
+                    {t("contactPage.form.email")} *
                   </label>
                   <input
                     type="email"
@@ -211,7 +210,7 @@ export default function Contact() {
                     className="block font-cormorant text-xs tracking-[0.25em] uppercase mb-3 font-bold"
                     style={{ color: BRAND_GOLD }}
                   >
-                    Enquiry Type
+                    {t("contactPage.form.enquiry")}
                   </label>
                   <select
                     value={formData.enquiryType}
@@ -225,7 +224,7 @@ export default function Contact() {
                     onBlur={(e) => (e.target.style.borderColor = "rgba(201, 162, 39, 0.25)")}
                   >
                     <option value="" style={{ backgroundColor: DEEP_BLUE, color: "rgba(245,245,245,0.4)" }}>
-                      Select enquiry type
+                      {t("contactPage.form.enquiryPlaceholder")}
                     </option>
                     {enquiryTypes.map((type) => (
                       <option key={type} value={type} style={{ backgroundColor: DEEP_BLUE, color: "#f5f5f5" }}>
@@ -241,7 +240,7 @@ export default function Contact() {
                     className="block font-cormorant text-xs tracking-[0.25em] uppercase mb-3 font-bold"
                     style={{ color: BRAND_GOLD }}
                   >
-                    Message *
+                    {t("contactPage.form.message")} *
                   </label>
                   <textarea
                     value={formData.message}
@@ -279,20 +278,7 @@ export default function Contact() {
                     style={{ color: "rgba(245, 245, 245, 0.5)" }}
                     onClick={() => setAcceptTerms(!acceptTerms)}
                   >
-                    I accept the{" "}
-                    <span
-                      className="underline underline-offset-2 transition-colors duration-300 hover:opacity-80"
-                      style={{ color: BRAND_GOLD }}
-                    >
-                      Terms and Conditions
-                    </span>{" "}
-                    and{" "}
-                    <span
-                      className="underline underline-offset-2 transition-colors duration-300 hover:opacity-80"
-                      style={{ color: BRAND_GOLD }}
-                    >
-                      Privacy Policy
-                    </span>
+                    {t("contactPage.form.terms")}
                   </p>
                 </div>
 
@@ -311,7 +297,7 @@ export default function Contact() {
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="font-bold">Submit Message</span>
+                  <span className="font-bold">{t("contactPage.form.submit")}</span>
                   <Send className="w-4 h-4" />
                 </motion.button>
               </form>
@@ -331,7 +317,7 @@ export default function Contact() {
                   className="font-cinzel text-xs tracking-[0.3em] uppercase mb-8 font-bold"
                   style={{ color: BRAND_GOLD }}
                 >
-                  Connect
+                  {t("contactPage.social.title")}
                 </h3>
 
                 <div className="space-y-6">
@@ -391,7 +377,7 @@ export default function Contact() {
                   className="font-cinzel text-xs tracking-[0.3em] uppercase mb-8 font-bold"
                   style={{ color: BRAND_GOLD }}
                 >
-                  Location
+                  {t("contactPage.location.title")}
                 </h3>
 
                 <div className="flex items-start gap-4">
@@ -409,7 +395,7 @@ export default function Contact() {
                       className="font-cormorant text-base font-bold"
                       style={{ color: "rgba(245, 245, 245, 0.9)" }}
                     >
-                      London, United Kingdom
+                      {t("contactPage.location.city")}
                     </p>
                     <p
                       className="font-cormorant text-sm font-medium mt-1"

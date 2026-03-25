@@ -9,34 +9,36 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { FileText, TrendingUp, Globe } from "lucide-react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
-
-const insights = [
-  {
-    icon: FileText,
-    title: "Tou Ying Tracker",
-    description: "Annual flagship report tracking Chinese investment in the UK, officially cited by government and industry bodies.",
-    years: "2016 - Present",
-  },
-  {
-    icon: TrendingUp,
-    title: "Cross-Border M&A Analysis",
-    description: "In-depth analysis of cross-border mergers and acquisitions, regulatory trends, and market dynamics.",
-    years: "Ongoing Research",
-  },
-  {
-    icon: Globe,
-    title: "UK-China Relations",
-    description: "Strategic insights on bilateral economic relations, policy developments, and investment opportunities.",
-    years: "Thought Leadership",
-  },
-];
 
 export default function InsightsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
+
+  const insights = [
+    {
+      icon: FileText,
+      title: t("insights.touYing"),
+      description: t("insights.touYingDesc"),
+      years: t("insights.touYingYears"),
+    },
+    {
+      icon: TrendingUp,
+      title: t("insights.mna"),
+      description: t("insights.mnaDesc"),
+      years: t("insights.mnaYears"),
+    },
+    {
+      icon: Globe,
+      title: t("insights.ukChina"),
+      description: t("insights.ukChinaDesc"),
+      years: t("insights.ukChinaYears"),
+    },
+  ];
 
   const handleClick = () => {
     setLocation("/insights");
@@ -66,7 +68,7 @@ export default function InsightsSection() {
         transition={{ duration: 0.8 }}
       >
         <h2 className="font-cinzel text-3xl md:text-4xl text-center tracking-[0.2em] mb-4 font-bold" style={{ color: BRAND_GOLD }}>
-          INSIGHTS
+          {t("insights.title")}
         </h2>
       </motion.div>
 
@@ -75,7 +77,7 @@ export default function InsightsSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {insights.map((insight, index) => (
             <motion.div
-              key={insight.title}
+              key={index}
               className="group relative p-8 rounded-sm backdrop-blur-sm transition-all duration-500 cursor-pointer"
               style={{ 
                 border: `1px solid rgba(201, 162, 39, 0.2)`,
@@ -125,7 +127,7 @@ export default function InsightsSection() {
             style={{ color: `rgba(201, 162, 39, 0.7)` }}
             whileHover={{ y: -2 }}
           >
-            VIEW ALL INSIGHTS →
+            {t("insights.viewAll")}
           </motion.button>
         </motion.div>
       </div>

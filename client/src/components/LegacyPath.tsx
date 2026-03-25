@@ -7,6 +7,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 
@@ -80,6 +81,7 @@ export default function LegacyPath() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [hoveredPhase, setHoveredPhase] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   return (
     <section
@@ -96,7 +98,7 @@ export default function LegacyPath() {
         transition={{ duration: 0.8 }}
       >
         <h2 className="font-cinzel text-3xl md:text-4xl text-center tracking-[0.2em] mb-4 font-bold" style={{ color: BRAND_GOLD }}>
-          THE LEGACY PATH
+          {t("legacy.title")}
         </h2>
       </motion.div>
 
@@ -119,63 +121,48 @@ export default function LegacyPath() {
               onMouseEnter={() => setHoveredPhase(phase.id)}
               onMouseLeave={() => setHoveredPhase(null)}
             >
-              {/* Content Side */}
-              <div className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
-                {/* Year Badge */}
-                <motion.div
-                  className={`inline-block mb-4 ${index % 2 === 0 ? "md:ml-auto" : ""}`}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="font-cinzel text-2xl md:text-3xl tracking-wider font-bold" style={{ color: BRAND_GOLD }}>
-                    {phase.years}
-                  </span>
-                </motion.div>
-
-                {/* Title */}
-                <h3 className="font-cormorant-garamond text-xl md:text-2xl mb-4 leading-relaxed font-bold" style={{ color: "#F5F5F5" }}>
+              {/* Content Block */}
+              <div className="w-full md:w-5/12">
+                <span className="font-cinzel text-xs tracking-[0.3em] font-bold" style={{ color: BRAND_GOLD }}>
+                  {phase.years}
+                </span>
+                <h3 className="font-cormorant-garamond text-xl md:text-2xl mt-2 mb-3 font-bold" style={{ color: "#F5F5F5" }}>
                   {phase.title}
                 </h3>
-
-                {/* Keywords */}
-                <div className={`flex flex-wrap gap-2 mb-6 ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"}`}>
-                  {phase.keywords.map((keyword) => (
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {phase.keywords.map((kw) => (
                     <span
-                      key={keyword}
-                      className="font-cormorant text-sm tracking-wider px-3 py-1 rounded-sm font-semibold"
-                      style={{ color: `rgba(201, 162, 39, 0.8)`, border: `1px solid rgba(201, 162, 39, 0.3)` }}
+                      key={kw}
+                      className="font-cormorant text-xs px-3 py-1 rounded-sm font-semibold"
+                      style={{
+                        border: `1px solid rgba(201, 162, 39, 0.3)`,
+                        color: "rgba(201, 162, 39, 0.7)",
+                      }}
                     >
-                      {keyword}
+                      {kw}
                     </span>
                   ))}
                 </div>
-
-                {/* Achievements */}
-                <ul className={`space-y-3 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
+                <ul className="space-y-2">
                   {phase.achievements.map((achievement, i) => (
-                    <motion.li
+                    <li
                       key={i}
-                      className="font-eb-garamond text-base md:text-[17px] leading-relaxed font-medium"
-                      style={{ color: "rgba(245, 245, 245, 0.85)" }}
-                      initial={{ opacity: 0, x: index % 2 === 0 ? 20 : -20 }}
-                      animate={hoveredPhase === phase.id ? { opacity: 1, x: 0 } : { opacity: 0.85, x: 0 }}
-                      transition={{ duration: 0.3, delay: i * 0.05 }}
+                      className="font-eb-garamond text-sm md:text-base leading-relaxed font-medium"
+                      style={{ color: "rgba(245, 245, 245, 0.7)" }}
                     >
                       {achievement}
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Center Node - Desktop */}
+              {/* Central Node */}
               <div className="hidden md:flex w-2/12 justify-center">
                 <motion.div
-                  className="w-4 h-4 rounded-full border-4"
-                  style={{ backgroundColor: BRAND_GOLD, borderColor: "#0D1B2A" }}
-                  animate={{
-                    scale: hoveredPhase === phase.id ? 1.5 : 1,
-                    boxShadow: hoveredPhase === phase.id
-                      ? "0 0 20px rgba(201, 162, 39, 0.6)"
-                      : "0 0 5px rgba(201, 162, 39, 0.3)",
+                  className="w-4 h-4 rounded-full"
+                  style={{
+                    backgroundColor: hoveredPhase === phase.id ? BRAND_GOLD : "rgba(201, 162, 39, 0.4)",
+                    boxShadow: hoveredPhase === phase.id ? `0 0 20px ${BRAND_GOLD}` : "none",
                   }}
                   transition={{ duration: 0.3 }}
                 />
@@ -195,7 +182,7 @@ export default function LegacyPath() {
           transition={{ duration: 0.8, delay: 1 }}
         >
           <h3 className="font-cinzel text-xl md:text-2xl text-center tracking-[0.15em] mb-12 font-bold" style={{ color: BRAND_GOLD }}>
-            PROFESSIONAL QUALIFICATIONS
+            {t("legacy.qualifications")}
           </h3>
           
           <div className="flex flex-wrap justify-center gap-8 md:gap-12">
@@ -242,7 +229,7 @@ export default function LegacyPath() {
             style={{ color: `rgba(201, 162, 39, 0.8)` }}
             whileHover={{ y: -3 }}
           >
-            <span>VIEW STRATEGIC INSIGHTS</span>
+            <span>{t("legacy.viewInsights")}</span>
             <motion.span
               animate={{ y: [0, 5, 0] }}
               transition={{ duration: 2, repeat: Infinity }}

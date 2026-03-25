@@ -11,6 +11,7 @@ import { ShoppingBag, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { toast } from "sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 
@@ -24,13 +25,13 @@ interface Product {
   badge?: string;
 }
 
-const categories = [
-  { id: "all", label: "ALL" },
-  { id: "wine", label: "FINE WINES" },
-  { id: "whisky", label: "WHISKY" },
-  { id: "tea", label: "CHINESE TEA" },
-  { id: "leather", label: "LEATHER GOODS" },
-  { id: "apparel", label: "APPAREL" },
+const categoryKeys = [
+  { id: "all", key: "storePage.all" },
+  { id: "wine", key: "storePage.wine" },
+  { id: "whisky", key: "storePage.whisky" },
+  { id: "tea", key: "storePage.tea" },
+  { id: "leather", key: "storePage.leather" },
+  { id: "apparel", key: "storePage.apparel" },
 ];
 
 const products: Product[] = [
@@ -138,6 +139,7 @@ const products: Product[] = [
 
 export default function Store() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const { t } = useLanguage();
   const heroRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true });
   const gridRef = useRef(null);
@@ -148,8 +150,8 @@ export default function Store() {
     : products.filter(p => p.category === activeCategory);
 
   const handleAddToCart = (product: Product) => {
-    toast(`${product.name} — Coming Soon`, {
-      description: "The store will be available for purchases shortly.",
+    toast(`${product.name} — ${t("storePage.comingSoon")}`, {
+      description: t("storePage.comingSoonDesc"),
     });
   };
 
@@ -193,16 +195,15 @@ export default function Store() {
             </motion.div>
 
             <h1 className="font-cinzel text-4xl md:text-6xl lg:text-7xl tracking-[0.25em] mb-6 font-bold" style={{ color: BRAND_GOLD }}>
-              THE STORE
+              {t("storePage.hero.title")}
             </h1>
             
             <p className="font-cormorant-garamond italic text-xl md:text-2xl mb-4 font-medium" style={{ color: "rgba(245, 245, 245, 0.7)" }}>
-              A Curated Collection of Distinction
+              {t("storePage.hero.subtitle")}
             </p>
             
             <p className="font-eb-garamond text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium" style={{ color: "rgba(245, 245, 245, 0.5)" }}>
-              From the finest vintages and aged spirits to artisan teas and bespoke leather goods — 
-              each piece reflects a commitment to heritage, craftsmanship, and understated elegance.
+              {t("storePage.hero.desc")}
             </p>
 
             <div className="w-20 h-px mx-auto mt-8" style={{ backgroundColor: `rgba(201, 162, 39, 0.4)` }} />
@@ -217,7 +218,7 @@ export default function Store() {
       <section className="relative py-8" style={{ backgroundColor: "#0D1B2A" }}>
         <div className="container mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-            {categories.map((cat) => (
+            {categoryKeys.map((cat) => (
               <motion.button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
@@ -228,7 +229,7 @@ export default function Store() {
                 }}
                 whileHover={{ y: -2 }}
               >
-                {cat.label}
+                {t(cat.key)}
               </motion.button>
             ))}
           </div>
@@ -263,7 +264,7 @@ export default function Store() {
           {filteredProducts.length === 0 && (
             <div className="text-center py-24">
               <p className="font-cormorant-garamond text-xl font-medium" style={{ color: "rgba(245, 245, 245, 0.4)" }}>
-                No products in this category yet.
+                {t("storePage.noProducts")}
               </p>
             </div>
           )}
@@ -280,11 +281,10 @@ export default function Store() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="font-cinzel text-2xl md:text-3xl tracking-[0.2em] mb-6 font-bold" style={{ color: BRAND_GOLD }}>
-              BESPOKE ENQUIRIES
+              {t("storePage.bespoke.title")}
             </h2>
             <p className="font-eb-garamond text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-8 font-medium" style={{ color: "rgba(245, 245, 245, 0.6)" }}>
-              For private collections, corporate gifting, or bespoke commissions, 
-              please reach out to our concierge team for a personalised consultation.
+              {t("storePage.bespoke.desc")}
             </p>
             <motion.button
               onClick={() => {
@@ -298,7 +298,7 @@ export default function Store() {
               whileHover={{ scale: 1.02, backgroundColor: "rgba(201, 162, 39, 0.1)" }}
               whileTap={{ scale: 0.98 }}
             >
-              <span>CONTACT CONCIERGE</span>
+              <span>{t("storePage.concierge")}</span>
               <ArrowRight className="w-4 h-4" />
             </motion.button>
           </motion.div>

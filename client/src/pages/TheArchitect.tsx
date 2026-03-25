@@ -10,6 +10,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
@@ -103,6 +104,7 @@ export default function TheArchitect() {
 function ArchitectHero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const { t } = useLanguage();
 
   return (
     <section
@@ -146,16 +148,14 @@ function ArchitectHero() {
             transition={{ duration: 1, delay: 0.3 }}
           >
             <h1 className="font-cinzel text-4xl md:text-5xl lg:text-6xl tracking-[0.15em] mb-6 font-bold" style={{ color: BRAND_GOLD }}>
-              THE ARCHITECT
+              {t("architectPage.hero.title")}
             </h1>
             <div className="w-20 h-0.5 mb-8 mx-auto lg:mx-0" style={{ backgroundColor: BRAND_GOLD }} />
             <p className="font-cormorant-garamond text-xl md:text-2xl leading-relaxed font-semibold" style={{ color: "rgba(255, 255, 255, 0.85)" }}>
-              Dr. Ian Zhu — International Sales Expert, Cross-Border Dispute Resolution Specialist, 
-              and a bridge between Eastern and Western business worlds.
+              {t("architectPage.hero.intro")}
             </p>
             <p className="font-eb-garamond text-lg mt-6 leading-relaxed font-medium" style={{ color: "rgba(255, 255, 255, 0.6)" }}>
-              A career spanning three decades, three continents, and countless deals 
-              that have shaped the landscape of UK-China business relations.
+              {t("architectPage.hero.career")}
             </p>
           </motion.div>
         </div>
@@ -167,6 +167,7 @@ function ArchitectHero() {
 function NarrativeIntro() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: IVORY }}>
@@ -178,8 +179,7 @@ function NarrativeIntro() {
           transition={{ duration: 0.8 }}
         >
           <p className="font-cormorant-garamond text-2xl md:text-3xl leading-relaxed font-semibold" style={{ color: DEEP_BLUE }}>
-            "Every deal tells a story. Every negotiation reveals character. 
-            Every bridge built between cultures creates lasting value."
+            {t("architectPage.quote")}
           </p>
           <div className="w-12 h-0.5 mx-auto mt-8" style={{ backgroundColor: BRAND_GOLD }} />
         </motion.div>
@@ -260,6 +260,7 @@ function CareerChapter({ chapter, index }: { chapter: typeof careerChapters[0]; 
 function QualificationsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: DEEP_BLUE }}>
@@ -271,7 +272,7 @@ function QualificationsSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          QUALIFICATIONS
+          {t("architectPage.qualifications")}
         </motion.h2>
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -304,6 +305,7 @@ function QualificationsSection() {
 function PhilosophySection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: IVORY }}>
@@ -315,15 +317,13 @@ function PhilosophySection() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="font-cinzel text-2xl md:text-3xl tracking-[0.15em] mb-8 font-bold" style={{ color: DEEP_BLUE }}>
-            PHILOSOPHY
+            {t("architectPage.philosophy.title")}
           </h2>
           <p className="font-cormorant-garamond text-2xl md:text-3xl leading-relaxed italic font-semibold" style={{ color: DEEP_BLUE }}>
-            "Building Global Trust Through Finance, Law and Culture"
+            {t("architectPage.philosophy.quote")}
           </p>
           <p className="font-eb-garamond text-lg mt-8 leading-relaxed font-medium" style={{ color: "rgba(26, 47, 78, 0.7)" }}>
-            In a world of increasing complexity, Dr. Zhu believes that genuine trust — built through 
-            deep cultural understanding, professional excellence, and personal integrity — remains 
-            the most valuable currency in international business.
+            {t("architectPage.philosophy.desc")}
           </p>
           <div className="w-12 h-0.5 mx-auto mt-8" style={{ backgroundColor: BRAND_GOLD }} />
         </motion.div>

@@ -11,6 +11,7 @@ import { FileText, Download, ExternalLink, TrendingUp, Globe, Scale } from "luci
 import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
@@ -31,27 +32,6 @@ const touYingReports = [
     publisher: "Grant Thornton × China Daily",
     cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ZIOpyMlgZhkvrabL.jpg",
     downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/documents/tou-ying-tracker-2017-english-version.pdf",
-  },
-];
-
-const researchAreas = [
-  {
-    icon: TrendingUp,
-    title: "Cross-Border M&A Analysis",
-    description: "In-depth analysis of cross-border mergers and acquisitions between the UK and China, covering regulatory trends, deal structures, and market dynamics that shape bilateral investment flows.",
-    topics: ["Deal Structuring", "Regulatory Compliance", "Due Diligence", "Post-Merger Integration"],
-  },
-  {
-    icon: Globe,
-    title: "UK-China Economic Relations",
-    description: "Strategic insights on bilateral economic relations, policy developments, trade patterns, and investment opportunities. Tracking the evolution of one of the world's most important economic corridors.",
-    topics: ["Trade Policy", "Investment Trends", "Economic Diplomacy", "Market Access"],
-  },
-  {
-    icon: Scale,
-    title: "Dispute Resolution & Restructuring",
-    description: "Expert analysis of cross-border dispute resolution mechanisms, insolvency proceedings, and corporate restructuring strategies for Chinese enterprises operating in the UK market.",
-    topics: ["Arbitration", "Insolvency", "Asset Recovery", "Regulatory Enforcement"],
   },
 ];
 
@@ -80,6 +60,7 @@ export default function Insights() {
 function InsightsHero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const { t } = useLanguage();
 
   return (
     <section
@@ -103,12 +84,11 @@ function InsightsHero() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="font-cinzel text-4xl md:text-5xl lg:text-6xl tracking-[0.15em] mb-6 font-bold" style={{ color: BRAND_GOLD }}>
-            INSIGHTS
+            {t("insightsPage.hero.title")}
           </h1>
           <div className="w-20 h-0.5 mb-8 mx-auto" style={{ backgroundColor: BRAND_GOLD }} />
           <p className="font-cormorant-garamond text-xl md:text-2xl leading-relaxed font-semibold" style={{ color: "rgba(255, 255, 255, 0.85)" }}>
-            Research, analysis, and thought leadership on cross-border finance, 
-            UK-China investment, and international dispute resolution.
+            {t("insightsPage.hero.desc")}
           </p>
         </motion.div>
       </div>
@@ -119,6 +99,7 @@ function InsightsHero() {
 function TouYingSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   const handleDownload = (report: typeof touYingReports[0]) => {
     window.open(report.downloadUrl, "_blank", "noopener,noreferrer");
@@ -137,14 +118,11 @@ function TouYingSection() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <FileText className="w-6 h-6" style={{ color: BRAND_GOLD }} />
             <h2 className="font-cinzel text-2xl md:text-3xl tracking-[0.15em] font-bold" style={{ color: BRAND_GOLD }}>
-              TOU YING TRACKER
+              {t("insightsPage.reports.title")}
             </h2>
           </div>
           <p className="font-cormorant-garamond text-lg md:text-xl font-semibold" style={{ color: "rgba(255, 255, 255, 0.7)" }}>
-            The definitive annual report on Chinese investment in the UK
-          </p>
-          <p className="font-eb-garamond text-base mt-3 font-medium" style={{ color: "rgba(255, 255, 255, 0.5)" }}>
-            Officially cited by government bodies and industry leaders for eight consecutive years
+            {t("insightsPage.reports.subtitle")}
           </p>
         </motion.div>
 
@@ -178,7 +156,7 @@ function TouYingSection() {
                     >
                       <Download className="w-5 h-5" style={{ color: BRAND_GOLD }} />
                       <span className="font-cormorant tracking-wider font-bold" style={{ color: BRAND_GOLD }}>
-                        DOWNLOAD PDF
+                        {t("insightsPage.reports.download").toUpperCase()}
                       </span>
                     </motion.div>
                   </div>
@@ -208,6 +186,28 @@ function TouYingSection() {
 function ResearchAreasSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
+
+  const researchAreas = [
+    {
+      icon: TrendingUp,
+      title: t("insightsPage.research.mna"),
+      description: t("insightsPage.research.mnaDesc"),
+      topics: ["Deal Structuring", "Regulatory Compliance", "Due Diligence", "Post-Merger Integration"],
+    },
+    {
+      icon: Globe,
+      title: t("insightsPage.research.ukChina"),
+      description: t("insightsPage.research.ukChinaDesc"),
+      topics: ["Trade Policy", "Investment Trends", "Economic Diplomacy", "Market Access"],
+    },
+    {
+      icon: Scale,
+      title: t("insightsPage.research.dispute"),
+      description: t("insightsPage.research.disputeDesc"),
+      topics: ["Arbitration", "Insolvency", "Asset Recovery", "Regulatory Enforcement"],
+    },
+  ];
 
   return (
     <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: DEEP_BLUE }}>
@@ -219,13 +219,13 @@ function ResearchAreasSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          RESEARCH AREAS
+          {t("insightsPage.research.title")}
         </motion.h2>
 
         <div className="max-w-5xl mx-auto space-y-12">
           {researchAreas.map((area, index) => (
             <motion.div
-              key={area.title}
+              key={index}
               className="flex flex-col md:flex-row gap-8 p-8 rounded-sm"
               style={{ 
                 border: `1px solid rgba(201, 162, 39, 0.15)`,
@@ -276,6 +276,7 @@ function ResearchAreasSection() {
 function CTASection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   const handleContact = () => {
     toast("Contact form coming soon", {
@@ -293,7 +294,7 @@ function CTASection() {
           transition={{ duration: 0.8 }}
         >
           <p className="font-cormorant-garamond text-xl md:text-2xl leading-relaxed mb-8 font-semibold" style={{ color: "rgba(255, 255, 255, 0.8)" }}>
-            Interested in collaborating on research or accessing detailed reports?
+            {t("insightsPage.cta.desc")}
           </p>
           <motion.button
             onClick={handleContact}
@@ -306,7 +307,7 @@ function CTASection() {
             whileTap={{ scale: 0.98 }}
           >
             <ExternalLink className="w-5 h-5" />
-            <span>GET IN TOUCH</span>
+            <span>{t("insightsPage.cta.button")}</span>
           </motion.button>
         </motion.div>
       </div>

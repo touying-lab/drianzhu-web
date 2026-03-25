@@ -8,6 +8,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Calendar, ArrowRight } from "lucide-react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 
@@ -38,8 +39,8 @@ const journalPosts = [
 export default function JournalSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
 
   const handleClick = () => {
     setLocation('/journal');
@@ -65,7 +66,7 @@ export default function JournalSection() {
           style={{ color: BRAND_GOLD }}
           onClick={handleClick}
         >
-          THE JOURNAL
+          {t("journal.title")}
         </h2>
       </motion.div>
 
@@ -109,7 +110,7 @@ export default function JournalSection() {
                 style={{ color: `rgba(201, 162, 39, 0.8)` }}
                 whileHover={{ x: 5 }}
               >
-                <span>Read More</span>
+                <span>{t("journal.readMore")}</span>
                 <ArrowRight className="w-4 h-4" />
               </motion.div>
 

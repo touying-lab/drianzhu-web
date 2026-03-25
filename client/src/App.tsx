@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
+import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -17,7 +18,20 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import CookieSettings from "./pages/CookieSettings";
 
+// Handle GitHub Pages SPA redirect from 404.html
+function useGitHubPagesRedirect() {
+  useEffect(() => {
+    const search = window.location.search;
+    if (search.startsWith("?/")) {
+      const path = search.slice(2).replace(/~and~/g, "&");
+      const newUrl = window.location.pathname + path + window.location.hash;
+      window.history.replaceState(null, "", newUrl);
+    }
+  }, []);
+}
+
 function Router() {
+  useGitHubPagesRedirect();
   return (
     <Switch>
       <Route path={"/"} component={Home} />

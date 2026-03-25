@@ -9,30 +9,32 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { Linkedin, Instagram, MessageCircle, X } from "lucide-react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
-
-const quickLinks = [
-  { label: "The Architect", href: "/the-architect", type: "route" },
-  { label: "Insights", href: "/insights", type: "route" },
-  { label: "The Journal", href: "/journal", type: "route" },
-  { label: "Engagements", href: "/engagements", type: "route" },
-  { label: "AI Avatar", href: "/ai-avatar", type: "route" },
-  { label: "Store", href: "/store", type: "route" },
-  { label: "Contact", href: "/contact", type: "route" },
-];
-
-const legalLinks = [
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms of Use", href: "/terms-of-use" },
-  { label: "Cookie Settings", href: "/cookie-settings" },
-];
 
 export default function Footer() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [location, setLocation] = useLocation();
   const [showWeChatQR, setShowWeChatQR] = useState(false);
+  const { t } = useLanguage();
+
+  const quickLinks = [
+    { label: t("nav.architect"), href: "/the-architect", type: "route" },
+    { label: t("nav.insights"), href: "/insights", type: "route" },
+    { label: t("nav.journal"), href: "/journal", type: "route" },
+    { label: t("nav.engagements"), href: "/engagements", type: "route" },
+    { label: t("nav.aiAvatar"), href: "/ai-avatar", type: "route" },
+    { label: t("nav.store"), href: "/store", type: "route" },
+    { label: t("nav.contact"), href: "/contact", type: "route" },
+  ];
+
+  const legalLinks = [
+    { label: t("footer.privacy"), href: "/privacy-policy" },
+    { label: t("footer.terms"), href: "/terms-of-use" },
+    { label: t("footer.cookies"), href: "/cookie-settings" },
+  ];
 
   const handleNavClick = (item: typeof quickLinks[0]) => {
     if (item.type === "route") {
@@ -94,9 +96,8 @@ export default function Footer() {
                 className="h-8 w-auto mb-3"
                 style={{ mixBlendMode: "lighten" }}
               />
-              <p className="font-cormorant text-sm leading-relaxed font-semibold" style={{ color: "rgba(245, 245, 245, 0.6)" }}>
-                International Sales &<br />
-                Cross-Border Dispute Resolution Expert
+              <p className="font-cormorant text-sm leading-relaxed font-semibold whitespace-pre-line" style={{ color: "rgba(245, 245, 245, 0.6)" }}>
+                {t("footer.credential")}
               </p>
             </motion.div>
 
@@ -110,7 +111,7 @@ export default function Footer() {
               <nav className="space-y-3">
                 {quickLinks.map((link) => (
                   <button
-                    key={link.label}
+                    key={link.href}
                     onClick={() => handleNavClick(link)}
                     className="block font-cormorant text-sm transition-colors duration-300 tracking-wider font-semibold hover:opacity-80"
                     style={{ color: "rgba(245, 245, 245, 0.6)" }}
@@ -178,7 +179,7 @@ export default function Footer() {
               <nav className="space-y-3">
                 {legalLinks.map((link) => (
                   <button
-                    key={link.label}
+                    key={link.href}
                     onClick={() => { setLocation(link.href); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                     className="block md:ml-auto font-cormorant text-sm transition-colors duration-300 tracking-wider font-medium hover:opacity-80"
                     style={{ color: "rgba(245, 245, 245, 0.4)" }}
@@ -189,9 +190,8 @@ export default function Footer() {
               </nav>
               
               {/* Copyright */}
-              <p className="font-cormorant text-xs mt-6 tracking-wider font-semibold" style={{ color: "rgba(245, 245, 245, 0.4)" }}>
-                © 2026 DR IAN ZHU.<br />
-                ALL RIGHTS RESERVED.
+              <p className="font-cormorant text-xs mt-6 tracking-wider font-semibold whitespace-pre-line" style={{ color: "rgba(245, 245, 245, 0.4)" }}>
+                {t("footer.copyright")}
               </p>
             </motion.div>
           </div>
@@ -205,7 +205,7 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <p className="font-cormorant-garamond italic text-sm tracking-[0.1em] font-medium" style={{ color: `rgba(201, 162, 39, 0.5)` }}>
-              "Building Global Trust Through Finance, Law and Culture"
+              "{t("footer.tagline")}"
             </p>
           </motion.div>
         </div>
@@ -238,10 +238,10 @@ export default function Footer() {
                 <X className="w-5 h-5" />
               </button>
               <h3 className="font-cormorant-garamond text-xl text-center mb-2 font-semibold" style={{ color: BRAND_GOLD }}>
-                WeChat Official Account
+                {t("footer.wechat.title")}
               </h3>
               <p className="font-cormorant text-sm text-center mb-6" style={{ color: "rgba(245, 245, 245, 0.5)" }}>
-                Scan the QR code to follow
+                {t("footer.wechat.scan")}
               </p>
               <div className="flex justify-center">
                 <div className="bg-white p-3 rounded-sm">
@@ -253,7 +253,7 @@ export default function Footer() {
                 </div>
               </div>
               <p className="font-cormorant text-xs text-center mt-4 tracking-wider" style={{ color: "rgba(245, 245, 245, 0.35)" }}>
-                投英 TOU YING
+                {t("footer.wechat.name")}
               </p>
             </motion.div>
           </motion.div>

@@ -1,13 +1,14 @@
 /**
  * SocialFabric Component - THE SOCIAL FABRIC
- * Design: Matte ivory background with asymmetric photo gallery
- * Features: Film grain texture, personal album-style captions
- * Brand Gold: #C9A227 - Enhanced text weight
+ * Design: Ivory/cream background with masonry photo gallery
+ * Features: Photo grid with captions, link to Engagements page
+ * Brand Gold: #C9A227
  */
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface GalleryItem {
   id: number;
@@ -19,45 +20,45 @@ interface GalleryItem {
 const galleryItems: GalleryItem[] = [
   {
     id: 1,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/iJcOwMmmiPvaTrqL.jpg",
-    caption: "Bridging continents at the China-African Entrepreneurs Forum.",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/neBpheatDmiDCeXM.jpg",
+    caption: "Bridging worlds — a moment of cultural exchange at the highest level.",
     size: "large",
   },
   {
     id: 2,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/exJHvESCBAwbYPlG.jpg",
-    caption: "Where East meets West — London's financial heartbeat.",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/EoCVPcOjbVYsltLv.jpg",
+    caption: "The art of negotiation — where trust meets strategy.",
     size: "medium",
   },
   {
     id: 3,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/baosaDBiOjEiSvEY.jpg",
-    caption: "ADFW 2024 — where global finance converges.",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+    caption: "Tou Ying Tracker launch — shaping the narrative of UK-China investment.",
     size: "medium",
   },
   {
     id: 4,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/AzBYwOkizmicxQfJ.jpg",
-    caption: "The art of connection — building bridges one conversation at a time.",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ZIOpyMlgZhkvrabL.jpg",
+    caption: "Knowledge shared is power multiplied — at the podium.",
     size: "large",
   },
   {
     id: 5,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/BkFxCMSNeMaJWckD.jpg",
-    caption: "Exploring the frontier of AI and knowledge management.",
-    size: "large",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/TxzTnnzmPiPAIYPg.png",
+    caption: "The digital frontier — where AI meets human expertise.",
+    size: "small",
   },
   {
     id: 6,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/WqGhjNGNNiWyPbyE.jpg",
-    caption: "At the crossroads of global capital — Abu Dhabi Finance Week.",
-    size: "medium",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/pkDJyJokeELKRFrP.png",
+    caption: "A signature built on decades of trust and excellence.",
+    size: "small",
   },
   {
     id: 7,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/iIAraYRLornXxDLE.jpg",
-    caption: "Sharing insights on UK financial regulation and risk management.",
-    size: "large",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/neBpheatDmiDCeXM.jpg",
+    caption: "Global connections forged through genuine relationships.",
+    size: "medium",
   },
   {
     id: 8,
@@ -71,6 +72,7 @@ export default function SocialFabric() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
 
   return (
     <section
@@ -99,7 +101,7 @@ export default function SocialFabric() {
           style={{ color: "#1A2F4E" }}
           onClick={() => { setLocation('/engagements'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
         >
-          THE SOCIAL FABRIC
+          {t("social.title")}
         </h2>
       </motion.div>
 
@@ -120,7 +122,7 @@ export default function SocialFabric() {
         </div>
       </div>
 
-      {/* CTA to Journal */}
+      {/* CTA to Engagements */}
       <motion.div
         className="container mx-auto px-6 mt-16 md:mt-24 text-right relative z-10"
         initial={{ opacity: 0 }}
@@ -133,7 +135,7 @@ export default function SocialFabric() {
           style={{ color: "#1A2F4E", opacity: 0.7 }}
           whileHover={{ opacity: 1, x: 5 }}
         >
-          <span>EXPLORE ENGAGEMENTS</span>
+          <span>{t("social.explore")}</span>
           <span>→</span>
         </motion.button>
       </motion.div>

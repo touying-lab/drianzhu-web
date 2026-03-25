@@ -11,6 +11,7 @@ import { ChevronLeft, ChevronRight, ArrowLeft, Sparkles, Brain, Globe, Zap, Targ
 import { useLocation } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 
@@ -88,6 +89,7 @@ export default function AIAvatar() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
   const carouselRef = useRef<HTMLDivElement>(null);
 
   // Auto-play carousel
@@ -248,7 +250,7 @@ export default function AIAvatar() {
                           backgroundColor: `${current.accentColor}10`,
                         }}
                       >
-                        PERSONA {String(currentIndex + 1).padStart(2, "0")} / {String(personas.length).padStart(2, "0")}
+                        {t("aiPage.persona")} {String(currentIndex + 1).padStart(2, "0")} / {String(personas.length).padStart(2, "0")}
                       </span>
                     </div>
 
@@ -384,7 +386,7 @@ export default function AIAvatar() {
           whileHover={{ x: -4, color: BRAND_GOLD }}
         >
           <ArrowLeft className="w-4 h-4" />
-          BACK
+          {t("engagementsPage.back")}
         </motion.button>
       </section>
 

@@ -9,14 +9,15 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MessageSquare, Sparkles } from "lucide-react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 
 export default function AIAvatarSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
 
   const handleClick = () => {
     setLocation('/ai-avatar');
@@ -68,7 +69,7 @@ export default function AIAvatarSection() {
               style={{ color: BRAND_GOLD }}
               onClick={handleClick}
             >
-              AI AVATAR
+              {t("ai.title")}
             </h2>
           </motion.div>
 
@@ -119,12 +120,10 @@ export default function AIAvatarSection() {
               {/* Text Content */}
               <div className="flex-1 text-center md:text-left">
                 <h3 className="font-cormorant-garamond text-2xl md:text-3xl font-bold mb-4" style={{ color: "#F5F5F5" }}>
-                  Engage with Dr. Zhu's Digital Mind
+                  {t("ai.subtitle")}
                 </h3>
                 <p className="font-eb-garamond text-lg leading-relaxed mb-8 font-medium" style={{ color: "rgba(245, 245, 245, 0.75)" }}>
-                  An AI-powered extension trained on decades of expertise in cross-border finance, 
-                  dispute resolution, and UK-China relations. Ask questions, seek insights, 
-                  and explore strategic perspectives.
+                  {t("ai.description")}
                 </p>
 
                 {/* CTA Button */}
@@ -138,7 +137,7 @@ export default function AIAvatarSection() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <MessageSquare className="w-5 h-5" />
-                  <span>START CONVERSATION</span>
+                  <span>{t("ai.cta")}</span>
                 </motion.div>
               </div>
             </div>
@@ -152,7 +151,7 @@ export default function AIAvatarSection() {
                   border: `1px solid rgba(201, 162, 39, 0.3)`
                 }}
               >
-                COMING SOON
+                {t("ai.comingSoon")}
               </span>
             </div>
           </motion.div>

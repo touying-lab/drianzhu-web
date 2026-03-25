@@ -11,6 +11,7 @@ import { ArrowLeft, ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { useLocation, useRoute } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
@@ -154,6 +155,7 @@ const articles: JournalArticle[] = [
 // ===== JOURNAL LIST PAGE =====
 function JournalList() {
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true });
   const featured = articles[0];
@@ -178,14 +180,14 @@ function JournalList() {
             transition={{ duration: 0.8 }}
           >
             <p className="font-cormorant text-xs tracking-[0.4em] mb-4 font-semibold" style={{ color: "rgba(201, 162, 39, 0.5)" }}>
-              THOUGHTS & OBSERVATIONS
+              {t("journalPage.thoughtsLabel")}
             </p>
             <h1 className="font-cormorant-garamond text-5xl md:text-6xl lg:text-7xl tracking-[0.03em] font-light" style={{ color: BRAND_GOLD }}>
               The Journal
             </h1>
             <div className="w-20 h-0.5 mt-6" style={{ backgroundColor: `rgba(201, 162, 39, 0.3)` }} />
             <p className="font-eb-garamond text-base md:text-lg mt-6 leading-relaxed max-w-xl" style={{ color: "rgba(245, 245, 245, 0.55)" }}>
-              Reflections on cross-border commerce, legal practice, and the art of building trust across cultures.
+              {t("journalPage.hero.desc")}
             </p>
           </motion.div>
         </div>
@@ -208,7 +210,7 @@ function JournalList() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            RECENT ARTICLES
+            {t("journalPage.recentLabel")}
           </motion.p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             {rest.map((article, index) => (
@@ -227,6 +229,7 @@ function FeaturedCard({ article }: { article: JournalArticle }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
 
   return (
     <motion.article
@@ -249,7 +252,7 @@ function FeaturedCard({ article }: { article: JournalArticle }) {
         <div className="absolute inset-0" style={{ background: "linear-gradient(to right, transparent 60%, rgba(19, 34, 56, 0.6) 100%)" }} />
         <div className="absolute top-4 left-4">
           <span className="font-cormorant text-[10px] tracking-[0.3em] px-3 py-1 font-semibold" style={{ color: BRAND_GOLD, backgroundColor: "rgba(13, 27, 42, 0.8)", border: "1px solid rgba(201, 162, 39, 0.25)" }}>
-            FEATURED
+            {t("journalPage.featured")}
           </span>
         </div>
       </div>
@@ -278,7 +281,7 @@ function FeaturedCard({ article }: { article: JournalArticle }) {
         </p>
 
         <div className="flex items-center gap-2 font-cormorant text-xs tracking-[0.2em] font-semibold transition-all duration-300 group-hover:gap-3" style={{ color: BRAND_GOLD }}>
-          READ ARTICLE <ArrowRight className="w-3.5 h-3.5" />
+          {t("journalPage.readArticle")} <ArrowRight className="w-3.5 h-3.5" />
         </div>
       </div>
     </motion.article>
@@ -289,6 +292,7 @@ function ArticleCard({ article, index }: { article: JournalArticle; index: numbe
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
 
   return (
     <motion.article
@@ -341,7 +345,7 @@ function ArticleCard({ article, index }: { article: JournalArticle; index: numbe
         </p>
 
         <div className="flex items-center gap-2 font-cormorant text-xs tracking-[0.2em] font-semibold transition-all duration-300 group-hover:gap-3" style={{ color: BRAND_GOLD }}>
-          READ MORE <ArrowRight className="w-3.5 h-3.5" />
+          {t("journalPage.readMore")} <ArrowRight className="w-3.5 h-3.5" />
         </div>
       </div>
     </motion.article>
@@ -351,6 +355,7 @@ function ArticleCard({ article, index }: { article: JournalArticle; index: numbe
 // ===== ARTICLE DETAIL PAGE =====
 function ArticleDetail({ slug }: { slug: string }) {
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
   const article = articles.find((a) => a.slug === slug);
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true });
@@ -364,9 +369,9 @@ function ArticleDetail({ slug }: { slug: string }) {
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: DEEP_BLUE }}>
         <Navigation />
         <div className="text-center">
-          <h1 className="font-cormorant-garamond text-3xl mb-4" style={{ color: BRAND_GOLD }}>Article Not Found</h1>
+          <h1 className="font-cormorant-garamond text-3xl mb-4" style={{ color: BRAND_GOLD }}>{t("journalPage.notFound")}</h1>
           <button onClick={() => setLocation("/journal")} className="font-cormorant text-sm tracking-wider" style={{ color: BRAND_GOLD }}>
-            ← Back to Journal
+            ← {t("journalPage.back")}
           </button>
         </div>
         <Footer />
@@ -399,7 +404,7 @@ function ArticleDetail({ slug }: { slug: string }) {
           whileHover={{ x: -4, color: BRAND_GOLD }}
         >
           <ArrowLeft className="w-4 h-4" />
-          ALL ARTICLES
+          {t("journalPage.allArticles")}
         </motion.button>
 
         {/* Article Header */}
@@ -452,7 +457,7 @@ function ArticleDetail({ slug }: { slug: string }) {
               viewport={{ once: true }}
             >
               <p className="font-cormorant text-xs tracking-[0.2em] font-semibold mb-2" style={{ color: "rgba(201, 162, 39, 0.4)" }}>
-                ORIGINAL SOURCE
+                {t("journalPage.originalSource")}
               </p>
               <a
                 href={article.source}
@@ -461,7 +466,7 @@ function ArticleDetail({ slug }: { slug: string }) {
                 className="font-eb-garamond text-sm underline underline-offset-4 transition-colors duration-300 hover:opacity-80"
                 style={{ color: "rgba(245, 245, 245, 0.5)" }}
               >
-                Read on WeChat →
+                {t("journalPage.readOnWechat")}
               </a>
             </motion.div>
           </div>
@@ -474,7 +479,7 @@ function ArticleDetail({ slug }: { slug: string }) {
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto">
               <p className="font-cormorant text-xs tracking-[0.4em] mb-6 font-semibold" style={{ color: "rgba(201, 162, 39, 0.4)" }}>
-                NEXT ARTICLE
+                {t("journalPage.nextArticle")}
               </p>
               <motion.div
                 className="cursor-pointer group"
@@ -488,7 +493,7 @@ function ArticleDetail({ slug }: { slug: string }) {
                   {nextArticle.subtitle}
                 </p>
                 <div className="flex items-center gap-2 mt-4 font-cormorant text-xs tracking-[0.2em] font-semibold transition-all duration-300 group-hover:gap-3" style={{ color: BRAND_GOLD }}>
-                  READ ARTICLE <ArrowRight className="w-3.5 h-3.5" />
+                  {t("journalPage.readArticle")} <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </motion.div>
             </div>

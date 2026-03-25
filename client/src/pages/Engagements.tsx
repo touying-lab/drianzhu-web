@@ -12,6 +12,7 @@ import { ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
@@ -95,6 +96,7 @@ const stories: EngagementStory[] = [
 
 export default function Engagements() {
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true });
 
@@ -126,7 +128,7 @@ export default function Engagements() {
           whileHover={{ x: -4, color: BRAND_GOLD }}
         >
           <ArrowLeft className="w-4 h-4" />
-          BACK
+          {t("engagementsPage.back")}
         </motion.button>
 
         <div className="container mx-auto px-6 relative z-10">
@@ -140,7 +142,7 @@ export default function Engagements() {
               className="font-cormorant-garamond text-5xl md:text-6xl lg:text-7xl tracking-[0.05em] font-light"
               style={{ color: BRAND_GOLD }}
             >
-              All Engagements
+              {t("engagementsPage.hero.title")}
             </h1>
             <div className="w-20 h-0.5 mx-auto mt-6" style={{ backgroundColor: `rgba(201, 162, 39, 0.3)` }} />
           </motion.div>
@@ -258,6 +260,7 @@ function BottomCTA() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
 
   return (
     <section
@@ -276,7 +279,7 @@ function BottomCTA() {
             className="font-cormorant-garamond italic text-xl md:text-2xl leading-relaxed mb-8 font-medium"
             style={{ color: "rgba(245, 245, 245, 0.85)" }}
           >
-            "Building Global Trust Through Finance, Law and Culture"
+            {t("footer.tagline")}
           </p>
           <div
             className="w-16 h-px mx-auto mb-8"
@@ -295,7 +298,7 @@ function BottomCTA() {
             }}
             whileTap={{ scale: 0.98 }}
           >
-            GET IN TOUCH
+            {t("insightsPage.cta.button")}
           </motion.button>
         </motion.div>
       </div>
