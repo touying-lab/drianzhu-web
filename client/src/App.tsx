@@ -23,8 +23,11 @@ function useGitHubPagesRedirect() {
   useEffect(() => {
     const search = window.location.search;
     if (search.startsWith("?/")) {
-      const path = search.slice(2).replace(/~and~/g, "&");
-      const newUrl = window.location.pathname + path + window.location.hash;
+      // Decode the path encoded by 404.html
+      const redirectPath = search.slice(2).replace(/~and~/g, "&");
+      // For project pages (/drianzhu-web/), keep the base path
+      const basePath = window.location.pathname.replace(/\/$/, "");
+      const newUrl = basePath + "/" + redirectPath + window.location.hash;
       window.history.replaceState(null, "", newUrl);
     }
   }, []);
