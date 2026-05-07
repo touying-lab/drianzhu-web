@@ -79,10 +79,12 @@ const personas = [
 ];
 
 const painPoints = [
-  { label: "Stress", solution: "Sport & Wellness", icon: "🏋️" },
-  { label: "Boredom", solution: "Entertainment & Travel", icon: "✈️" },
-  { label: "Anxiety", solution: "Work & Healing", icon: "🧘" },
-  { label: "Loneliness", solution: "Gastronomy & Social", icon: "🍷" },
+  { label: "Stress", solution: "Work & Wealth", icon: "💼" },
+  { label: "Fatigue", solution: "Sport & Discipline", icon: "🏋️" },
+  { label: "Anxiety", solution: "Wellness & Balance", icon: "🧘" },
+  { label: "Indulgence", solution: "Taste & Pleasure", icon: "🍷" },
+  { label: "Boredom", solution: "Global View & Freedom", icon: "✈️" },
+  { label: "Loneliness", solution: "Fun & Social", icon: "🎉" },
 ];
 
 export default function AIAvatar() {
@@ -483,7 +485,7 @@ function CorePositioning() {
 
         {/* Pain Points Grid */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mt-16"
+          className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto mt-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -568,6 +570,7 @@ function PersonaGrid() {
                   src={persona.image}
                   alt={persona.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  style={{ objectPosition: "center 8%" }}
                 />
                 <div
                   className="absolute inset-0"
