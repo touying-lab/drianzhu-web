@@ -37,7 +37,7 @@ function useGitHubPagesRedirect() {
 function Router() {
   useGitHubPagesRedirect();
   return (
-<WouterRouter base="/drianzhu-web">
+<WouterRouter>
   <Switch>
     <Route path={"/"} component={Home} />
       <Route path={"/the-architect"} component={TheArchitect} />
