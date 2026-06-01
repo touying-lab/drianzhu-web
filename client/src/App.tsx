@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
+import { Router as WouterRouter } from "wouter";
 import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -36,8 +37,9 @@ function useGitHubPagesRedirect() {
 function Router() {
   useGitHubPagesRedirect();
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
+<WouterRouter base="/drianzhu-web">
+  <Switch>
+    <Route path={"/"} component={Home} />
       <Route path={"/the-architect"} component={TheArchitect} />
       <Route path={"/insights"} component={Insights} />
       <Route path={"/contact"} component={Contact} />
@@ -51,8 +53,8 @@ function Router() {
       <Route path={"/cookie-settings"} component={CookieSettings} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
-    </Switch>
-  );
+  </Switch>
+</WouterRouter>  );
 }
 
 function App() {
