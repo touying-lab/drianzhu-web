@@ -8,7 +8,7 @@
 import { motion, useInView } from "framer-motion";
 import { useMemo, useRef, useState } from "react";
 import {
-  ArrowRight,
+  Calendar,
   Download,
   ExternalLink,
   FileText,
@@ -19,16 +19,16 @@ import {
   TrendingUp,
   Youtube,
 } from "lucide-react";
-import { useLocation } from "wouter";
 import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   getPlatformLabel,
-  resolveVideoCountLabel,
+  getThumbnail,
+  getVideoPlatforms,
   videoCollections,
-  type VideoCollection,
+  type VideoItem,
   type VideoPlatform,
 } from "@/data/videoCollections";
 
@@ -122,34 +122,34 @@ function InsightsHero() {
 function VideoLibrarySection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [, setLocation] = useLocation();
   const [query, setQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [platformFilter, setPlatformFilter] = useState<VideoPlatform | "all">("all");
-  const [showAllVideos, setShowAllVideos] = useState(false);
 
   const categories = useMemo(() => ["All", ...Array.from(new Set(videoCollections.map((collection) => collection.category)))], []);
+  const allVideos = useMemo<VideoWithCity[]>(() => (
+    videoCollections.flatMap((collection) => (
+      collection.videos.map((video) => ({ ...video, city: collection.category }))
+    ))
+  ), []);
 
-  const filteredCollections = useMemo(() => {
+  const filteredVideos = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return videoCollections.filter((collection) => {
-      const matchesQuery =
-        normalizedQuery.length === 0 ||
-        [collection.title, collection.description, collection.featureDescription, collection.category, ...collection.keywords]
-          .join(" ")
-          .toLowerCase()
-          .includes(normalizedQuery);
-      const matchesCategory = categoryFilter === "All" || collection.category === categoryFilter;
-      const matchesPlatform = platformFilter === "all" || collection.platformSources.includes(platformFilter);
+    return allVideos.filter((video) => {
+      const platforms = getVideoPlatforms(video);
+      const searchableText = [video.title, video.description, video.category, video.city, ...platforms]
+        .join(" ")
+        .toLowerCase();
+      const matchesQuery = normalizedQuery.length === 0 || searchableText.includes(normalizedQuery);
+      const matchesCategory = categoryFilter === "All" || video.city === categoryFilter;
+      const matchesPlatform = platformFilter === "all" || platforms.includes(platformFilter);
 
       return matchesQuery && matchesCategory && matchesPlatform;
     });
-  }, [categoryFilter, platformFilter, query]);
+  }, [allVideos, categoryFilter, platformFilter, query]);
 
-  const initialVisibleCount = 4;
-  const visibleCollections = showAllVideos ? filteredCollections : filteredCollections.slice(0, initialVisibleCount);
-  const canShowMore = filteredCollections.length > initialVisibleCount && !showAllVideos;
+  const activeCategoryLabel = categoryFilter === "All" ? "all city categories" : categoryFilter;
 
   return (
     <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: "#132238" }}>
@@ -168,7 +168,7 @@ function VideoLibrarySection() {
           </div>
           <div className="mx-auto mb-8 h-0.5 w-20" style={{ backgroundColor: BRAND_GOLD }} />
           <p className="font-cormorant-garamond text-lg font-semibold leading-relaxed md:text-xl" style={{ color: "rgba(255, 255, 255, 0.74)" }}>
-            Search by topic, browse by knowledge area, and identify where future Bilibili and YouTube content will be housed.
+            Search by topic, browse by city category, and watch the available Bilibili and YouTube content directly in the library.
           </p>
         </motion.div>
 
@@ -184,7 +184,7 @@ function VideoLibrarySection() {
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search videos, research topics or collections"
+              placeholder="Search videos, city categories or platforms"
               className="w-full bg-transparent font-eb-garamond text-base outline-none placeholder:text-white/38"
               style={{ color: "rgba(245, 245, 245, 0.88)" }}
             />
@@ -212,80 +212,180 @@ function VideoLibrarySection() {
           </div>
         </motion.div>
 
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2">
-          {visibleCollections.map((collection, index) => {
-            const Icon = collection.icon;
+        <motion.header
+          className="mx-auto mb-8 flex max-w-6xl flex-col gap-4 md:flex-row md:items-end md:justify-between"
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.16 }}
+        >
+          <div>
+            <p className="mb-3 font-cormorant text-sm font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>
+              Video Library
+            </p>
+            <h3 className="font-cinzel text-2xl font-bold tracking-[0.12em] md:text-3xl" style={{ color: BRAND_GOLD }}>
+              {categoryFilter === "All" ? "All Videos" : `${categoryFilter} Videos`}
+            </h3>
+          </div>
+          <p className="font-eb-garamond text-lg font-medium leading-relaxed md:text-right" style={{ color: "rgba(245, 245, 245, 0.72)" }}>
+            Showing {filteredVideos.length} of {allVideos.length} videos under {activeCategoryLabel}.
+          </p>
+        </motion.header>
 
-            return (
-              <motion.button
-                key={collection.slug}
-                onClick={() => setLocation(`/insights/videos/${collection.slug}`)}
-                className="group grid w-full grid-cols-1 overflow-hidden rounded-sm text-left transition-all duration-500 hover:-translate-y-1 md:grid-cols-[180px_1fr]"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.75, delay: index * 0.06 }}
-                style={{ border: `1px solid rgba(201, 162, 39, 0.16)`, backgroundColor: "rgba(13, 27, 42, 0.44)", boxShadow: "0 20px 60px rgba(0, 0, 0, 0.12)" }}
-              >
-                <div className="relative min-h-[180px] overflow-hidden">
-                  <img src={collection.coverImage} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-[#0D1B2A]/10" />
-                </div>
-                <div className="p-6">
-                  <div className="mb-4 flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-sm" style={{ border: `1px solid rgba(201, 162, 39, 0.3)`, backgroundColor: "rgba(19, 34, 56, 0.6)" }}>
-                        <Icon className="h-5 w-5" style={{ color: BRAND_GOLD }} />
-                      </span>
-                      <CollectionMeta collection={collection} compact />
-                    </div>
-                    <ArrowRight className="mt-2 h-4 w-4 opacity-70 transition-transform duration-300 group-hover:translate-x-1" style={{ color: BRAND_GOLD }} />
-                  </div>
-                  <h3 className="font-cinzel mb-2 text-lg font-bold" style={{ color: "#F5F5F5" }}>{collection.title}</h3>
-                  <p className="font-eb-garamond text-base font-medium leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.72)" }}>{collection.description}</p>
-                </div>
-              </motion.button>
-            );
-          })}
-        </div>
-
-        {canShowMore && (
-          <motion.div
-            className="mt-12 flex justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.25 }}
-          >
-            <button
-              type="button"
-              onClick={() => setShowAllVideos(true)}
-              className="group inline-flex items-center gap-3 rounded-sm px-8 py-4 font-cinzel text-sm font-semibold uppercase tracking-[0.18em] transition-all duration-300 hover:-translate-y-0.5"
-              style={{ border: `1px solid rgba(201, 162, 39, 0.48)`, color: BRAND_GOLD, backgroundColor: "rgba(13, 27, 42, 0.58)", boxShadow: "0 18px 44px rgba(0, 0, 0, 0.18)" }}
-            >
-              Show More
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
-          </motion.div>
+        {filteredVideos.length > 0 ? (
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-2">
+            {filteredVideos.map((video, index) => (
+              <InlineVideoCard key={`${video.city}-${video.title}-${video.date}`} video={video} index={index} isInView={isInView} />
+            ))}
+          </div>
+        ) : (
+          <NoVideosFound />
         )}
       </div>
     </section>
   );
 }
 
+type PlatformSelection = VideoPlatform;
+type VideoWithCity = VideoItem & { city: string };
 
-function CollectionMeta({ collection, compact = false }: { collection: VideoCollection; compact?: boolean }) {
+const getYouTubeEmbedUrl = (url?: string) => {
+  if (!url) return undefined;
+
+  const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+};
+
+const getBilibiliEmbedUrl = (url?: string) => {
+  if (!url) return undefined;
+
+  const bvid = url.match(/(BV[A-Za-z0-9]+)/)?.[1];
+  if (bvid) {
+    return `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1`;
+  }
+
+  const aid = url.match(/(?:av|aid=)(\d+)/)?.[1];
+  if (aid) {
+    return `https://player.bilibili.com/player.html?aid=${aid}&page=1&high_quality=1`;
+  }
+
+  return url;
+};
+
+function InlineVideoCard({ video, index, isInView }: { video: VideoWithCity; index: number; isInView: boolean }) {
+  const availablePlatforms = getVideoPlatforms(video);
+  const defaultPlatform: PlatformSelection = availablePlatforms[0] ?? "youtube";
+  const [activePlatform, setActivePlatform] = useState<PlatformSelection>(defaultPlatform);
+  const hasBothPlatforms = Boolean(video.bilibiliUrl && video.youtubeUrl);
+  const embedUrl = activePlatform === "bilibili" ? getBilibiliEmbedUrl(video.bilibiliUrl) : getYouTubeEmbedUrl(video.youtubeUrl);
+
   return (
-    <div className={compact ? "space-y-2" : "mb-5 space-y-4"}>
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="font-cormorant text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: `rgba(201, 162, 39, 0.74)` }}>
-          {resolveVideoCountLabel(collection)}
-        </span>
-        <span className="h-1 w-1 rounded-full" style={{ backgroundColor: "rgba(201, 162, 39, 0.45)" }} />
-        <span className="font-cormorant text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(245, 245, 245, 0.54)" }}>
-          Updated {collection.lastUpdated}
-        </span>
+    <motion.article
+      className="overflow-hidden rounded-sm"
+      style={{ border: `1px solid rgba(201, 162, 39, 0.18)`, backgroundColor: "rgba(13, 27, 42, 0.44)", boxShadow: "0 20px 60px rgba(0, 0, 0, 0.12)" }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.75, delay: index * 0.06 }}
+    >
+      <div className="relative aspect-video overflow-hidden" style={{ backgroundColor: DEEP_BLUE }}>
+        {embedUrl ? (
+          <iframe
+            src={embedUrl}
+            title={video.title}
+            className="absolute inset-0 h-full w-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        ) : (
+          <img src={getThumbnail(video)} alt={video.title} className="h-full w-full object-cover" />
+        )}
       </div>
-      {!compact && <PlatformBadges platforms={collection.platformSources} />}
+
+      <div className="p-6">
+        {hasBothPlatforms && (
+          <div className="mb-5 flex gap-3">
+            {(["bilibili", "youtube"] as PlatformSelection[]).map((platform) => (
+              <button
+                key={platform}
+                type="button"
+                onClick={() => setActivePlatform(platform)}
+                className="rounded-sm px-4 py-2 font-cormorant text-sm font-bold tracking-[0.12em] transition-all duration-300"
+                style={{
+                  border: `1px solid rgba(201, 162, 39, ${activePlatform === platform ? 0.58 : 0.22})`,
+                  color: activePlatform === platform ? BRAND_GOLD : "rgba(245, 245, 245, 0.62)",
+                  backgroundColor: activePlatform === platform ? "rgba(201, 162, 39, 0.08)" : "transparent",
+                }}
+              >
+                {platform === "bilibili" ? "Bilibili" : "YouTube"}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="mb-3 flex flex-wrap items-center gap-2 font-cormorant text-sm font-semibold tracking-[0.12em]" style={{ color: `rgba(201, 162, 39, 0.72)` }}>
+          <Calendar className="h-4 w-4" />
+          <span>{video.date}</span>
+          <span className="h-1 w-1 rounded-full" style={{ backgroundColor: "rgba(201, 162, 39, 0.45)" }} />
+          <span>{video.city}</span>
+        </div>
+        <h3 className="font-cinzel mb-3 text-lg font-bold leading-snug" style={{ color: "#F5F5F5" }}>
+          {video.title}
+        </h3>
+        <p className="mb-4 font-cormorant text-sm font-semibold uppercase tracking-[0.14em]" style={{ color: `rgba(201, 162, 39, 0.66)` }}>
+          {video.category}
+        </p>
+        <p className="font-eb-garamond mb-6 text-base font-medium leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.74)" }}>
+          {video.description}
+        </p>
+        <div className="flex flex-wrap items-center gap-3">
+          <PlatformBadges platforms={availablePlatforms} />
+          {video.bilibiliUrl && <WatchButton href={video.bilibiliUrl} label="Watch on Bilibili" />}
+          {video.youtubeUrl && <WatchButton href={video.youtubeUrl} label="Watch on YouTube" />}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+function WatchButton({ href, label }: { href: string; label: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 rounded-sm px-4 py-2 font-cormorant text-sm font-bold tracking-[0.12em] transition-all duration-300 hover:bg-white/5"
+      style={{ border: `1px solid rgba(201, 162, 39, 0.36)`, color: BRAND_GOLD }}
+    >
+      {label}
+      <ExternalLink className="h-4 w-4" />
+    </a>
+  );
+}
+
+function NoVideosFound() {
+  return (
+    <div className="mx-auto max-w-2xl rounded-sm p-10 text-center" style={{ border: `1px solid rgba(201, 162, 39, 0.16)`, backgroundColor: "rgba(13, 27, 42, 0.44)" }}>
+      <p className="font-cinzel mb-4 text-xl font-bold" style={{ color: BRAND_GOLD }}>No Matching Videos</p>
+      <p className="font-eb-garamond text-lg font-medium leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.74)" }}>
+        Adjust the search term, city category or platform filter to continue browsing the video library.
+      </p>
     </div>
+  );
+}
+
+function FilterButton({ active, onClick, children }: { active: boolean; onClick: () => void; children: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="rounded-sm px-4 py-2 font-cormorant text-sm font-bold tracking-[0.12em] transition-all duration-300 hover:-translate-y-0.5"
+      style={{
+        border: `1px solid rgba(201, 162, 39, ${active ? 0.5 : 0.18})`,
+        backgroundColor: active ? "rgba(201, 162, 39, 0.1)" : "rgba(13, 27, 42, 0.32)",
+        color: active ? BRAND_GOLD : "rgba(245, 245, 245, 0.68)",
+      }}
+    >
+      {children}
+    </button>
   );
 }
 
@@ -308,22 +408,6 @@ function PlatformBadges({ platforms }: { platforms: VideoPlatform[] }) {
   );
 }
 
-function FilterButton({ active, onClick, children }: { active: boolean; onClick: () => void; children: string }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="rounded-sm px-4 py-2 font-cormorant text-sm font-bold tracking-[0.12em] transition-all duration-300 hover:-translate-y-0.5"
-      style={{
-        border: `1px solid rgba(201, 162, 39, ${active ? 0.5 : 0.18})`,
-        backgroundColor: active ? "rgba(201, 162, 39, 0.1)" : "rgba(13, 27, 42, 0.32)",
-        color: active ? BRAND_GOLD : "rgba(245, 245, 245, 0.68)",
-      }}
-    >
-      {children}
-    </button>
-  );
-}
 
 function TouYingSection() {
   const ref = useRef(null);
