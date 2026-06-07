@@ -34,6 +34,7 @@ import {
 
 const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
+const INITIAL_VIDEO_LIMIT = 4;
 
 const touYingReports = [
   {
@@ -125,6 +126,7 @@ function VideoLibrarySection() {
   const [query, setQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [platformFilter, setPlatformFilter] = useState<VideoPlatform | "all">("all");
+  const [showAllVideos, setShowAllVideos] = useState(false);
 
   const categories = useMemo(() => ["All", ...Array.from(new Set(videoCollections.map((collection) => collection.category)))], []);
   const allVideos = useMemo<VideoWithCity[]>(() => (
@@ -150,6 +152,8 @@ function VideoLibrarySection() {
   }, [allVideos, categoryFilter, platformFilter, query]);
 
   const activeCategoryLabel = categoryFilter === "All" ? "all city categories" : categoryFilter;
+  const visibleVideos = showAllVideos ? filteredVideos : filteredVideos.slice(0, INITIAL_VIDEO_LIMIT);
+  const hasMoreVideos = filteredVideos.length > visibleVideos.length;
 
   return (
     <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: "#132238" }}>
@@ -183,7 +187,10 @@ function VideoLibrarySection() {
             <Search className="h-5 w-5 flex-shrink-0" style={{ color: BRAND_GOLD }} />
             <input
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setShowAllVideos(false);
+              }}
               placeholder="Search videos, city categories or platforms"
               className="w-full bg-transparent font-eb-garamond text-base outline-none placeholder:text-white/38"
               style={{ color: "rgba(245, 245, 245, 0.88)" }}
@@ -195,7 +202,14 @@ function VideoLibrarySection() {
               <p className="font-cormorant mb-3 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>Category</p>
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
-                  <FilterButton key={category} active={categoryFilter === category} onClick={() => setCategoryFilter(category)}>
+                  <FilterButton
+                    key={category}
+                    active={categoryFilter === category}
+                    onClick={() => {
+                      setCategoryFilter(category);
+                      setShowAllVideos(false);
+                    }}
+                  >
                     {category}
                   </FilterButton>
                 ))}
@@ -204,9 +218,9 @@ function VideoLibrarySection() {
             <div>
               <p className="font-cormorant mb-3 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>Platform</p>
               <div className="flex flex-wrap gap-2 lg:justify-end">
-                <FilterButton active={platformFilter === "all"} onClick={() => setPlatformFilter("all")}>All</FilterButton>
-                <FilterButton active={platformFilter === "youtube"} onClick={() => setPlatformFilter("youtube")}>YouTube</FilterButton>
-                <FilterButton active={platformFilter === "bilibili"} onClick={() => setPlatformFilter("bilibili")}>Bilibili</FilterButton>
+                <FilterButton active={platformFilter === "all"} onClick={() => { setPlatformFilter("all"); setShowAllVideos(false); }}>All</FilterButton>
+                <FilterButton active={platformFilter === "youtube"} onClick={() => { setPlatformFilter("youtube"); setShowAllVideos(false); }}>YouTube</FilterButton>
+                <FilterButton active={platformFilter === "bilibili"} onClick={() => { setPlatformFilter("bilibili"); setShowAllVideos(false); }}>Bilibili</FilterButton>
               </div>
             </div>
           </div>
@@ -227,16 +241,37 @@ function VideoLibrarySection() {
             </h3>
           </div>
           <p className="font-eb-garamond text-lg font-medium leading-relaxed md:text-right" style={{ color: "rgba(245, 245, 245, 0.72)" }}>
-            Showing {filteredVideos.length} of {allVideos.length} videos under {activeCategoryLabel}.
+            Showing {visibleVideos.length} of {filteredVideos.length} matching videos under {activeCategoryLabel}.
           </p>
         </motion.header>
 
         {filteredVideos.length > 0 ? (
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-2">
-            {filteredVideos.map((video, index) => (
-              <InlineVideoCard key={`${video.city}-${video.title}-${video.date}`} video={video} index={index} isInView={isInView} />
-            ))}
-          </div>
+          <>
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-2">
+              {visibleVideos.map((video, index) => (
+                <InlineVideoCard key={`${video.city}-${video.title}-${video.date}`} video={video} index={index} isInView={isInView} />
+              ))}
+            </div>
+
+            {hasMoreVideos && (
+              <div className="mt-12 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => setShowAllVideos(true)}
+                  className="group inline-flex items-center gap-3 px-8 py-4 font-cinzel text-sm font-bold tracking-[0.18em] transition-all duration-300 hover:-translate-y-1"
+                  style={{
+                    border: `1px solid rgba(201, 162, 39, 0.48)`,
+                    color: BRAND_GOLD,
+                    backgroundColor: "rgba(13, 27, 42, 0.46)",
+                    boxShadow: "0 18px 40px rgba(0, 0, 0, 0.18)",
+                  }}
+                >
+                  Show More
+                  <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <NoVideosFound />
         )}
