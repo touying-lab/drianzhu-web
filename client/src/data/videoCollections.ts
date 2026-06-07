@@ -113,6 +113,81 @@ const createCollectionCover = ({
     </svg>
   `)}`;
 
+const shangaiVideos: VideoItem[] = [
+  {
+    title: "0423 Shanghai 新 吴俊 境外重组官权利确认实务解析--以最高法年度报告案例为视角",
+    description:
+      "A Shanghai session analysing practical confirmation of overseas restructuring officer rights through the lens of annual report cases from China’s Supreme People’s Court.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/61d2848588f2f049d527829c48d142b318008c43.jpg",
+    category: "Shangai",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1tEEt6zEwh/",
+  },
+  {
+    title: "0423 Shanghai 新 陈效 跨境诉讼视角-中国企业在境外诉讼框架下的债务重组方案及实务分析",
+    description:
+      "A Shanghai presentation on debt restructuring plans and practical analysis for Chinese enterprises within overseas litigation frameworks.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/e33315755b8c3d78303dbecafd36ddd2e29a7c90.jpg",
+    category: "Shangai",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1M7Et6gE9Z/",
+  },
+  {
+    title: "0423 Shanghai 陈效 跨境诉讼视角-中国企业在境外诉讼框架下的债务重组方案及实务分析",
+    description:
+      "A companion Shanghai session discussing cross-border litigation perspectives on debt restructuring options for Chinese companies facing overseas proceedings.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/4c22a92d0e29b9f362c06e5328466074551e16d9.jpg",
+    category: "Shangai",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1M7Et6gEy8/",
+  },
+  {
+    title: "0423 Shanghai 实战推演 WORKSHOP",
+    description:
+      "A practical workshop and scenario exercise from the Shanghai cross-border restructuring programme.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/4d30238c756b36841ea68c29ac39c431d564d6b4.jpg",
+    category: "Shangai",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1b7Et6gEsm/",
+  },
+  {
+    title: "0423 Shanghai Oliver Haunch 并行程序在美元债重组中的承认与协调功能",
+    description:
+      "A Shanghai briefing by Oliver Haunch on recognition and coordination functions of parallel proceedings in offshore US-dollar bond restructurings.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/567f7308f059658f7887736c4f403f519d45c30d.jpg",
+    category: "Shangai",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1FeEt6bELt/",
+  },
+  {
+    title: "0423 Shanghai Liam Mills 英国法院对重组计划的审查逻辑--兼论跨境重组案件的承认",
+    description:
+      "A Shanghai session by Liam Mills on the review logic applied by English courts to restructuring plans and recognition in cross-border restructuring cases.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/4e8781c38506dcac17188eb56818cec0535e60f9.jpg",
+    category: "Shangai",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1ceEt68E88/",
+  },
+  {
+    title: "0423 Shanghai Ben McCosker Vivian Ma 马玮 跨境破产承认与协助机制的演进",
+    description:
+      "A Shanghai discussion by Ben McCosker, Vivian Ma and Ma Wei on the evolution of recognition and assistance mechanisms in cross-border insolvency.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/d8531aedba3dedf627c6758e7d392dd3fbae1698.jpg",
+    category: "Shangai",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1cYEt6FE6s/",
+  },
+  {
+    title: "0423 Shanghai 吴俊 境外重组官权利确认实务解析--以最高法年度报告案例为视角",
+    description:
+      "A companion Shanghai analysis by Wu Jun on practical recognition of overseas restructuring officer rights, viewed through Supreme People’s Court annual report cases.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/0cd7a3e4bd3aea5000e37f69f16a844347b5e992.jpg",
+    category: "Shangai",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1cYEt6FEPB/",
+  },
+];
+
 const nanjingVideos: VideoItem[] = [
   {
     title: "0424 Nanjing 新 陈长灿 跨境重组中股东权益保留的法律边界",
@@ -232,19 +307,28 @@ export const videoCollections: VideoCollection[] = [
     title: "Shangai",
     description: "Video content from Shangai events and appearances.",
     featureDescription:
-      "City-focused video archive for Shangai events, public appearances, interviews and research-led discussions.",
-    videoCountLabel: "0 videos",
+      "The Shangai video archive includes Bilibili sessions from the Shanghai cross-border restructuring programme.",
+    videoCountLabel: "8 videos",
     lastUpdated: "June 2026",
-    platformSources: [],
+    platformSources: ["bilibili"],
     category: "Shangai",
     coverImage: createCollectionCover({
       title: "Shangai",
       subtitle: "City Archive",
-      motif: "Video library by location",
+      motif: "Cross-border restructuring sessions",
     }),
     icon: Presentation,
-    keywords: ["shangai", "shanghai", "city", "events", "archive"],
-    videos: [],
+    keywords: [
+      "shangai",
+      "shanghai",
+      "cross-border restructuring",
+      "debt restructuring",
+      "cross-border insolvency",
+      "recognition and assistance",
+      "workshop",
+      "bilibili",
+    ],
+    videos: shangaiVideos,
   },
   {
     slug: "nanjing",
