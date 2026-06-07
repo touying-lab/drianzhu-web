@@ -340,7 +340,14 @@ function InlineVideoCard({ video, index, isInView }: { video: VideoWithCity; ind
             aria-label={`Play ${video.title}`}
             disabled={!embedUrl}
           >
-            <img src={thumbnail} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <img
+              src={thumbnail}
+              alt={`Thumbnail for ${video.title}`}
+              referrerPolicy="no-referrer"
+              loading={index < INITIAL_VIDEO_LIMIT ? "eager" : "lazy"}
+              decoding="async"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
             <span className="absolute inset-0 bg-[#0D1B2A]/42 transition-colors duration-300 group-hover:bg-[#0D1B2A]/28" />
             {embedUrl && (
               <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110" style={{ border: `1px solid rgba(201, 162, 39, 0.62)`, backgroundColor: "rgba(13, 27, 42, 0.78)", boxShadow: "0 14px 35px rgba(0, 0, 0, 0.35)" }}>
