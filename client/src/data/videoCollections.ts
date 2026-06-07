@@ -263,6 +263,81 @@ const nanjingVideos: VideoItem[] = [
   },
 ];
 
+const hongKongVideos: VideoItem[] = [
+  {
+    title: "0428 HK Liam Mills 英国重组计划对属地程序的补充与支持性作用",
+    description:
+      "A Hong Kong-listed session by Liam Mills on how English restructuring plans can supplement and support local territorial proceedings.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/37696e6182e47021c5f8823b38a60699bb273ccb.jpg",
+    category: "Hong Kong",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1fvEt6oEv4/",
+  },
+  {
+    title: "0428 HK Oliver Haunch 离岸与境内重组程序的衔接与整合",
+    description:
+      "A Hong Kong-listed briefing by Oliver Haunch on connecting and integrating offshore and onshore restructuring proceedings.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/dfeec3439f1d4369eb34af338618bae1239554c1.jpg",
+    category: "Hong Kong",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1AtEt6YEmq/",
+  },
+  {
+    title: "0428 HK Strachan Gray YEUNG Sui Hung 英属维尔京群岛“轻干预式临时清盘”对离岸债务重组的制度价值",
+    description:
+      "A Hong Kong-listed discussion on the institutional value of BVI light-touch provisional liquidation for offshore debt restructuring.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/c672809e2ab37d93e944ff32eb83a33b778ec625.jpg",
+    category: "Hong Kong",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1ptEt6YEzk/",
+  },
+  {
+    title: "0428 HK 实战推演 WORKSHOP",
+    description:
+      "A practical workshop and scenario exercise from the Hong Kong-listed cross-border restructuring programme.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/d54f9fcee77d026c8b4d19b1f57ded271dddf4ba.jpg",
+    category: "Hong Kong",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1chEt6hEz6/",
+  },
+  {
+    title: "0428 HK 新 梁闽海 中资企业跨境债务重组境内外程序的衔接与完美闭环",
+    description:
+      "A Hong Kong-listed session by Liang Minhai on aligning domestic and overseas procedures for cross-border debt restructuring by Chinese-funded enterprises.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/d28b8f0a8299970ee1b13929144035ef66c605bf.jpg",
+    category: "Hong Kong",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1HhEt6hESb/",
+  },
+  {
+    title: "0428 HK 新 温美倩  债务重组视角下香港与内地判决的相互登记与执行",
+    description:
+      "A Hong Kong-listed presentation by Wen Meiqian on reciprocal registration and enforcement of Hong Kong and Mainland judgments from a debt restructuring perspective.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/17cf5ff1ae938ead73774fea688af6237bdf21a3.jpg",
+    category: "Hong Kong",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1A8Et6wE5w/",
+  },
+  {
+    title: "0428 HK 温美倩  债务重组视角下香港与内地判决的相互登记与执行",
+    description:
+      "A companion Hong Kong-listed session on reciprocal recognition, registration, and enforcement of judgments between Hong Kong and the Mainland in restructuring contexts.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/ddedb8f428c0b9b4efc4b9f8d6903afd5ae6ee6a.jpg",
+    category: "Hong Kong",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1w8Et6wExY/",
+  },
+  {
+    title: "0428 HK 梁闽海 中资企业跨境债务重组境内外程序的衔接与完美闭环",
+    description:
+      "A companion Hong Kong-listed analysis by Liang Minhai on creating a coordinated procedural loop for cross-border debt restructuring by Chinese-funded enterprises.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/4f605c51def5b791d40467c0968d4c7b7c451591.jpg",
+    category: "Hong Kong",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1AVEh66EgU/",
+  },
+];
+
 export const videoCollections: VideoCollection[] = [
   {
     slug: "peking",
@@ -288,19 +363,27 @@ export const videoCollections: VideoCollection[] = [
     title: "Hong Kong",
     description: "Video content from Hong Kong events and appearances.",
     featureDescription:
-      "City-focused video archive for Hong Kong events, public appearances, interviews and research-led discussions.",
-    videoCountLabel: "0 videos",
+      "The Hong Kong video archive includes Bilibili sessions from the cross-border restructuring programme.",
+    videoCountLabel: "8 videos",
     lastUpdated: "June 2026",
-    platformSources: [],
+    platformSources: ["bilibili"],
     category: "Hong Kong",
     coverImage: createCollectionCover({
       title: "Hong Kong",
       subtitle: "City Archive",
-      motif: "Video library by location",
+      motif: "Cross-border restructuring sessions",
     }),
     icon: BriefcaseBusiness,
-    keywords: ["hong kong", "city", "events", "archive", "finance"],
-    videos: [],
+    keywords: [
+      "hong kong",
+      "cross-border restructuring",
+      "debt restructuring",
+      "offshore restructuring",
+      "judgment enforcement",
+      "workshop",
+      "bilibili",
+    ],
+    videos: hongKongVideos,
   },
   {
     slug: "shangai",
