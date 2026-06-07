@@ -113,6 +113,81 @@ const createCollectionCover = ({
     </svg>
   `)}`;
 
+const crossBorderCommerceVideos: VideoItem[] = [
+  {
+    title: "0424 Nanjing 新 陈长灿 跨境重组中股东权益保留的法律边界",
+    description:
+      "A Nanjing session examining the legal boundaries for retaining shareholder equity in cross-border restructuring scenarios.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/c585dedae9de145a11a81d8e1de27ffd57abcbd7.jpg",
+    category: "Cross-Border Restructuring",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1SqEb6LExX/",
+  },
+  {
+    title: "0424 Nanjing 新 陈德渊 中国律师在中资企业跨境债务重组中的作用",
+    description:
+      "A legal and commercial discussion on the role Chinese lawyers play in cross-border debt restructuring for Chinese-funded enterprises.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/8fc7329c8e9a6f869d9167cc32b89fec565baf3f.jpg",
+    category: "Cross-Border Debt Restructuring",
+    bilibiliUrl: "https://www.bilibili.com/video/BV18qEb6LEW4/",
+  },
+  {
+    title: "0424 Nanjing 实战推演 WORKSHOP",
+    description:
+      "A practical workshop and case-based simulation from the Nanjing cross-border restructuring programme.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/5992069d4021ce7f2fe0cc8cfd9af5b43a77b63d.jpg",
+    category: "Workshop",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1SqEb6LErx/",
+  },
+  {
+    title: "0424 Nanjing 陈德渊 中国律师在中资企业跨境债务重组中的作用",
+    description:
+      "A companion Nanjing presentation on Chinese legal counsel and their contribution to restructuring Chinese enterprises' overseas debt positions.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/05dcfdce52f726f033657c3540e5039d17600cd4.jpg",
+    category: "Cross-Border Debt Restructuring",
+    bilibiliUrl: "https://www.bilibili.com/video/BV19bEb6DEyM/",
+  },
+  {
+    title: "0424 Nanjing 陈长灿 跨境重组中股东权益保留的法律边界",
+    description:
+      "A focused presentation on shareholder equity preservation and legal limits in cross-border restructuring plans.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/4057819dce1213ffcdfd81f69b1dd4bef19babe1.jpg",
+    category: "Cross-Border Restructuring",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1ebEb6DEgV/",
+  },
+  {
+    title: "0424 Nanjing Liam Mills 非共识情境下英国重组计划对异议债权人的突破路径",
+    description:
+      "A Nanjing briefing on UK restructuring plans and routes for addressing dissenting creditors in non-consensual situations.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/b3b48d4e233e7968043a280a58097e1c4df66e72.jpg",
+    category: "UK Restructuring Plans",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1YbEb6DEbB/",
+  },
+  {
+    title: "0424 Nanjing Ben McCosker Vivian Ma 马玮 开曼ELP型基金有限合伙人的退出策略",
+    description:
+      "A cross-border funds session on exit strategies for limited partners in Cayman exempted limited partnership fund structures.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/dc197fa9d1914bd0d27dbf282187ee2c05e3cb03.jpg",
+    category: "Cayman Funds",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1YbEb6DEph/",
+  },
+  {
+    title: "0420 Nanjing Oliver Haunch 跨境重组方案设计中的关键要素",
+    description:
+      "A Nanjing presentation outlining key elements in the design of cross-border restructuring solutions.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/f7d7e34246add2dbe2c34a84626a47eed0cf9328.jpg",
+    category: "Cross-Border Restructuring",
+    bilibiliUrl: "https://www.bilibili.com/video/BV19bEb6DEbs/",
+  },
+];
+
 export const videoCollections: VideoCollection[] = [
   {
     slug: "chinese-investment",
@@ -141,9 +216,9 @@ export const videoCollections: VideoCollection[] = [
     description: "Trade, regulation, investment and international business discussions.",
     featureDescription:
       "Trade, regulation and international business insights for companies operating between markets, cultures and legal systems.",
-    videoCountLabel: "0 videos",
+    videoCountLabel: "8 videos",
     lastUpdated: "June 2026",
-    platformSources: ["youtube", "bilibili"],
+    platformSources: ["bilibili"],
     category: "International Business",
     coverImage: createCollectionCover({
       title: "Cross-Border Commerce",
@@ -151,8 +226,19 @@ export const videoCollections: VideoCollection[] = [
       motif: "International business strategy",
     }),
     icon: BriefcaseBusiness,
-    keywords: ["commerce", "trade", "regulation", "business", "international", "market access"],
-    videos: [],
+    keywords: [
+      "commerce",
+      "trade",
+      "regulation",
+      "business",
+      "international",
+      "market access",
+      "restructuring",
+      "debt restructuring",
+      "cayman funds",
+      "nanjing",
+    ],
+    videos: crossBorderCommerceVideos,
   },
   {
     slug: "public-speaking",

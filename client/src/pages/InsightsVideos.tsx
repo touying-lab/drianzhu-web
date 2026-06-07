@@ -134,7 +134,7 @@ function CollectionsIndex() {
             transition={{ duration: 0.8, delay: 0.08 }}
           >
             <MetricCard value={videoCollections.length} label="Curated Collections" />
-            <MetricCard value={totalVideos} label="Published Videos" suffix=" placeholder" />
+            <MetricCard value={totalVideos} label="Published Videos" suffix={totalVideos === 0 ? " placeholder" : ""} />
             <MetricCard value={platformCount} label="Supported Platforms" />
           </motion.div>
 
