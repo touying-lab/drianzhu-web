@@ -7,6 +7,8 @@ import {
   Presentation,
   Tv,
 } from "lucide-react";
+import { getVideoEditId } from "./videoEditIds";
+import rawVideoEdits from "./videoEdits.json";
 
 export type VideoPlatform = "bilibili" | "youtube";
 
@@ -34,6 +36,31 @@ export type VideoCollection = {
   featured?: boolean;
   keywords: string[];
   videos: VideoItem[];
+};
+
+type VideoEditOverride = {
+  title?: string;
+  description?: string;
+};
+
+type VideoEditFile = {
+  edits?: Record<string, VideoEditOverride>;
+};
+
+const videoEditOverrides = (rawVideoEdits as VideoEditFile).edits ?? {};
+
+const applyVideoEdit = (video: VideoItem): VideoItem => {
+  const edit = videoEditOverrides[getVideoEditId(video)];
+
+  if (!edit) {
+    return video;
+  }
+
+  return {
+    ...video,
+    title: edit.title?.trim() || video.title,
+    description: edit.description?.trim() || video.description,
+  };
 };
 
 const thumbnailBase =
@@ -497,7 +524,7 @@ const shenzenVideos: VideoItem[] = [
   }
 ];
 
-export const videoCollections: VideoCollection[] = [
+const baseVideoCollections: VideoCollection[] = [
   {
     slug: "peking",
     title: "Peking",
@@ -639,6 +666,11 @@ export const videoCollections: VideoCollection[] = [
     videos: shenzenVideos,
   },
 ];
+
+export const videoCollections: VideoCollection[] = baseVideoCollections.map((collection) => ({
+  ...collection,
+  videos: collection.videos.map(applyVideoEdit),
+}));
 
 export const getVideoCollection = (slug: string | undefined) =>
   videoCollections.find((collection) => collection.slug === slug);
