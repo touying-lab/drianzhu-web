@@ -413,6 +413,90 @@ const hongKongVideos: VideoItem[] = [
   },
 ];
 
+const shenzenVideos: VideoItem[] = [
+  {
+    title: "0427 SZ 杨洲  离岸债务在岸审查的法律冲突与博弈",
+    description:
+      "A Shenzen session by Yang Zhou on legal conflict and strategic dynamics when offshore debt is reviewed onshore.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/b449d8a871f1d39d129b97f0bfb10bdb39ba0cf7.jpg",
+    category: "Shenzen",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1ZpEh6YEm3/",
+  },
+  {
+    title: "0427 SZ 新 杨安妮 跨境重组视角下多法域程序工具的功能分工与协同运用",
+    description:
+      "A Shenzen presentation by Yang Anni on the functional allocation and coordinated use of multi-jurisdictional procedural tools in cross-border restructuring.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/d2e87486b750d7c8eb4c1266d8fc29b745a0903e.jpg",
+    category: "Shenzen",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1zHEh6PEkf/",
+  },
+  {
+    title: "0427 SZ 新 杨洲  离岸债务在岸审查的法律冲突与博弈",
+    description:
+      "A companion Shenzen session by Yang Zhou on legal conflict and bargaining dynamics between offshore debt arrangements and onshore review.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/ae961aa38703c68ef4e97274632e2b5cee3e9d4f.jpg",
+    category: "Shenzen",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1FHEh6NE7N/",
+  },
+  {
+    title: "0427 SZ 实战推演 WORKSHOP",
+    description:
+      "A practical workshop and scenario exercise from the Shenzen cross-border restructuring programme.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/8e20def29a4981ee14caf08ed1c47e6f7f24af4e.jpg",
+    category: "Shenzen",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1JHEh6NEkm/",
+  },
+  {
+    title: "0427 SZ Steven W Golden 跨境诉讼工具箱-国际证据开示的策略与实务技巧",
+    description:
+      "A Shenzen briefing by Steven W. Golden on international discovery strategies and practical techniques in the cross-border litigation toolbox.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/f2839661d2b3347545e626c6da2e82569cab5c9d.jpg",
+    category: "Shenzen",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1zHEh6PEYj/",
+  },
+  {
+    title: "0427 SZ Oliver Haunch 美元债重组中的承认与救济工具体系",
+    description:
+      "A Shenzen session by Oliver Haunch on recognition and relief tools in US-dollar bond restructuring.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/079ad334646128c9b6342701c3da3b3ca13db820.jpg",
+    category: "Shenzen",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1zHEh6PEN4/",
+  },
+  {
+    title: "0427 SZ Ben McCosker Vivian Ma 马玮 开曼重组官制度的功能定位与实践运作",
+    description:
+      "A Shenzen discussion by Ben McCosker, Vivian Ma and Ma Wei on the function and practice of Cayman restructuring officer mechanisms.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/b72ac3655d0fcc05df95b1c625241b9f2e6f3607.jpg",
+    category: "Shenzen",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1BHEh6PEdu/",
+  },
+  {
+    title: "0427 SZ Liam Mills 从法院命令到落地--执行路径与异议风险管理",
+    description:
+      "A Shenzen session by Liam Mills on moving from court orders to implementation while managing enforcement pathways and objection risks.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/7e4a1b56db461f4a608b3795313ae9d130e3be56.jpg",
+    category: "Shenzen",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1RUE86dEh3/",
+  },
+  {
+    title: "0427 SZ 杨安妮 跨境重组视角下多法域程序工具的功能分工与协同运用",
+    description:
+      "A companion Shenzen presentation by Yang Anni on coordinated deployment of procedural tools across jurisdictions in cross-border restructuring.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/6152098816b63f2eaee9be6316896170e471b11c.jpg",
+    category: "Shenzen",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1fpEh6YE7D/",
+  }
+];
+
 export const videoCollections: VideoCollection[] = [
   {
     slug: "peking",
@@ -530,19 +614,29 @@ export const videoCollections: VideoCollection[] = [
     title: "Shenzen",
     description: "Video content from Shenzen events and appearances.",
     featureDescription:
-      "City-focused video archive for Shenzen events, public appearances, interviews and research-led discussions.",
-    videoCountLabel: "0 videos",
+      "The Shenzen video archive includes Bilibili sessions from the cross-border restructuring programme.",
+    videoCountLabel: "9 videos",
     lastUpdated: "June 2026",
-    platformSources: [],
+    platformSources: ["bilibili"],
     category: "Shenzen",
     coverImage: createCollectionCover({
       title: "Shenzen",
       subtitle: "City Archive",
-      motif: "Video library by location",
+      motif: "Cross-border restructuring sessions",
     }),
     icon: Tv,
-    keywords: ["shenzen", "shenzhen", "city", "events", "archive"],
-    videos: [],
+    keywords: [
+      "shenzen",
+      "shenzhen",
+      "cross-border restructuring",
+      "debt restructuring",
+      "offshore debt",
+      "international discovery",
+      "cayman restructuring officers",
+      "workshop",
+      "bilibili",
+    ],
+    videos: shenzenVideos,
   },
 ];
 
