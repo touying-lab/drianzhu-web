@@ -133,7 +133,7 @@ function CollectionsIndex() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.08 }}
           >
-            <MetricCard value={videoCollections.length} label="Curated Collections" />
+            <MetricCard value={videoCollections.length} label="City Categories" />
             <MetricCard value={totalVideos} label="Published Videos" suffix={totalVideos === 0 ? " placeholder" : ""} />
             <MetricCard value={platformCount} label="Supported Platforms" />
           </motion.div>
@@ -150,7 +150,7 @@ function CollectionsIndex() {
               <input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search collections, topics, platforms or future video titles"
+                placeholder="Search city categories, platforms or video titles"
                 className="w-full bg-transparent font-eb-garamond text-base outline-none placeholder:text-white/38"
                 style={{ color: "rgba(245, 245, 245, 0.88)" }}
               />
@@ -160,7 +160,7 @@ function CollectionsIndex() {
               <div>
                 <div className="mb-3 flex items-center gap-2">
                   <Filter className="h-4 w-4" style={{ color: BRAND_GOLD }} />
-                  <p className="font-cormorant text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>Knowledge Area</p>
+                  <p className="font-cormorant text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>City Category</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {categories.map((category) => (
@@ -227,7 +227,7 @@ function CollectionDetail({ collection }: { collection: VideoCollection }) {
             whileTap={{ scale: 0.98 }}
           >
             <ArrowLeft className="h-4 w-4" />
-            All Collections
+            All City Categories
           </motion.button>
 
           <motion.article
@@ -277,7 +277,7 @@ function CollectionDetail({ collection }: { collection: VideoCollection }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.08 }}
           >
-            <MetricCard value={totalVideos} label="Videos in Collection" suffix={totalVideos === 0 ? " placeholder" : ""} />
+            <MetricCard value={totalVideos} label="Videos in City" suffix={totalVideos === 0 ? " placeholder" : ""} />
             <MetricCard value={collection.platformSources.length} label="Platform Sources" />
             <MetricCard value={collection.keywords.length} label="Indexed Topics" />
           </motion.div>
@@ -287,7 +287,7 @@ function CollectionDetail({ collection }: { collection: VideoCollection }) {
               {collection.title} Videos
             </h2>
             <p className="font-eb-garamond max-w-3xl text-lg font-medium leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.72)" }}>
-              Browse videos, embeds and external platform links for this collection. When Bilibili and YouTube versions are both available, visitors can switch platforms directly within the card.
+              Browse videos, embeds and external platform links for this city category. When Bilibili and YouTube versions are both available, visitors can switch platforms directly within the card.
             </p>
           </header>
 
@@ -552,7 +552,7 @@ function NoResultsState() {
     <div className="mx-auto max-w-2xl rounded-sm p-10 text-center" style={{ border: `1px solid rgba(201, 162, 39, 0.16)`, backgroundColor: "rgba(19, 34, 56, 0.36)" }}>
       <p className="font-cinzel mb-4 text-xl font-bold" style={{ color: BRAND_GOLD }}>No Matching Collections</p>
       <p className="font-eb-garamond text-lg font-medium leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.74)" }}>
-        Adjust the search term, knowledge area or platform filter to continue browsing the video library.
+        Adjust the search term, city category or platform filter to continue browsing the video library.
       </p>
     </div>
   );
