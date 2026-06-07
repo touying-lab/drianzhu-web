@@ -113,6 +113,81 @@ const createCollectionCover = ({
     </svg>
   `)}`;
 
+const pekingVideos: VideoItem[] = [
+  {
+    title: "0421 PEK Oliver Haunch 普通法体系下的跨境重组路径与策略选择",
+    description:
+      "A Peking session by Oliver Haunch on cross-border restructuring routes and strategic choices under common law systems.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/d6fd2115fab219114f34261e7f6726fb29c69b0d.jpg",
+    category: "Peking",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1xuEh6VENs/",
+  },
+  {
+    title: "0421 PEK 新 穆忠和 冲突法与联合国示范法视野下的中资企业跨境重组",
+    description:
+      "A Peking presentation by Mu Zhonghe on Chinese enterprise cross-border restructuring from conflict-of-laws and UNCITRAL Model Law perspectives.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/9f4cacae2bb74de945a0e259f9130655ff970661.jpg",
+    category: "Peking",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1qsEh6wEzf/",
+  },
+  {
+    title: "0421 PEK 新 梁闽海 中资企业跨境债务重组的整体战略",
+    description:
+      "A Peking session by Liang Minhai on overall strategy for cross-border debt restructuring by Chinese-funded enterprises.",
+    date: "June 07, 2026",
+    thumbnail: "https://i0.hdslb.com/bfs/archive/1ae2012af57101b91fdd85d63ffffee837a67b10.jpg",
+    category: "Peking",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1BsEh6wEFX/",
+  },
+  {
+    title: "0421 PEK 实战推演 WORKSHOP",
+    description:
+      "A practical workshop and scenario exercise from the Peking cross-border restructuring programme.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/2ff33b5df11a548bc284287a6c69c73c4195282a.jpg",
+    category: "Peking",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1ixEh6hE1Q/",
+  },
+  {
+    title: "0421 PEK 实战推演 WORKSHOP",
+    description:
+      "A companion practical workshop segment from the Peking cross-border restructuring programme.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/2ff33b5df11a548bc284287a6c69c73c4195282a.jpg",
+    category: "Peking",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1ixEh6hEZV/",
+  },
+  {
+    title: "0421 PEK Strachan Gray YEUNG Sui Hung 债务偿还安排(SOA)在离岸重组中的策略定位",
+    description:
+      "A Peking discussion on the strategic positioning of schemes of arrangement in offshore restructuring.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/048aba390fb11511e064af04d7746672914959fd.jpg",
+    category: "Peking",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1oxEh6hEpB/",
+  },
+  {
+    title: "0421 PEK Liam Mills 法域选择的战略意义--英国法何以实现跨境重组的执行确定性",
+    description:
+      "A Peking session by Liam Mills on the strategic significance of jurisdictional choice and how English law supports enforcement certainty in cross-border restructuring.",
+    date: "June 07, 2026",
+    thumbnail: "https://i1.hdslb.com/bfs/archive/9cbfcbaa6516cbc5d907362113060cfe5ba1767f.jpg",
+    category: "Peking",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1NuEh6VEgD/",
+  },
+  {
+    title: "0421 PEK 陈巍 欢迎致辞welcome speech",
+    description:
+      "A Peking welcome speech by Chen Wei for the cross-border restructuring programme.",
+    date: "June 07, 2026",
+    thumbnail: "https://i2.hdslb.com/bfs/archive/e38a21942d3ba85ceadadbaf6d8aec0ccbe2e51a.jpg",
+    category: "Peking",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1vbEh6bEhS/",
+  },
+];
+
 const shangaiVideos: VideoItem[] = [
   {
     title: "0423 Shanghai 新 吴俊 境外重组官权利确认实务解析--以最高法年度报告案例为视角",
@@ -344,19 +419,28 @@ export const videoCollections: VideoCollection[] = [
     title: "Peking",
     description: "Video content from Peking events and appearances.",
     featureDescription:
-      "City-focused video archive for Peking events, public appearances, interviews and research-led discussions.",
-    videoCountLabel: "0 videos",
+      "The Peking video archive includes Bilibili sessions from the cross-border restructuring programme.",
+    videoCountLabel: "8 videos",
     lastUpdated: "June 2026",
-    platformSources: [],
+    platformSources: ["bilibili"],
     category: "Peking",
     coverImage: createCollectionCover({
       title: "Peking",
       subtitle: "City Archive",
-      motif: "Video library by location",
+      motif: "Cross-border restructuring sessions",
     }),
     icon: Landmark,
-    keywords: ["peking", "beijing", "city", "events", "archive"],
-    videos: [],
+    keywords: [
+      "peking",
+      "beijing",
+      "cross-border restructuring",
+      "debt restructuring",
+      "common law",
+      "scheme of arrangement",
+      "workshop",
+      "bilibili",
+    ],
+    videos: pekingVideos,
   },
   {
     slug: "hong-kong",
