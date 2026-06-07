@@ -3,7 +3,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import { Router as WouterRouter } from "wouter";
-import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -20,23 +19,27 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import CookieSettings from "./pages/CookieSettings";
 
-// Handle GitHub Pages SPA redirect from 404.html
-function useGitHubPagesRedirect() {
-  useEffect(() => {
-    const search = window.location.search;
-    if (search.startsWith("?/")) {
-      // Decode the path encoded by 404.html
-      const redirectPath = search.slice(2).replace(/~and~/g, "&");
-      // For project pages (/drianzhu-web/), keep the base path
-      const basePath = window.location.pathname.replace(/\/$/, "");
-      const newUrl = basePath + "/" + redirectPath + window.location.hash;
-      window.history.replaceState(null, "", newUrl);
-    }
-  }, []);
+// Handle GitHub Pages SPA redirect from 404.html before Wouter reads the URL.
+function restoreGitHubPagesRedirect() {
+  const { search, hash } = window.location;
+
+  if (!search.startsWith("?/")) {
+    return;
+  }
+
+  const redirect = search.slice(2);
+  const queryStart = redirect.indexOf("&");
+  const rawPath = queryStart === -1 ? redirect : redirect.slice(0, queryStart);
+  const rawQuery = queryStart === -1 ? "" : redirect.slice(queryStart + 1);
+  const path = `/${rawPath.replace(/~and~/g, "&").replace(/^\/+/, "")}`;
+  const query = rawQuery ? `?${rawQuery.replace(/~and~/g, "&")}` : "";
+
+  window.history.replaceState(null, "", `${path}${query}${hash}`);
 }
 
+restoreGitHubPagesRedirect();
+
 function Router() {
-  useGitHubPagesRedirect();
   return (
 <WouterRouter>
   <Switch>
