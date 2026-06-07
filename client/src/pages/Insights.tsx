@@ -126,6 +126,7 @@ function VideoLibrarySection() {
   const [query, setQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [platformFilter, setPlatformFilter] = useState<VideoPlatform | "all">("all");
+  const [showAllVideos, setShowAllVideos] = useState(false);
 
   const categories = useMemo(() => ["All", ...Array.from(new Set(videoCollections.map((collection) => collection.category)))], []);
 
@@ -145,6 +146,10 @@ function VideoLibrarySection() {
       return matchesQuery && matchesCategory && matchesPlatform;
     });
   }, [categoryFilter, platformFilter, query]);
+
+  const initialVisibleCount = 4;
+  const visibleCollections = showAllVideos ? filteredCollections : filteredCollections.slice(0, initialVisibleCount);
+  const canShowMore = filteredCollections.length > initialVisibleCount && !showAllVideos;
 
   return (
     <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: "#132238" }}>
@@ -208,7 +213,7 @@ function VideoLibrarySection() {
         </motion.div>
 
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2">
-          {filteredCollections.map((collection, index) => {
+          {visibleCollections.map((collection, index) => {
             const Icon = collection.icon;
 
             return (
@@ -242,6 +247,25 @@ function VideoLibrarySection() {
             );
           })}
         </div>
+
+        {canShowMore && (
+          <motion.div
+            className="mt-12 flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.25 }}
+          >
+            <button
+              type="button"
+              onClick={() => setShowAllVideos(true)}
+              className="group inline-flex items-center gap-3 rounded-sm px-8 py-4 font-cinzel text-sm font-semibold uppercase tracking-[0.18em] transition-all duration-300 hover:-translate-y-0.5"
+              style={{ border: `1px solid rgba(201, 162, 39, 0.48)`, color: BRAND_GOLD, backgroundColor: "rgba(13, 27, 42, 0.58)", boxShadow: "0 18px 44px rgba(0, 0, 0, 0.18)" }}
+            >
+              Show More
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
