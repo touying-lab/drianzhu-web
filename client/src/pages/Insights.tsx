@@ -6,14 +6,34 @@
  */
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { FileText, Download, ExternalLink, TrendingUp, Globe, Scale, Play, Video } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import {
+  ArrowRight,
+  Download,
+  ExternalLink,
+  FileText,
+  Globe,
+  LibraryBig,
+  Play,
+  Scale,
+  Search,
+  TrendingUp,
+  Video,
+  Youtube,
+} from "lucide-react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { resolveVideoCountLabel, videoCollections, type VideoCollection } from "@/data/videoCollections";
+import {
+  getFeaturedCollection,
+  getPlatformLabel,
+  resolveVideoCountLabel,
+  videoCollections,
+  type VideoCollection,
+  type VideoPlatform,
+} from "@/data/videoCollections";
 
 const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
@@ -47,6 +67,9 @@ export default function Insights() {
 
       {/* Featured Collections */}
       <FeaturedCollectionsSection />
+
+      {/* Video Library */}
+      <VideoLibrarySection />
 
       {/* Tou Ying Tracker Reports */}
       <TouYingSection />
@@ -105,13 +128,15 @@ function FeaturedCollectionsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [, setLocation] = useLocation();
+  const featuredCollection = getFeaturedCollection();
+  const supportingCollections = videoCollections.filter((collection) => collection.slug !== featuredCollection.slug);
 
   const handleOpenCollection = (collection: VideoCollection) => {
     setLocation(`/insights/videos/${collection.slug}`);
   };
 
   return (
-    <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: DEEP_BLUE }}>
+    <section ref={ref} className="py-20 md:py-28 overflow-hidden" style={{ backgroundColor: DEEP_BLUE }}>
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-16"
@@ -127,57 +152,296 @@ function FeaturedCollectionsSection() {
           </div>
           <div className="w-20 h-0.5 mb-8 mx-auto" style={{ backgroundColor: BRAND_GOLD }} />
           <p className="font-cormorant-garamond text-lg md:text-xl font-semibold max-w-3xl mx-auto leading-relaxed" style={{ color: "rgba(255, 255, 255, 0.72)" }}>
-            Explore selected video archives across interviews, public speaking, cross-border commerce and research-led commentary.
+            A premium media and knowledge library for research, public commentary, interviews and international business thought leadership.
           </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {videoCollections.map((collection, index) => {
+        <motion.article
+          className="group max-w-6xl mx-auto mb-10 overflow-hidden rounded-sm"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.85, delay: 0.08 }}
+          style={{
+            border: `1px solid rgba(201, 162, 39, 0.24)`,
+            background: "linear-gradient(135deg, rgba(19, 34, 56, 0.74), rgba(13, 27, 42, 0.96))",
+            boxShadow: "0 34px 100px rgba(0, 0, 0, 0.24)",
+          }}
+        >
+          <button onClick={() => handleOpenCollection(featuredCollection)} className="grid w-full grid-cols-1 text-left lg:grid-cols-[1.08fr_0.92fr]">
+            <div className="relative min-h-[320px] overflow-hidden">
+              <img
+                src={featuredCollection.coverImage}
+                alt={`${featuredCollection.title} collection cover`}
+                className="h-full min-h-[320px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0D1B2A]/30" />
+              <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-sm px-4 py-2" style={{ border: `1px solid rgba(201, 162, 39, 0.45)`, backgroundColor: "rgba(13, 27, 42, 0.78)", color: BRAND_GOLD }}>
+                <Play className="h-4 w-4" />
+                <span className="font-cormorant text-xs font-bold uppercase tracking-[0.18em]">Featured</span>
+              </div>
+            </div>
+            <div className="relative flex flex-col justify-center p-8 md:p-12">
+              <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(circle at 100% 0%, rgba(201, 162, 39, 0.14), transparent 46%)" }} />
+              <div className="relative z-10">
+                <CollectionMeta collection={featuredCollection} />
+                <h3 className="font-cinzel mb-5 text-2xl font-bold tracking-[0.08em] md:text-3xl" style={{ color: "#F5F5F5" }}>
+                  {featuredCollection.title}
+                </h3>
+                <p className="font-eb-garamond mb-8 text-lg font-medium leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.76)" }}>
+                  {featuredCollection.featureDescription}
+                </p>
+                <span className="inline-flex items-center gap-3 rounded-sm px-6 py-3 font-cormorant text-sm font-bold tracking-[0.14em] transition-all duration-300 group-hover:bg-white/5" style={{ border: `1px solid rgba(201, 162, 39, 0.48)`, color: BRAND_GOLD }}>
+                  Explore Featured Collection
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </div>
+          </button>
+        </motion.article>
+
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {supportingCollections.map((collection, index) => (
+            <PremiumCollectionCard
+              key={collection.slug}
+              collection={collection}
+              index={index}
+              isInView={isInView}
+              onOpen={() => handleOpenCollection(collection)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function VideoLibrarySection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [, setLocation] = useLocation();
+  const [query, setQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [platformFilter, setPlatformFilter] = useState<VideoPlatform | "all">("all");
+
+  const categories = useMemo(() => ["All", ...Array.from(new Set(videoCollections.map((collection) => collection.category)))], []);
+
+  const filteredCollections = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    return videoCollections.filter((collection) => {
+      const matchesQuery =
+        normalizedQuery.length === 0 ||
+        [collection.title, collection.description, collection.featureDescription, collection.category, ...collection.keywords]
+          .join(" ")
+          .toLowerCase()
+          .includes(normalizedQuery);
+      const matchesCategory = categoryFilter === "All" || collection.category === categoryFilter;
+      const matchesPlatform = platformFilter === "all" || collection.platformSources.includes(platformFilter);
+
+      return matchesQuery && matchesCategory && matchesPlatform;
+    });
+  }, [categoryFilter, platformFilter, query]);
+
+  return (
+    <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: "#132238" }}>
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="mx-auto mb-12 max-w-4xl text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <LibraryBig className="h-6 w-6" style={{ color: BRAND_GOLD }} />
+            <h2 className="font-cinzel text-2xl font-bold tracking-[0.15em] md:text-3xl" style={{ color: BRAND_GOLD }}>
+              Video Library
+            </h2>
+          </div>
+          <div className="mx-auto mb-8 h-0.5 w-20" style={{ backgroundColor: BRAND_GOLD }} />
+          <p className="font-cormorant-garamond text-lg font-semibold leading-relaxed md:text-xl" style={{ color: "rgba(255, 255, 255, 0.74)" }}>
+            Search by topic, browse by knowledge area, and identify where future Bilibili and YouTube content will be housed.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="mx-auto mb-10 max-w-6xl rounded-sm p-5 md:p-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          style={{ border: `1px solid rgba(201, 162, 39, 0.18)`, backgroundColor: "rgba(13, 27, 42, 0.5)" }}
+        >
+          <label className="mb-5 flex items-center gap-3 rounded-sm px-4 py-3" style={{ border: `1px solid rgba(201, 162, 39, 0.2)`, backgroundColor: "rgba(7, 20, 33, 0.68)" }}>
+            <Search className="h-5 w-5 flex-shrink-0" style={{ color: BRAND_GOLD }} />
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search videos, research topics or collections"
+              className="w-full bg-transparent font-eb-garamond text-base outline-none placeholder:text-white/38"
+              style={{ color: "rgba(245, 245, 245, 0.88)" }}
+            />
+          </label>
+
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
+            <div>
+              <p className="font-cormorant mb-3 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>Category</p>
+              <div className="flex flex-wrap gap-2">
+                {categories.map((category) => (
+                  <FilterButton key={category} active={categoryFilter === category} onClick={() => setCategoryFilter(category)}>
+                    {category}
+                  </FilterButton>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="font-cormorant mb-3 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>Platform</p>
+              <div className="flex flex-wrap gap-2 lg:justify-end">
+                <FilterButton active={platformFilter === "all"} onClick={() => setPlatformFilter("all")}>All</FilterButton>
+                <FilterButton active={platformFilter === "youtube"} onClick={() => setPlatformFilter("youtube")}>YouTube</FilterButton>
+                <FilterButton active={platformFilter === "bilibili"} onClick={() => setPlatformFilter("bilibili")}>Bilibili</FilterButton>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2">
+          {filteredCollections.map((collection, index) => {
             const Icon = collection.icon;
 
             return (
-              <motion.article
+              <motion.button
                 key={collection.slug}
-                className="group h-full"
-                initial={{ opacity: 0, y: 40 }}
+                onClick={() => setLocation(`/insights/videos/${collection.slug}`)}
+                className="group grid w-full grid-cols-1 overflow-hidden rounded-sm text-left transition-all duration-500 hover:-translate-y-1 md:grid-cols-[180px_1fr]"
+                initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+                transition={{ duration: 0.75, delay: index * 0.06 }}
+                style={{ border: `1px solid rgba(201, 162, 39, 0.16)`, backgroundColor: "rgba(13, 27, 42, 0.44)", boxShadow: "0 20px 60px rgba(0, 0, 0, 0.12)" }}
               >
-                <button
-                  onClick={() => handleOpenCollection(collection)}
-                  className="relative h-full w-full text-left overflow-hidden rounded-sm p-8 transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl"
-                  style={{
-                    border: `1px solid rgba(201, 162, 39, 0.18)`,
-                    backgroundColor: "rgba(19, 34, 56, 0.36)",
-                    boxShadow: "0 24px 70px rgba(0, 0, 0, 0.14)",
-                  }}
-                >
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "radial-gradient(circle at 80% 0%, rgba(201, 162, 39, 0.16), transparent 42%)" }} />
-                  <div className="relative z-10">
-                    <div className="w-14 h-14 rounded-sm flex items-center justify-center mb-7 transition-all duration-500 group-hover:scale-105" style={{ border: `1px solid rgba(201, 162, 39, 0.35)`, backgroundColor: "rgba(13, 27, 42, 0.72)" }}>
-                      <Icon className="w-7 h-7" style={{ color: BRAND_GOLD }} />
+                <div className="relative min-h-[180px] overflow-hidden">
+                  <img src={collection.coverImage} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-[#0D1B2A]/10" />
+                </div>
+                <div className="p-6">
+                  <div className="mb-4 flex items-start justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-sm" style={{ border: `1px solid rgba(201, 162, 39, 0.3)`, backgroundColor: "rgba(19, 34, 56, 0.6)" }}>
+                        <Icon className="h-5 w-5" style={{ color: BRAND_GOLD }} />
+                      </span>
+                      <CollectionMeta collection={collection} compact />
                     </div>
-                    <p className="font-cormorant text-xs tracking-[0.18em] uppercase mb-4 font-semibold" style={{ color: `rgba(201, 162, 39, 0.72)` }}>
-                      {resolveVideoCountLabel(collection)}
-                    </p>
-                    <h3 className="font-cinzel text-xl mb-4 font-bold" style={{ color: "#F5F5F5" }}>
-                      {collection.title}
-                    </h3>
-                    <p className="font-eb-garamond text-base leading-relaxed mb-8 font-medium" style={{ color: "rgba(245, 245, 245, 0.74)" }}>
-                      {collection.description}
-                    </p>
-                    <span className="inline-flex items-center gap-3 px-5 py-3 rounded-sm font-cormorant tracking-[0.14em] text-sm font-bold transition-all duration-300" style={{ border: `1px solid rgba(201, 162, 39, 0.42)`, color: BRAND_GOLD }}>
-                      View Collection
-                      <Play className="w-4 h-4" />
-                    </span>
+                    <ArrowRight className="mt-2 h-4 w-4 opacity-70 transition-transform duration-300 group-hover:translate-x-1" style={{ color: BRAND_GOLD }} />
                   </div>
-                </button>
-              </motion.article>
+                  <h3 className="font-cinzel mb-2 text-lg font-bold" style={{ color: "#F5F5F5" }}>{collection.title}</h3>
+                  <p className="font-eb-garamond text-base font-medium leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.72)" }}>{collection.description}</p>
+                </div>
+              </motion.button>
             );
           })}
         </div>
       </div>
     </section>
+  );
+}
+
+function PremiumCollectionCard({
+  collection,
+  index,
+  isInView,
+  onOpen,
+}: {
+  collection: VideoCollection;
+  index: number;
+  isInView: boolean;
+  onOpen: () => void;
+}) {
+  const Icon = collection.icon;
+
+  return (
+    <motion.article
+      className="group h-full"
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay: index * 0.1 }}
+    >
+      <button
+        onClick={onOpen}
+        className="relative h-full w-full overflow-hidden rounded-sm text-left transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl"
+        style={{ border: `1px solid rgba(201, 162, 39, 0.18)`, backgroundColor: "rgba(19, 34, 56, 0.36)", boxShadow: "0 24px 70px rgba(0, 0, 0, 0.14)" }}
+      >
+        <div className="relative aspect-[16/10] overflow-hidden">
+          <img src={collection.coverImage} alt={`${collection.title} collection cover`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/18 to-transparent" />
+          <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-sm" style={{ border: `1px solid rgba(201, 162, 39, 0.38)`, backgroundColor: "rgba(13, 27, 42, 0.78)" }}>
+            <Icon className="h-6 w-6" style={{ color: BRAND_GOLD }} />
+          </div>
+        </div>
+        <div className="relative p-7">
+          <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(circle at 84% 4%, rgba(201, 162, 39, 0.12), transparent 44%)" }} />
+          <div className="relative z-10">
+            <CollectionMeta collection={collection} />
+            <h3 className="font-cinzel mb-4 text-xl font-bold" style={{ color: "#F5F5F5" }}>{collection.title}</h3>
+            <p className="font-eb-garamond mb-7 text-base font-medium leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.74)" }}>{collection.description}</p>
+            <span className="inline-flex items-center gap-3 rounded-sm px-5 py-3 font-cormorant text-sm font-bold tracking-[0.14em] transition-all duration-300" style={{ border: `1px solid rgba(201, 162, 39, 0.42)`, color: BRAND_GOLD }}>
+              View Collection
+              <Play className="h-4 w-4" />
+            </span>
+          </div>
+        </div>
+      </button>
+    </motion.article>
+  );
+}
+
+function CollectionMeta({ collection, compact = false }: { collection: VideoCollection; compact?: boolean }) {
+  return (
+    <div className={compact ? "space-y-2" : "mb-5 space-y-4"}>
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="font-cormorant text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: `rgba(201, 162, 39, 0.74)` }}>
+          {resolveVideoCountLabel(collection)}
+        </span>
+        <span className="h-1 w-1 rounded-full" style={{ backgroundColor: "rgba(201, 162, 39, 0.45)" }} />
+        <span className="font-cormorant text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(245, 245, 245, 0.54)" }}>
+          Updated {collection.lastUpdated}
+        </span>
+      </div>
+      {!compact && <PlatformBadges platforms={collection.platformSources} />}
+    </div>
+  );
+}
+
+function PlatformBadges({ platforms }: { platforms: VideoPlatform[] }) {
+  return (
+    <div className="flex flex-wrap gap-2" aria-label={`Available platforms: ${getPlatformLabel(platforms)}`}>
+      {platforms.includes("youtube") && (
+        <span className="inline-flex items-center gap-2 rounded-sm px-3 py-1.5 font-cormorant text-xs font-bold tracking-[0.12em]" style={{ border: `1px solid rgba(201, 162, 39, 0.22)`, color: "rgba(245, 245, 245, 0.78)", backgroundColor: "rgba(13, 27, 42, 0.42)" }}>
+          <Youtube className="h-3.5 w-3.5" style={{ color: BRAND_GOLD }} />
+          YouTube
+        </span>
+      )}
+      {platforms.includes("bilibili") && (
+        <span className="inline-flex items-center gap-2 rounded-sm px-3 py-1.5 font-cormorant text-xs font-bold tracking-[0.12em]" style={{ border: `1px solid rgba(201, 162, 39, 0.22)`, color: "rgba(245, 245, 245, 0.78)", backgroundColor: "rgba(13, 27, 42, 0.42)" }}>
+          <span className="font-cinzel text-[11px]" style={{ color: BRAND_GOLD }}>哔</span>
+          Bilibili
+        </span>
+      )}
+    </div>
+  );
+}
+
+function FilterButton({ active, onClick, children }: { active: boolean; onClick: () => void; children: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="rounded-sm px-4 py-2 font-cormorant text-sm font-bold tracking-[0.12em] transition-all duration-300 hover:-translate-y-0.5"
+      style={{
+        border: `1px solid rgba(201, 162, 39, ${active ? 0.5 : 0.18})`,
+        backgroundColor: active ? "rgba(201, 162, 39, 0.1)" : "rgba(13, 27, 42, 0.32)",
+        color: active ? BRAND_GOLD : "rgba(245, 245, 245, 0.68)",
+      }}
+    >
+      {children}
+    </button>
   );
 }
 
