@@ -10,6 +10,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import Home from "./pages/Home";
 import TheArchitect from "./pages/TheArchitect";
 import Insights from "./pages/Insights";
+import InsightsVideos from "./pages/InsightsVideos";
 import Contact from "./pages/Contact";
 import AIAvatar from "./pages/AIAvatar";
 import Engagements from "./pages/Engagements";
@@ -42,6 +43,8 @@ function Router() {
     <Route path={"/"} component={Home} />
       <Route path={"/the-architect"} component={TheArchitect} />
       <Route path={"/insights"} component={Insights} />
+      <Route path={"/insights/videos"} component={InsightsVideos} />
+      <Route path={"/insights/videos/:collectionSlug"} component={InsightsVideos} />
       <Route path={"/contact"} component={Contact} />
       <Route path={"/ai-avatar"} component={AIAvatar} />
       <Route path={"/engagements"} component={Engagements} />

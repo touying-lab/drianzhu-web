@@ -7,11 +7,13 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FileText, Download, ExternalLink, TrendingUp, Globe, Scale } from "lucide-react";
+import { FileText, Download, ExternalLink, TrendingUp, Globe, Scale, Play, Video } from "lucide-react";
+import { useLocation } from "wouter";
 import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { resolveVideoCountLabel, videoCollections, type VideoCollection } from "@/data/videoCollections";
 
 const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
@@ -42,6 +44,9 @@ export default function Insights() {
       
       {/* Hero */}
       <InsightsHero />
+
+      {/* Featured Collections */}
+      <FeaturedCollectionsSection />
 
       {/* Tou Ying Tracker Reports */}
       <TouYingSection />
@@ -91,6 +96,86 @@ function InsightsHero() {
             {t("insightsPage.hero.desc")}
           </p>
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturedCollectionsSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [, setLocation] = useLocation();
+
+  const handleOpenCollection = (collection: VideoCollection) => {
+    setLocation(`/insights/videos/${collection.slug}`);
+  };
+
+  return (
+    <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: DEEP_BLUE }}>
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Video className="w-6 h-6" style={{ color: BRAND_GOLD }} />
+            <h2 className="font-cinzel text-2xl md:text-3xl tracking-[0.15em] font-bold" style={{ color: BRAND_GOLD }}>
+              Featured Collections
+            </h2>
+          </div>
+          <div className="w-20 h-0.5 mb-8 mx-auto" style={{ backgroundColor: BRAND_GOLD }} />
+          <p className="font-cormorant-garamond text-lg md:text-xl font-semibold max-w-3xl mx-auto leading-relaxed" style={{ color: "rgba(255, 255, 255, 0.72)" }}>
+            Explore selected video archives across interviews, public speaking, cross-border commerce and research-led commentary.
+          </p>
+        </motion.div>
+
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {videoCollections.map((collection, index) => {
+            const Icon = collection.icon;
+
+            return (
+              <motion.article
+                key={collection.slug}
+                className="group h-full"
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+              >
+                <button
+                  onClick={() => handleOpenCollection(collection)}
+                  className="relative h-full w-full text-left overflow-hidden rounded-sm p-8 transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl"
+                  style={{
+                    border: `1px solid rgba(201, 162, 39, 0.18)`,
+                    backgroundColor: "rgba(19, 34, 56, 0.36)",
+                    boxShadow: "0 24px 70px rgba(0, 0, 0, 0.14)",
+                  }}
+                >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "radial-gradient(circle at 80% 0%, rgba(201, 162, 39, 0.16), transparent 42%)" }} />
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 rounded-sm flex items-center justify-center mb-7 transition-all duration-500 group-hover:scale-105" style={{ border: `1px solid rgba(201, 162, 39, 0.35)`, backgroundColor: "rgba(13, 27, 42, 0.72)" }}>
+                      <Icon className="w-7 h-7" style={{ color: BRAND_GOLD }} />
+                    </div>
+                    <p className="font-cormorant text-xs tracking-[0.18em] uppercase mb-4 font-semibold" style={{ color: `rgba(201, 162, 39, 0.72)` }}>
+                      {resolveVideoCountLabel(collection)}
+                    </p>
+                    <h3 className="font-cinzel text-xl mb-4 font-bold" style={{ color: "#F5F5F5" }}>
+                      {collection.title}
+                    </h3>
+                    <p className="font-eb-garamond text-base leading-relaxed mb-8 font-medium" style={{ color: "rgba(245, 245, 245, 0.74)" }}>
+                      {collection.description}
+                    </p>
+                    <span className="inline-flex items-center gap-3 px-5 py-3 rounded-sm font-cormorant tracking-[0.14em] text-sm font-bold transition-all duration-300" style={{ border: `1px solid rgba(201, 162, 39, 0.42)`, color: BRAND_GOLD }}>
+                      View Collection
+                      <Play className="w-4 h-4" />
+                    </span>
+                  </div>
+                </button>
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
