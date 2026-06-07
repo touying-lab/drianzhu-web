@@ -1,14 +1,19 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar, ExternalLink, Save, Search, ShieldCheck } from "lucide-react";
+import { Calendar, ExternalLink, KeyRound, Save, Search, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import { getVideoEditId } from "@/data/videoEditIds";
+import rawVideoEdits from "@/data/videoEdits.json";
 import { getThumbnail, videoCollections, type VideoItem } from "@/data/videoCollections";
 
 const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
+const GITHUB_OWNER = "touying-lab";
+const GITHUB_REPO = "drianzhu-web";
+const GITHUB_BRANCH = "main";
+const VIDEO_EDITS_PATH = "client/src/data/videoEdits.json";
 
 type EditableVideo = VideoItem & {
   id: string;
@@ -16,44 +21,35 @@ type EditableVideo = VideoItem & {
   collectionSlug: string;
 };
 
-type SaveResponse = {
-  ok?: boolean;
-  message?: string;
+type VideoEditOverride = {
+  title?: string;
+  description?: string;
+};
+
+type VideoEditFile = {
+  version: number;
+  updatedAt: string | null;
+  updatedBy: string | null;
+  edits: Record<string, VideoEditOverride>;
+};
+
+type GitHubContentResponse = {
+  sha?: string;
+  content?: string;
+  encoding?: string;
+};
+
+type GitHubCommitResponse = {
   commit?: {
     sha?: string;
-    url?: string;
+    html_url?: string;
+  };
+  content?: {
+    html_url?: string;
   };
 };
 
-const getEditorApiBase = () => {
-  const configuredBase = import.meta.env.VITE_VIDEO_EDITOR_API_URL as string | undefined;
-
-  if (configuredBase?.trim()) {
-    return configuredBase.replace(/\/$/, "");
-  }
-
-  if (typeof window !== "undefined" && window.location.hostname.endsWith("drianzhu.com")) {
-    return "https://api.drianzhu.com";
-  }
-
-  return "";
-};
-
-const editorApiUrl = (path: string) => `${getEditorApiBase()}${path}`;
-
-const getBackendUnavailableMessage = () => {
-  const apiBase = getEditorApiBase() || "the same website origin";
-
-  return `The editor is open, but saving needs the private backend at ${apiBase}. The backend is not reachable yet, so edits cannot be published from this page until it is deployed.`;
-};
-
-const getFriendlyApiError = (error: unknown, fallbackMessage: string) => {
-  if (error instanceof TypeError) {
-    return getBackendUnavailableMessage();
-  }
-
-  return error instanceof Error ? error.message : fallbackMessage;
-};
+const initialVideoEdits = rawVideoEdits as VideoEditFile;
 
 const flattenVideos = (): EditableVideo[] =>
   videoCollections.flatMap((collection) =>
@@ -65,11 +61,108 @@ const flattenVideos = (): EditableVideo[] =>
     })),
   );
 
+const encodeBase64Utf8 = (value: string) => {
+  const bytes = new TextEncoder().encode(value);
+  let binary = "";
+
+  bytes.forEach((byte) => {
+    binary += String.fromCharCode(byte);
+  });
+
+  return btoa(binary);
+};
+
+const decodeBase64Utf8 = (value: string) => {
+  const normalized = value.replace(/\n/g, "");
+  const binary = atob(normalized);
+  const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+
+  return new TextDecoder().decode(bytes);
+};
+
+const getFriendlyGithubError = async (response: Response) => {
+  const data = (await response.json().catch(() => ({}))) as { message?: string; documentation_url?: string };
+
+  if (response.status === 401 || response.status === 403) {
+    return "GitHub rejected the token. Please use a fine-grained token with Contents read/write access to touying-lab/drianzhu-web.";
+  }
+
+  if (response.status === 404) {
+    return "GitHub could not find the repository or file. Check that the token has access to touying-lab/drianzhu-web.";
+  }
+
+  if (response.status === 409) {
+    return "GitHub reported a file conflict. Refresh the editor, re-apply your final edits, and save again.";
+  }
+
+  return data.message || "GitHub could not save the edits.";
+};
+
+const readLatestVideoEditsFromGitHub = async (token: string) => {
+  const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${VIDEO_EDITS_PATH}?ref=${GITHUB_BRANCH}`, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${token}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(await getFriendlyGithubError(response));
+  }
+
+  const data = (await response.json()) as GitHubContentResponse;
+  const parsed = data.content ? (JSON.parse(decodeBase64Utf8(data.content)) as VideoEditFile) : initialVideoEdits;
+
+  return {
+    sha: data.sha,
+    file: {
+      version: parsed.version || 1,
+      updatedAt: parsed.updatedAt ?? null,
+      updatedBy: parsed.updatedBy ?? null,
+      edits: parsed.edits || {},
+    },
+  };
+};
+
+const commitVideoEditsToGitHub = async ({
+  token,
+  sha,
+  file,
+}: {
+  token: string;
+  sha?: string;
+  file: VideoEditFile;
+}) => {
+  const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${VIDEO_EDITS_PATH}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+    body: JSON.stringify({
+      message: "Update Insights video editor metadata",
+      content: encodeBase64Utf8(`${JSON.stringify(file, null, 2)}\n`),
+      branch: GITHUB_BRANCH,
+      sha,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(await getFriendlyGithubError(response));
+  }
+
+  return (await response.json()) as GitHubCommitResponse;
+};
+
 export default function VideoEditor() {
   const [query, setQuery] = useState("");
   const [cityFilter, setCityFilter] = useState("All");
   const [videos, setVideos] = useState<EditableVideo[]>(() => flattenVideos());
   const [originalVideos, setOriginalVideos] = useState<EditableVideo[]>(() => flattenVideos());
+  const [githubToken, setGithubToken] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
   const cities = useMemo(() => ["All", ...Array.from(new Set(videos.map((video) => video.city)))], [videos]);
@@ -117,6 +210,12 @@ export default function VideoEditor() {
       return;
     }
 
+    const token = githubToken.trim();
+    if (!token) {
+      toast.error("Paste a GitHub token before saving. It is required only when publishing the final edits.");
+      return;
+    }
+
     const invalidVideo = changedVideos.find((video) => !video.title.trim() || !video.description.trim());
     if (invalidVideo) {
       toast.error("Every edited video must keep both a title and a description.");
@@ -126,29 +225,33 @@ export default function VideoEditor() {
     setIsSaving(true);
 
     try {
-      const response = await fetch(editorApiUrl("/api/video-editor/videos"), {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          updates: changedVideos.map((video) => ({
-            id: video.id,
-            title: video.title.trim(),
-            description: video.description.trim(),
-          })),
-        }),
-      });
-      const data = (await response.json().catch(() => ({}))) as SaveResponse;
+      const latest = await readLatestVideoEditsFromGitHub(token);
+      const nextEdits: Record<string, VideoEditOverride> = { ...latest.file.edits };
 
-      if (!response.ok || data.ok === false) {
-        throw new Error(data.message || "The edits could not be saved.");
-      }
+      changedVideos.forEach((video) => {
+        nextEdits[video.id] = {
+          title: video.title.trim(),
+          description: video.description.trim(),
+        };
+      });
+
+      const nextFile: VideoEditFile = {
+        version: latest.file.version || 1,
+        updatedAt: new Date().toISOString(),
+        updatedBy: "private-insights-editor",
+        edits: nextEdits,
+      };
+
+      const commit = await commitVideoEditsToGitHub({ token, sha: latest.sha, file: nextFile });
 
       setOriginalVideos(videos.map((video) => ({ ...video })));
-      toast.success(data.commit?.sha ? `Saved. GitHub commit ${data.commit.sha.slice(0, 7)} created.` : "Saved. GitHub deployment should start shortly.");
+      toast.success(
+        commit.commit?.sha
+          ? `Saved. GitHub commit ${commit.commit.sha.slice(0, 7)} created; GitHub Pages should redeploy shortly.`
+          : "Saved. GitHub Pages should redeploy shortly.",
+      );
     } catch (error) {
-      toast.error(getFriendlyApiError(error, "Unable to save the edits."));
+      toast.error(error instanceof Error ? error.message : "Unable to save the edits to GitHub.");
     } finally {
       setIsSaving(false);
     }
@@ -176,18 +279,36 @@ export default function VideoEditor() {
               Video Library Titles & Descriptions
             </h1>
             <p className="font-eb-garamond text-lg font-medium leading-relaxed md:text-xl" style={{ color: "rgba(245, 245, 245, 0.76)" }}>
-              This page is intentionally not linked from public navigation. Edit video metadata here, then save through the backend when it is connected.
+              This page is intentionally not linked from public navigation. Edit video metadata here, then use a GitHub token at the end to publish the final changes.
             </p>
           </div>
 
           <section>
             <div className="mb-6 rounded-sm p-5 md:p-6" style={{ border: "1px solid rgba(201, 162, 39, 0.18)", backgroundColor: "rgba(19, 34, 56, 0.62)" }}>
               <p className="font-eb-garamond text-base font-medium leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.74)" }}>
-                The password screen has been removed. Anyone with the hidden URL can view this editor page, so keep the URL private. Publishing saved edits still requires the private backend to be deployed with a GitHub token.
+                The password screen has been removed. Anyone with the hidden URL can view this editor page, so keep the URL private. To publish, paste a fine-grained GitHub token with <strong>Contents: Read and write</strong> access to <strong>touying-lab/drianzhu-web</strong>. The token is used only in this browser when you click Save Changes and is not committed to the website.
               </p>
             </div>
 
             <div className="mb-8 rounded-sm p-5 md:p-6" style={{ border: "1px solid rgba(201, 162, 39, 0.18)", backgroundColor: "rgba(19, 34, 56, 0.62)" }}>
+              <label className="mb-6 block">
+                <span className="mb-2 flex items-center gap-2 font-cormorant text-sm font-semibold uppercase tracking-[0.16em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>
+                  <KeyRound className="h-4 w-4" /> GitHub Token for Final Save
+                </span>
+                <input
+                  value={githubToken}
+                  onChange={(event) => setGithubToken(event.target.value)}
+                  placeholder="Paste GitHub fine-grained token here before saving"
+                  type="password"
+                  autoComplete="off"
+                  className="w-full rounded-sm px-4 py-3 font-eb-garamond text-base outline-none placeholder:text-white/35"
+                  style={{ border: "1px solid rgba(201, 162, 39, 0.22)", color: "rgba(245, 245, 245, 0.88)", backgroundColor: "rgba(7, 20, 33, 0.68)" }}
+                />
+                <p className="mt-2 font-eb-garamond text-sm leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.55)" }}>
+                  Recommended token scope: only the <strong>touying-lab/drianzhu-web</strong> repository, with <strong>Contents read/write</strong>. Keep the token private.
+                </p>
+              </label>
+
               <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_auto] lg:items-end">
                 <label className="block">
                   <span className="mb-2 block font-cormorant text-sm font-semibold uppercase tracking-[0.16em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>
@@ -238,7 +359,7 @@ export default function VideoEditor() {
                   </button>
                   <button type="button" onClick={saveChanges} disabled={changedVideos.length === 0 || isSaving} className="inline-flex items-center gap-3 px-6 py-3 font-cinzel text-sm font-bold tracking-[0.16em] disabled:cursor-not-allowed disabled:opacity-45" style={{ border: "1px solid rgba(201, 162, 39, 0.52)", color: BRAND_GOLD, backgroundColor: "rgba(201, 162, 39, 0.08)" }}>
                     <Save className="h-4 w-4" />
-                    {isSaving ? "Saving..." : "Save Changes"}
+                    {isSaving ? "Saving to GitHub..." : "Save Changes"}
                   </button>
                 </div>
               </div>
