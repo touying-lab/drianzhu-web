@@ -42,6 +42,20 @@ const getEditorApiBase = () => {
 
 const editorApiUrl = (path: string) => `${getEditorApiBase()}${path}`;
 
+const getBackendUnavailableMessage = () => {
+  const apiBase = getEditorApiBase() || "the same website origin";
+
+  return `The private editor backend is not reachable at ${apiBase}. The password cannot be checked until the backend is deployed and configured.`;
+};
+
+const getFriendlyApiError = (error: unknown, fallbackMessage: string) => {
+  if (error instanceof TypeError) {
+    return getBackendUnavailableMessage();
+  }
+
+  return error instanceof Error ? error.message : fallbackMessage;
+};
+
 const flattenVideos = (): EditableVideo[] =>
   videoCollections.flatMap((collection) =>
     collection.videos.map((video) => ({
@@ -117,7 +131,7 @@ export default function VideoEditor() {
       setPassword("");
       toast.success("Editor unlocked.");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Unable to unlock the editor.");
+      toast.error(getFriendlyApiError(error, "Unable to unlock the editor."));
     } finally {
       setIsAuthenticating(false);
     }
@@ -172,7 +186,7 @@ export default function VideoEditor() {
       setOriginalVideos(videos.map((video) => ({ ...video })));
       toast.success(data.commit?.sha ? `Saved. GitHub commit ${data.commit.sha.slice(0, 7)} created.` : "Saved. GitHub deployment should start shortly.");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Unable to save the edits.");
+      toast.error(getFriendlyApiError(error, "Unable to save the edits."));
     } finally {
       setIsSaving(false);
     }

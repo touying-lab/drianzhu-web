@@ -51,3 +51,25 @@ After deployment, map the service to `https://api.drianzhu.com`, or set `VITE_VI
 ## Security notes
 
 The hidden URL is only an entry point; it is not the main security mechanism. The actual protection is the server-side password check and the fact that `GITHUB_PAT` is held only by the private backend. Do not place `GITHUB_PAT` in frontend environment variables, static files, or GitHub Pages settings.
+
+## Troubleshooting: password does not unlock editor
+
+If the editor page shows an error such as `Failed to fetch`, the issue is not the password itself. It means the browser cannot reach the private backend API. The current frontend defaults to `https://api.drianzhu.com` on production, so that hostname must resolve to the deployed backend service.
+
+Configure the private backend with the chosen editor password and a valid private GitHub token:
+
+```bash
+EDITOR_PASSWORD=your_chosen_private_password
+GITHUB_PAT=your_private_github_token
+```
+
+A quick verification after deployment is:
+
+```bash
+curl https://api.drianzhu.com/api/video-editor/health
+curl -X POST https://api.drianzhu.com/api/video-editor/login \
+  -H 'Content-Type: application/json' \
+  --data '{"password":"your_chosen_private_password"}'
+```
+
+The health request should return `{"ok":true,"service":"drianzhu-video-editor"}`. The login request should return an editor session token. If `api.drianzhu.com` cannot be resolved, the DNS record or backend custom-domain mapping is not complete yet.
