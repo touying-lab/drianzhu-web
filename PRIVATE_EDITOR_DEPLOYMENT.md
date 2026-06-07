@@ -1,20 +1,19 @@
 # Private Video Editor Deployment
 
-This project now includes a hidden editor at `/insights/edit/007drianzhu` for changing public Video Library titles and descriptions. The public site can continue to run on GitHub Pages, but the editor save workflow requires a separate private Node backend because GitHub Pages cannot safely store passwords or GitHub tokens.
+This project now includes a hidden editor at `/insights/edit/007drianzhu` for changing public Video Library titles and descriptions. The public site can continue to run on GitHub Pages, but the editor save workflow requires a separate private Node backend because GitHub Pages cannot safely store GitHub tokens.
 
 ## Production URLs
 
 | Component | URL | Purpose |
 | --- | --- | --- |
 | Public Video Library | `https://www.drianzhu.com/insights` | Public-facing video page. |
-| Private Editor | `https://www.drianzhu.com/insights/edit/007drianzhu` | Hidden editor entry point with password gate. |
-| Private Backend | Recommended: `https://api.drianzhu.com` | Receives login/save requests and commits metadata edits to GitHub. |
+| Private Editor | `https://www.drianzhu.com/insights/edit/007drianzhu` | Hidden editor entry point. The password gate has been removed. |
+| Private Backend | Recommended: `https://api.drianzhu.com` | Receives save requests and commits metadata edits to GitHub. |
 
 ## Required backend environment variables
 
 | Variable | Required | Example | Purpose |
 | --- | --- | --- | --- |
-| `EDITOR_PASSWORD` | Yes | `use-a-long-private-password` | Password required to unlock the editor. |
 | `GITHUB_PAT` | Yes | `github_pat_...` | Server-side GitHub token used to update `client/src/data/videoEdits.json`. Never expose this in browser code. |
 | `GITHUB_REPOSITORY_NAME` | Optional | `touying-lab/drianzhu-web` | Defaults to `touying-lab/drianzhu-web`. |
 | `GITHUB_BRANCH` | Optional | `main` | Defaults to `main`. |
@@ -41,25 +40,23 @@ After deployment, map the service to `https://api.drianzhu.com`, or set `VITE_VI
 ## Editor operating workflow
 
 1. Open `https://www.drianzhu.com/insights/edit/007drianzhu`.
-2. Enter the editor password configured as `EDITOR_PASSWORD` on the backend.
-3. Edit video titles or descriptions.
-4. Press **Save Changes**.
-5. The backend commits the edits to `client/src/data/videoEdits.json` in GitHub.
-6. GitHub Pages rebuilds automatically.
-7. The public page at `https://www.drianzhu.com/insights` reflects the changes after the deployment finishes.
+2. Edit video titles or descriptions.
+3. Press **Save Changes**.
+4. The backend commits the edits to `client/src/data/videoEdits.json` in GitHub.
+5. GitHub Pages rebuilds automatically.
+6. The public page at `https://www.drianzhu.com/insights` reflects the changes after the deployment finishes.
 
 ## Security notes
 
-The hidden URL is only an entry point; it is not the main security mechanism. The actual protection is the server-side password check and the fact that `GITHUB_PAT` is held only by the private backend. Do not place `GITHUB_PAT` in frontend environment variables, static files, or GitHub Pages settings.
+The hidden URL is now the access gate for the editor page, so keep the URL private and do not link to it from public navigation. The GitHub token remains protected because `GITHUB_PAT` is held only by the private backend. Do not place `GITHUB_PAT` in frontend environment variables, static files, or GitHub Pages settings.
 
-## Troubleshooting: password does not unlock editor
+## Troubleshooting: Save Changes cannot publish edits
 
-If the editor page shows an error such as `Failed to fetch`, the issue is not the password itself. It means the browser cannot reach the private backend API. The current frontend defaults to `https://api.drianzhu.com` on production, so that hostname must resolve to the deployed backend service.
+If the editor page shows an error such as `Failed to fetch`, it means the browser cannot reach the private backend API. The current frontend defaults to `https://api.drianzhu.com` on production, so that hostname must resolve to the deployed backend service.
 
-Configure the private backend with the chosen editor password and a valid private GitHub token:
+Configure the private backend with a valid private GitHub token:
 
 ```bash
-EDITOR_PASSWORD=your_chosen_private_password
 GITHUB_PAT=your_private_github_token
 ```
 
@@ -67,9 +64,6 @@ A quick verification after deployment is:
 
 ```bash
 curl https://api.drianzhu.com/api/video-editor/health
-curl -X POST https://api.drianzhu.com/api/video-editor/login \
-  -H 'Content-Type: application/json' \
-  --data '{"password":"your_chosen_private_password"}'
 ```
 
-The health request should return `{"ok":true,"service":"drianzhu-video-editor"}`. The login request should return an editor session token. If `api.drianzhu.com` cannot be resolved, the DNS record or backend custom-domain mapping is not complete yet.
+The health request should return `{"ok":true,"service":"drianzhu-video-editor"}`. If `api.drianzhu.com` cannot be resolved, the DNS record or backend custom-domain mapping is not complete yet.

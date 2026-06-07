@@ -1,4 +1,3 @@
-import crypto from "crypto";
 import express from "express";
 import { createServer } from "http";
 import path from "path";
@@ -10,13 +9,6 @@ const __dirname = path.dirname(__filename);
 const VIDEO_EDITS_PATH = "client/src/data/videoEdits.json";
 const DEFAULT_REPOSITORY = "touying-lab/drianzhu-web";
 const DEFAULT_BRANCH = "main";
-const TOKEN_TTL_SECONDS = 60 * 60 * 8;
-
-type SessionPayload = {
-  scope: "video-editor";
-  exp: number;
-};
-
 type VideoEdit = {
   title: string;
   description: string;
@@ -49,75 +41,6 @@ type GitHubUpdateResponse = {
   content?: {
     html_url?: string;
   };
-};
-
-const base64UrlEncode = (value: string | Buffer) => Buffer.from(value).toString("base64url");
-
-const base64UrlDecode = (value: string) => Buffer.from(value, "base64url").toString("utf8");
-
-const getSessionSecret = () => {
-  const secret = process.env.EDITOR_SESSION_SECRET || process.env.EDITOR_PASSWORD;
-
-  if (!secret) {
-    throw new Error("EDITOR_PASSWORD must be configured before using the private video editor API.");
-  }
-
-  return secret;
-};
-
-const signValue = (value: string) =>
-  crypto.createHmac("sha256", getSessionSecret()).update(value).digest("base64url");
-
-const createSessionToken = () => {
-  const payload: SessionPayload = {
-    scope: "video-editor",
-    exp: Math.floor(Date.now() / 1000) + TOKEN_TTL_SECONDS,
-  };
-  const encodedPayload = base64UrlEncode(JSON.stringify(payload));
-  const signature = signValue(encodedPayload);
-
-  return `${encodedPayload}.${signature}`;
-};
-
-const verifySessionToken = (token: string | undefined) => {
-  if (!token || !token.includes(".")) {
-    return false;
-  }
-
-  const [encodedPayload, signature] = token.split(".");
-  const expectedSignature = signValue(encodedPayload);
-
-  if (signature.length !== expectedSignature.length) {
-    return false;
-  }
-
-  const signatureBuffer = Buffer.from(signature);
-  const expectedBuffer = Buffer.from(expectedSignature);
-
-  if (!crypto.timingSafeEqual(signatureBuffer, expectedBuffer)) {
-    return false;
-  }
-
-  try {
-    const payload = JSON.parse(base64UrlDecode(encodedPayload)) as SessionPayload;
-
-    return payload.scope === "video-editor" && payload.exp > Math.floor(Date.now() / 1000);
-  } catch {
-    return false;
-  }
-};
-
-const isPasswordValid = (candidate: string) => {
-  const configuredPassword = process.env.EDITOR_PASSWORD;
-
-  if (!configuredPassword) {
-    throw new Error("EDITOR_PASSWORD must be configured before using the private video editor API.");
-  }
-
-  const candidateBuffer = Buffer.from(candidate);
-  const passwordBuffer = Buffer.from(configuredPassword);
-
-  return candidateBuffer.length === passwordBuffer.length && crypto.timingSafeEqual(candidateBuffer, passwordBuffer);
 };
 
 const getAllowedOrigins = () => {
@@ -201,18 +124,6 @@ const saveVideoEditFile = async (params: {
   });
 };
 
-const requireEditorToken: express.RequestHandler = (req, res, next) => {
-  const header = req.header("Authorization") || "";
-  const token = header.startsWith("Bearer ") ? header.slice("Bearer ".length) : undefined;
-
-  if (!verifySessionToken(token)) {
-    res.status(401).json({ ok: false, message: "The editor session has expired. Please unlock the editor again." });
-    return;
-  }
-
-  next();
-};
-
 async function startServer() {
   const app = express();
   const server = createServer(app);
@@ -243,23 +154,7 @@ async function startServer() {
     res.json({ ok: true, service: "drianzhu-video-editor" });
   });
 
-  app.post("/api/video-editor/login", (req, res) => {
-    try {
-      const password = typeof req.body?.password === "string" ? req.body.password : "";
-
-      if (!isPasswordValid(password)) {
-        res.status(401).json({ ok: false, message: "Invalid editor password." });
-        return;
-      }
-
-      res.json({ ok: true, token: createSessionToken(), expiresIn: TOKEN_TTL_SECONDS });
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Editor login failed.";
-      res.status(500).json({ ok: false, message });
-    }
-  });
-
-  app.get("/api/video-editor/videos", requireEditorToken, async (_req, res) => {
+  app.get("/api/video-editor/videos", async (_req, res) => {
     try {
       const { parsed } = await readVideoEditFile();
       res.json({ ok: true, edits: parsed.edits ?? {}, updatedAt: parsed.updatedAt ?? null });
@@ -269,7 +164,7 @@ async function startServer() {
     }
   });
 
-  app.put("/api/video-editor/videos", requireEditorToken, async (req, res) => {
+  app.put("/api/video-editor/videos", async (req, res) => {
     try {
       const updates: IncomingVideoUpdate[] = Array.isArray(req.body?.updates) ? req.body.updates : [];
 
