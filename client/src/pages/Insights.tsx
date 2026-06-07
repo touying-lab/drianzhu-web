@@ -287,7 +287,7 @@ const getYouTubeEmbedUrl = (url?: string) => {
   if (!url) return undefined;
 
   const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
-  return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+  return match ? `https://www.youtube.com/embed/${match[1]}?rel=0&autoplay=0` : url;
 };
 
 const getBilibiliEmbedUrl = (url?: string) => {
@@ -295,12 +295,12 @@ const getBilibiliEmbedUrl = (url?: string) => {
 
   const bvid = url.match(/(BV[A-Za-z0-9]+)/)?.[1];
   if (bvid) {
-    return `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1`;
+    return `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&autoplay=0`;
   }
 
   const aid = url.match(/(?:av|aid=)(\d+)/)?.[1];
   if (aid) {
-    return `https://player.bilibili.com/player.html?aid=${aid}&page=1&high_quality=1`;
+    return `https://player.bilibili.com/player.html?aid=${aid}&page=1&high_quality=1&autoplay=0`;
   }
 
   return url;
@@ -310,8 +310,10 @@ function InlineVideoCard({ video, index, isInView }: { video: VideoWithCity; ind
   const availablePlatforms = getVideoPlatforms(video);
   const defaultPlatform: PlatformSelection = availablePlatforms[0] ?? "youtube";
   const [activePlatform, setActivePlatform] = useState<PlatformSelection>(defaultPlatform);
+  const [isPlayerLoaded, setIsPlayerLoaded] = useState(false);
   const hasBothPlatforms = Boolean(video.bilibiliUrl && video.youtubeUrl);
   const embedUrl = activePlatform === "bilibili" ? getBilibiliEmbedUrl(video.bilibiliUrl) : getYouTubeEmbedUrl(video.youtubeUrl);
+  const thumbnail = getThumbnail(video);
 
   return (
     <motion.article
@@ -322,16 +324,30 @@ function InlineVideoCard({ video, index, isInView }: { video: VideoWithCity; ind
       transition={{ duration: 0.75, delay: index * 0.06 }}
     >
       <div className="relative aspect-video overflow-hidden" style={{ backgroundColor: DEEP_BLUE }}>
-        {embedUrl ? (
+        {embedUrl && isPlayerLoaded ? (
           <iframe
             src={embedUrl}
             title={video.title}
             className="absolute inset-0 h-full w-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
         ) : (
-          <img src={getThumbnail(video)} alt={video.title} className="h-full w-full object-cover" />
+          <button
+            type="button"
+            onClick={() => embedUrl && setIsPlayerLoaded(true)}
+            className="group absolute inset-0 h-full w-full overflow-hidden text-left"
+            aria-label={`Play ${video.title}`}
+            disabled={!embedUrl}
+          >
+            <img src={thumbnail} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span className="absolute inset-0 bg-[#0D1B2A]/42 transition-colors duration-300 group-hover:bg-[#0D1B2A]/28" />
+            {embedUrl && (
+              <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110" style={{ border: `1px solid rgba(201, 162, 39, 0.62)`, backgroundColor: "rgba(13, 27, 42, 0.78)", boxShadow: "0 14px 35px rgba(0, 0, 0, 0.35)" }}>
+                <span className="ml-1 h-0 w-0 border-y-[11px] border-l-[17px] border-y-transparent" style={{ borderLeftColor: BRAND_GOLD }} />
+              </span>
+            )}
+          </button>
         )}
       </div>
 
@@ -342,7 +358,7 @@ function InlineVideoCard({ video, index, isInView }: { video: VideoWithCity; ind
               <button
                 key={platform}
                 type="button"
-                onClick={() => setActivePlatform(platform)}
+                onClick={() => { setActivePlatform(platform); setIsPlayerLoaded(false); }}
                 className="rounded-sm px-4 py-2 font-cormorant text-sm font-bold tracking-[0.12em] transition-all duration-300"
                 style={{
                   border: `1px solid rgba(201, 162, 39, ${activePlatform === platform ? 0.58 : 0.22})`,
