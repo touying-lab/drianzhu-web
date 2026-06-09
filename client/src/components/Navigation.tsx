@@ -16,21 +16,21 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const BRAND_GOLD = "#C9A227";
 
 const navItems = [
-  { label: "HOME", labelCn: "首页", href: "/", type: "route" },
-  { label: "THE ARCHITECT", labelCn: "建筑师", href: "/the-architect", type: "route" },
-  { label: "INSIGHTS", labelCn: "洞察", href: "/insights", type: "route" },
-  { label: "THE JOURNAL", labelCn: "日志", href: "/journal", type: "route" },
-  { label: "ENGAGEMENTS", labelCn: "社交活动", href: "/engagements", type: "route" },
-  { label: "AI AVATAR", labelCn: "AI 虚拟形象", href: "/ai-avatar", type: "route" },
-  { label: "STORE", labelCn: "商店", href: "/store", type: "route" },
-  { label: "CONTACT", labelCn: "联系", href: "/contact", type: "route" },
+  { key: "nav.home", href: "/", type: "route" },
+  { key: "nav.architect", href: "/the-architect", type: "route" },
+  { key: "nav.insights", href: "/insights", type: "route" },
+  { key: "nav.journal", href: "/journal", type: "route" },
+  { key: "nav.engagements", href: "/engagements", type: "route" },
+  { key: "nav.aiAvatar", href: "/ai-avatar", type: "route" },
+  { key: "nav.store", href: "/store", type: "route" },
+  { key: "nav.contact", href: "/contact", type: "route" },
 ];
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [location, setLocation] = useLocation();
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,9 +66,7 @@ export default function Navigation() {
     }
   };
 
-  const getLabel = (item: typeof navItems[0]) => {
-    return language === "cn" ? item.labelCn : item.label;
-  };
+  const getLabel = (item: typeof navItems[0]) => t(item.key);
 
   return (
     <>
@@ -107,10 +105,10 @@ export default function Navigation() {
             <div className="hidden xl:flex items-center gap-6">
               {navItems.map((item) => (
                 <motion.button
-                  key={item.label}
+                  key={item.key}
                   onClick={() => handleNavClick(item)}
                   className={`font-cormorant text-[13px] tracking-[0.15em] transition-colors duration-300 font-semibold ${
-                    item.label === "AI AVATAR" ? "font-bold" : ""
+                    item.key === "nav.aiAvatar" ? "font-bold" : ""
                   }`}
                   style={{ color: BRAND_GOLD }}
                   whileHover={{ y: -2, opacity: 0.8 }}
@@ -132,7 +130,7 @@ export default function Navigation() {
                 whileHover={{ scale: 1.05, opacity: 0.8 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {language === "en" ? "EN / 中" : "中 / EN"}
+                {t("nav.langToggle")}
               </motion.button>
 
               {/* Mobile Menu Button */}
