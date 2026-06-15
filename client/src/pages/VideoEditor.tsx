@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, ExternalLink, KeyRound, Languages, Save, Search, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
@@ -16,6 +16,9 @@ const GITHUB_REPO = "drianzhu-web";
 const GITHUB_BRANCH = "main";
 const VIDEO_EDITS_PATH = "client/src/data/videoEdits.json";
 const SITE_TEXT_PATH = "client/src/data/siteText.json";
+const RAW_DATA_BASE_URL = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}`;
+const RAW_VIDEO_EDITS_URL = `${RAW_DATA_BASE_URL}/${VIDEO_EDITS_PATH}`;
+const RAW_SITE_TEXT_URL = `${RAW_DATA_BASE_URL}/${SITE_TEXT_PATH}`;
 
 type EditableVideo = VideoItem & {
   id: string;
@@ -74,8 +77,26 @@ class GitHubFileConflictError extends Error {
 const initialVideoEdits = rawVideoEdits as VideoEditFile;
 const initialSiteText = siteTextData as SiteTextFile;
 
-const flattenVideos = (): EditableVideo[] =>
-  videoCollections.flatMap((collection) =>
+const applyVideoEdits = (videos: EditableVideo[], editFile: VideoEditFile): EditableVideo[] => {
+  const overrides = editFile.edits || {};
+
+  return videos.map((video) => {
+    const override = overrides[video.id];
+
+    if (!override) {
+      return video;
+    }
+
+    return {
+      ...video,
+      title: override.title?.trim() || video.title,
+      description: override.description?.trim() || video.description,
+    };
+  });
+};
+
+const flattenVideos = (editFile: VideoEditFile = initialVideoEdits): EditableVideo[] => {
+  const videos = videoCollections.flatMap((collection) =>
     collection.videos.map((video) => ({
       ...video,
       id: getVideoEditId(video),
@@ -84,8 +105,11 @@ const flattenVideos = (): EditableVideo[] =>
     })),
   );
 
-const flattenSiteText = (): TranslationEntry[] =>
-  Object.entries(initialSiteText.translations).map(([key, value]) => ({
+  return applyVideoEdits(videos, editFile);
+};
+
+const flattenSiteText = (file: SiteTextFile = initialSiteText): TranslationEntry[] =>
+  Object.entries(file.translations || {}).map(([key, value]) => ({
     key,
     en: value.en,
     cn: value.cn,
@@ -128,6 +152,22 @@ const getFriendlyGithubError = async (response: Response) => {
   }
 
   return data.message || "GitHub could not save the edits.";
+};
+
+const readPublicJsonFile = async <T,>(url: string) => {
+  const cacheBustUrl = `${url}?cacheBust=${Date.now()}`;
+  const response = await fetch(cacheBustUrl, {
+    cache: "no-store",
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Unable to load ${url}`);
+  }
+
+  return (await response.json()) as T;
 };
 
 const readJsonFileFromGitHub = async <T,>(token: string, path: string, fallback: T) => {
@@ -248,6 +288,53 @@ export default function VideoEditor() {
   const [originalSiteTextEntries, setOriginalSiteTextEntries] = useState<TranslationEntry[]>(() => flattenSiteText());
   const [githubToken, setGithubToken] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [isLoadingLatest, setIsLoadingLatest] = useState(true);
+  const [latestDataStatus, setLatestDataStatus] = useState("Loading latest website copy and video metadata from GitHub...");
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadLatestData = async () => {
+      setIsLoadingLatest(true);
+
+      try {
+        const [latestSiteText, latestVideoEdits] = await Promise.all([
+          readPublicJsonFile<SiteTextFile>(RAW_SITE_TEXT_URL),
+          readPublicJsonFile<VideoEditFile>(RAW_VIDEO_EDITS_URL),
+        ]);
+
+        if (!isMounted) {
+          return;
+        }
+
+        const latestTextEntries = flattenSiteText(latestSiteText);
+        const latestVideos = flattenVideos(latestVideoEdits);
+
+        setSiteTextEntries(latestTextEntries);
+        setOriginalSiteTextEntries(latestTextEntries.map((entry) => ({ ...entry })));
+        setVideos(latestVideos);
+        setOriginalVideos(latestVideos.map((video) => ({ ...video })));
+        setLatestDataStatus(`Latest GitHub data loaded at ${new Date().toLocaleTimeString()}.`);
+      } catch (error) {
+        if (!isMounted) {
+          return;
+        }
+
+        setLatestDataStatus("Could not refresh from GitHub, so the bundled fallback data is shown. Refresh the page and try again before editing.");
+        toast.error("Could not refresh the latest GitHub data. The editor is showing bundled fallback data.");
+      } finally {
+        if (isMounted) {
+          setIsLoadingLatest(false);
+        }
+      }
+    };
+
+    void loadLatestData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const cities = useMemo(() => ["All", ...Array.from(new Set(videos.map((video) => video.city)))], [videos]);
   const originalById = useMemo(() => new Map(originalVideos.map((video) => [video.id, video])), [originalVideos]);
@@ -481,6 +568,9 @@ export default function VideoEditor() {
                 <p className="mt-2 font-eb-garamond text-sm leading-relaxed" style={{ color: "rgba(245, 245, 245, 0.55)" }}>
                   Recommended token scope: only the <strong>touying-lab/drianzhu-web</strong> repository, with <strong>Contents read/write</strong>. Keep the token private.
                 </p>
+                <p className="mt-3 font-eb-garamond text-sm leading-relaxed" style={{ color: isLoadingLatest ? "rgba(201, 162, 39, 0.82)" : "rgba(245, 245, 245, 0.62)" }}>
+                  {latestDataStatus}
+                </p>
               </label>
 
               <div className="mb-6 flex flex-wrap gap-3">
@@ -497,12 +587,12 @@ export default function VideoEditor() {
                   {changedSiteTextEntries.length} Chinese text edits and {changedVideos.length} video edits are waiting to be saved.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <button type="button" onClick={resetChanges} disabled={totalChanges === 0 || isSaving} className="px-5 py-3 font-cormorant text-sm font-bold tracking-[0.12em] disabled:cursor-not-allowed disabled:opacity-45" style={{ border: "1px solid rgba(245, 245, 245, 0.2)", color: "rgba(245, 245, 245, 0.72)" }}>
+                  <button type="button" onClick={resetChanges} disabled={totalChanges === 0 || isSaving || isLoadingLatest} className="px-5 py-3 font-cormorant text-sm font-bold tracking-[0.12em] disabled:cursor-not-allowed disabled:opacity-45" style={{ border: "1px solid rgba(245, 245, 245, 0.2)", color: "rgba(245, 245, 245, 0.72)" }}>
                     Reset All
                   </button>
-                  <button type="button" onClick={saveChanges} disabled={totalChanges === 0 || isSaving} className="inline-flex items-center gap-3 px-6 py-3 font-cinzel text-sm font-bold tracking-[0.16em] disabled:cursor-not-allowed disabled:opacity-45" style={{ border: "1px solid rgba(201, 162, 39, 0.52)", color: BRAND_GOLD, backgroundColor: "rgba(201, 162, 39, 0.08)" }}>
+                  <button type="button" onClick={saveChanges} disabled={totalChanges === 0 || isSaving || isLoadingLatest} className="inline-flex items-center gap-3 px-6 py-3 font-cinzel text-sm font-bold tracking-[0.16em] disabled:cursor-not-allowed disabled:opacity-45" style={{ border: "1px solid rgba(201, 162, 39, 0.52)", color: BRAND_GOLD, backgroundColor: "rgba(201, 162, 39, 0.08)" }}>
                     <Save className="h-4 w-4" />
-                    {isSaving ? "Saving to GitHub..." : "Save Changes"}
+                    {isSaving ? "Saving to GitHub..." : isLoadingLatest ? "Loading latest data..." : "Save Changes"}
                   </button>
                 </div>
               </div>
