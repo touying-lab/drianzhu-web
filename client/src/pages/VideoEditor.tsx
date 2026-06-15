@@ -64,6 +64,13 @@ type GitHubCommitResponse = {
   };
 };
 
+class GitHubFileConflictError extends Error {
+  constructor() {
+    super("GitHub reported a file conflict after refreshing the latest file version.");
+    this.name = "GitHubFileConflictError";
+  }
+}
+
 const initialVideoEdits = rawVideoEdits as VideoEditFile;
 const initialSiteText = siteTextData as SiteTextFile;
 
@@ -83,6 +90,8 @@ const flattenSiteText = (): TranslationEntry[] =>
     en: value.en,
     cn: value.cn,
   }));
+
+const serializeJsonFile = (file: unknown) => `${JSON.stringify(file, null, 2)}\n`;
 
 const encodeBase64Utf8 = (value: string) => {
   const bytes = new TextEncoder().encode(value);
@@ -135,9 +144,10 @@ const readJsonFileFromGitHub = async <T,>(token: string, path: string, fallback:
   }
 
   const data = (await response.json()) as GitHubContentResponse;
-  const parsed = data.content ? (JSON.parse(decodeBase64Utf8(data.content)) as T) : fallback;
+  const rawJson = data.content ? decodeBase64Utf8(data.content) : "";
+  const parsed = rawJson ? (JSON.parse(rawJson) as T) : fallback;
 
-  return { sha: data.sha, file: parsed };
+  return { sha: data.sha, file: parsed, rawJson };
 };
 
 const commitJsonFileToGitHub = async ({
@@ -163,17 +173,65 @@ const commitJsonFileToGitHub = async ({
     },
     body: JSON.stringify({
       message,
-      content: encodeBase64Utf8(`${JSON.stringify(file, null, 2)}\n`),
+      content: encodeBase64Utf8(serializeJsonFile(file)),
       branch: GITHUB_BRANCH,
       sha,
     }),
   });
 
   if (!response.ok) {
+    if (response.status === 409) {
+      throw new GitHubFileConflictError();
+    }
+
     throw new Error(await getFriendlyGithubError(response));
   }
 
   return (await response.json()) as GitHubCommitResponse;
+};
+
+const saveJsonFileWithLatestMerge = async <T,>({
+  token,
+  path,
+  fallback,
+  message,
+  buildFile,
+}: {
+  token: string;
+  path: string;
+  fallback: T;
+  message: string;
+  buildFile: (latestFile: T) => T;
+}) => {
+  let latest = await readJsonFileFromGitHub<T>(token, path, fallback);
+
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const nextFile = buildFile(latest.file);
+    const nextSerialized = serializeJsonFile(nextFile);
+
+    if (latest.rawJson === nextSerialized) {
+      return null;
+    }
+
+    try {
+      return await commitJsonFileToGitHub({
+        token,
+        path,
+        sha: latest.sha,
+        file: nextFile,
+        message,
+      });
+    } catch (error) {
+      if (error instanceof GitHubFileConflictError && attempt === 0) {
+        latest = await readJsonFileFromGitHub<T>(token, path, fallback);
+        continue;
+      }
+
+      throw error;
+    }
+  }
+
+  return null;
 };
 
 const getTextGroup = (key: string) => key.split(".")[0] || "general";
@@ -294,63 +352,61 @@ export default function VideoEditor() {
       const commits: string[] = [];
 
       if (hasVideoChanges) {
-        const latest = await readJsonFileFromGitHub<VideoEditFile>(token, VIDEO_EDITS_PATH, initialVideoEdits);
-        const nextEdits: Record<string, VideoEditOverride> = { ...(latest.file.edits || {}) };
-
-        changedVideos.forEach((video) => {
-          nextEdits[video.id] = {
-            title: video.title.trim(),
-            description: video.description.trim(),
-          };
-        });
-
-        const nextFile: VideoEditFile = {
-          version: latest.file.version || 1,
-          updatedAt: new Date().toISOString(),
-          updatedBy: "private-content-editor",
-          edits: nextEdits,
-        };
-
-        const commit = await commitJsonFileToGitHub({
+        const commit = await saveJsonFileWithLatestMerge<VideoEditFile>({
           token,
           path: VIDEO_EDITS_PATH,
-          sha: latest.sha,
-          file: nextFile,
+          fallback: initialVideoEdits,
           message: "Update Insights video editor metadata",
+          buildFile: (latestFile) => {
+            const nextEdits: Record<string, VideoEditOverride> = { ...(latestFile.edits || {}) };
+
+            changedVideos.forEach((video) => {
+              nextEdits[video.id] = {
+                title: video.title.trim(),
+                description: video.description.trim(),
+              };
+            });
+
+            return {
+              version: latestFile.version || 1,
+              updatedAt: new Date().toISOString(),
+              updatedBy: "private-content-editor",
+              edits: nextEdits,
+            };
+          },
         });
 
-        if (commit.commit?.sha) {
+        if (commit?.commit?.sha) {
           commits.push(commit.commit.sha.slice(0, 7));
         }
       }
 
       if (hasTextChanges) {
-        const latest = await readJsonFileFromGitHub<SiteTextFile>(token, SITE_TEXT_PATH, initialSiteText);
-        const nextTranslations: SiteTextFile["translations"] = { ...(latest.file.translations || {}) };
-
-        changedSiteTextEntries.forEach((entry) => {
-          nextTranslations[entry.key] = {
-            en: nextTranslations[entry.key]?.en ?? entry.en,
-            cn: entry.cn.trimEnd(),
-          };
-        });
-
-        const nextFile: SiteTextFile = {
-          version: latest.file.version || 1,
-          updatedAt: new Date().toISOString(),
-          updatedBy: "private-content-editor",
-          translations: nextTranslations,
-        };
-
-        const commit = await commitJsonFileToGitHub({
+        const commit = await saveJsonFileWithLatestMerge<SiteTextFile>({
           token,
           path: SITE_TEXT_PATH,
-          sha: latest.sha,
-          file: nextFile,
+          fallback: initialSiteText,
           message: "Update Chinese website copy",
+          buildFile: (latestFile) => {
+            const nextTranslations: SiteTextFile["translations"] = { ...(latestFile.translations || {}) };
+
+            changedSiteTextEntries.forEach((entry) => {
+              nextTranslations[entry.key] = {
+                en: nextTranslations[entry.key]?.en ?? entry.en,
+                cn: entry.cn.trimEnd(),
+              };
+            });
+
+            return {
+              version: latestFile.version || 1,
+              updatedAt: new Date().toISOString(),
+              updatedBy: "private-content-editor",
+              translations: nextTranslations,
+            };
+          },
         });
 
-        if (commit.commit?.sha) {
+        if (commit?.commit?.sha) {
           commits.push(commit.commit.sha.slice(0, 7));
         }
       }
@@ -363,7 +419,11 @@ export default function VideoEditor() {
           : "Saved. GitHub Pages should redeploy shortly.",
       );
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Unable to save the edits to GitHub.");
+      if (error instanceof GitHubFileConflictError) {
+        toast.error("GitHub reported another file conflict even after refreshing the latest file. Please wait one minute for the previous save/deploy to settle, then save again.");
+      } else {
+        toast.error(error instanceof Error ? error.message : "Unable to save the edits to GitHub.");
+      }
     } finally {
       setIsSaving(false);
     }
