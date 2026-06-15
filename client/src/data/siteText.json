@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "updatedAt": null,
-  "updatedBy": null,
+  "updatedAt": "2026-06-15T19:51:03.568Z",
+  "updatedBy": "private-content-editor",
   "translations": {
     "nav.home": {
       "en": "HOME",
-      "cn": "首页"
+      "cn": "首页a"
     },
     "nav.architect": {
       "en": "THE ARCHITECT",
