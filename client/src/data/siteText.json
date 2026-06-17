@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-15T20:07:25.063Z",
+  "updatedAt": "2026-06-17T15:26:36.139Z",
   "updatedBy": "private-content-editor",
   "translations": {
     "nav.home": {
@@ -9,11 +9,11 @@
     },
     "nav.architect": {
       "en": "THE ARCHITECT",
-      "cn": "建筑师"
+      "cn": "我的故事"
     },
     "nav.insights": {
       "en": "INSIGHTS",
-      "cn": "洞察"
+      "cn": "洞察分析"
     },
     "nav.journal": {
       "en": "THE JOURNAL",
