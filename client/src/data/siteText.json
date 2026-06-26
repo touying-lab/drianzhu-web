@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-17T15:26:36.139Z",
+  "updatedAt": "2026-06-26T08:28:55.730Z",
   "updatedBy": "private-content-editor",
   "translations": {
     "nav.home": {
@@ -13,7 +13,7 @@
     },
     "nav.insights": {
       "en": "INSIGHTS",
-      "cn": "洞察分析"
+      "cn": "洞察与观点"
     },
     "nav.journal": {
       "en": "THE JOURNAL",
@@ -45,19 +45,19 @@
     },
     "hero.welcome2": {
       "en": "I hope you'll take some time to look around",
-      "cn": "希望你能花些时间浏览一下"
+      "cn": "愿你在这里稍作停留，"
     },
     "hero.welcome3": {
       "en": "and enjoy the insights, photos, videos and updates.",
-      "cn": "欣赏这里的洞察、照片、视频和最新动态。"
+      "cn": "慢慢浏览这些文字、影像、照片与近况，也愿其中的片刻思考，能与你产生共鸣。"
     },
     "hero.welcome4": {
       "en": "Thanks for stopping by.",
-      "cn": "感谢你的到来。"
+      "cn": "感谢你的驻足。"
     },
     "hero.love": {
       "en": "Love,",
-      "cn": "此致，"
+      "cn": "祝好"
     },
     "hero.explore": {
       "en": "Explore",
@@ -97,7 +97,7 @@
     },
     "insights.touYingDesc": {
       "en": "Annual flagship report tracking Chinese investment in the UK, officially cited by government and industry bodies.",
-      "cn": "追踪中国在英投资的年度旗舰报告，被政府和行业机构官方引用。"
+      "cn": "追踪中国在英国投资情况的年度旗舰报告，获政府及行业机构正式引用。"
     },
     "insights.touYingYears": {
       "en": "2016 - Present",
@@ -109,7 +109,7 @@
     },
     "insights.mnaDesc": {
       "en": "In-depth analysis of cross-border mergers and acquisitions, regulatory trends, and market dynamics.",
-      "cn": "深入分析跨境并购、监管趋势和市场动态。"
+      "cn": "深度分析跨国合并与收购，监管趋势与市场动态。"
     },
     "insights.mnaYears": {
       "en": "Ongoing Research",
@@ -121,7 +121,7 @@
     },
     "insights.ukChinaDesc": {
       "en": "Strategic insights on bilateral economic relations, policy developments, and investment opportunities.",
-      "cn": "关于双边经济关系、政策发展和投资机会的战略洞察。"
+      "cn": "对于双边经济关系、政策发展和投资机会的战略见解。"
     },
     "insights.ukChinaYears": {
       "en": "Thought Leadership",
@@ -129,7 +129,7 @@
     },
     "insightsPage.hero.title": {
       "en": "INSIGHTS",
-      "cn": "洞察"
+      "cn": "洞察与观点"
     },
     "insightsPage.hero.subtitle": {
       "en": "Strategic Intelligence on UK-China Business",
