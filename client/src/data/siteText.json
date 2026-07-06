@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-26T08:28:55.730Z",
+  "updatedAt": "2026-07-06T12:51:08.566Z",
   "updatedBy": "private-content-editor",
   "translations": {
     "nav.home": {
@@ -301,7 +301,7 @@
     },
     "aiPage.hero.desc": {
       "en": "Beyond the boardroom, Dr. Zhu embodies multiple dimensions of excellence. Explore the facets of a Renaissance man through his AI-powered digital personas.",
-      "cn": "超越会议室，朱博士体现了多维度的卓越。通过其AI驱动的数字人格，探索这位文艺复兴式人物的多个侧面。"
+      "cn": "在董事会之外，朱博士展现出了多维度的卓越才华。让我们通过他的 AI 数字化分身，一同探索这位跨界精英的多面风采。"
     },
     "aiPage.persona": {
       "en": "PERSONA",
@@ -321,7 +321,7 @@
     },
     "architectPage.hero.title": {
       "en": "THE ARCHITECT",
-      "cn": "建筑师"
+      "cn": "架构师"
     },
     "architectPage.hero.intro": {
       "en": "Dr. Ian Zhu — International Sales Expert, Cross-Border Dispute Resolution Specialist, and a bridge between Eastern and Western business worlds.",
@@ -501,11 +501,11 @@
     },
     "storePage.bespoke.title": {
       "en": "BESPOKE ENQUIRIES",
-      "cn": "定制和询"
+      "cn": "定制化咨询"
     },
     "storePage.bespoke.desc": {
       "en": "For private collections, corporate gifting, or bespoke commissions, please reach out to our concierge team for a personalised consultation.",
-      "cn": "如需私人收藏、企业馈赠或定制委托，请联系我们的礼宾团队进行个性化和询。"
+      "cn": "如需私人收藏、企业馈赠或定制委托，请联系我们的礼宾团队进行个性化咨询。"
     },
     "storePage.concierge": {
       "en": "CONTACT CONCIERGE",
@@ -579,7 +579,6 @@
       "en": "Required",
       "cn": "必要"
     },
-
     "legacy.phase1.years": {
       "en": "1998 – 2013",
       "cn": "1998 – 2013"
@@ -606,7 +605,7 @@
     },
     "legacy.phase1.ach2": {
       "en": "Managed £30M procurement portfolio for Home Products Ltd",
-      "cn": "为家居产品有限公司管理3000万英镑采购组合"
+      "cn": "为Home Products Ltd管理总额 3000万英镑的采购业务"
     },
     "legacy.phase1.ach3": {
       "en": "Achieved $100M+ printing machinery sales in China over five years",
@@ -620,7 +619,6 @@
       "en": "Managed 60% of 2012 London Olympics mascot order contracts",
       "cn": "管理2012年伦敦奥运会吉祥物60%的订单合同"
     },
-
     "legacy.phase2.years": {
       "en": "2014 – 2017",
       "cn": "2014 – 2017"
@@ -651,13 +649,12 @@
     },
     "legacy.phase2.ach3": {
       "en": "Reignwood Group: Assisted in managing £1B UK asset portfolio",
-      "cn": "英皇集团：协助管理10亿英镑英国资产组合"
+      "cn": "华彬集团：协助管理10亿英镑的英国资产包"
     },
     "legacy.phase2.ach4": {
       "en": "Deep involvement in Four Seasons Hotel Trinity Square, Wentworth Golf Club, and VOSS Water acquisitions",
-      "cn": "深度参与四季酒店三一广场、温特沃斯高尔夫俱乐部及VOSS水的收购"
+      "cn": "深度参与伦敦三一广场四季酒店、温特沃斯高尔夫俱乐部及芙丝水品牌的收购项目"
     },
-
     "legacy.phase3.years": {
       "en": "2017 – Present",
       "cn": "2017 – 至今"
@@ -680,21 +677,20 @@
     },
     "legacy.phase3.ach1": {
       "en": "Grant Thornton UK: Led cross-border asset tracing; served 250+ Chinese enterprises",
-      "cn": "致同英国：主导跨境资产追踪；服务逾250家中国企业"
+      "cn": "致同英国会计师事务所：主导跨境资产追踪；服务250 多家中国企业"
     },
     "legacy.phase3.ach2": {
       "en": "Achieved 727% revenue growth in the practice",
-      "cn": "实现业务收入727%的增长"
+      "cn": "实现业务收入增长727%"
     },
     "legacy.phase3.ach3": {
       "en": "Gateley Plc: Leveraged legal structures for cross-border arbitration and compliance",
-      "cn": "盖特利律师事务所：运用法律架构开展跨境仲裁与合规"
+      "cn": "英国盖特利律师事务所：利用法律架构处理跨境仲裁与合规事务"
     },
     "legacy.phase3.ach4": {
       "en": "Key projects: HNA restructuring, ABP Royal Docks liquidation, Huawei 5G reputation management, Dezhan Healthcare $300M M&A",
-      "cn": "重点项目：海航重组、ABP皇家码头清算、华为5G声誉管理、德展健康3亿美元并购"
+      "cn": "重点项目：海航重组、ABP皇家阿尔伯特码头项目破产清算、华为5G声誉管理、德展健康3亿美元并购"
     },
-
     "legacy.phase4.years": {
       "en": "Ongoing",
       "cn": "持续进行"
@@ -717,21 +713,20 @@
     },
     "legacy.phase4.ach1": {
       "en": "Eight consecutive years editing and publishing the officially cited 'Tou Ying Tracker' report",
-      "cn": "连续八年编辑出版被官方引用的《投英追踪》报告"
+      "cn": "连续八年编辑出版被官方引用的《投英追踪调查报告》"
     },
     "legacy.phase4.ach2": {
       "en": "Founded 'Tou Ying Academy' to cultivate financial talent",
-      "cn": "创立'投英学院'，培育金融人才"
+      "cn": "创立'投英学院'，栽培金融人才"
     },
     "legacy.phase4.ach3": {
       "en": "Bromley by Bow Centre recruitment ambassador",
-      "cn": "布罗姆利博中心招募大使"
+      "cn": "Bromley by Bow Centre 招聘大使"
     },
     "legacy.phase4.ach4": {
       "en": "Engage with China supporter",
-      "cn": "'与中国接触'倡议支持者"
+      "cn": "和中国支持者一起开展工作"
     },
-
     "legacy.qual1.title": {
       "en": "PhD in Finance",
       "cn": "金融学博士"
@@ -756,14 +751,13 @@
       "en": "Investment Advice",
       "cn": "投资顾问"
     },
-
     "journal.preview1.title": {
       "en": "Reflections on Cross-Border Finance",
       "cn": "跨境金融的思考"
     },
     "journal.preview1.excerpt": {
       "en": "Navigating the complexities of international capital flows in an ever-changing regulatory landscape...",
-      "cn": "在瞬息万变的监管环境中驾驭国际资本流动的复杂性……"
+      "cn": "在瞬息万变的监管环境中领航复杂的国际资本流动……"
     },
     "journal.preview1.date": {
       "en": "January 2026",
@@ -791,7 +785,7 @@
     },
     "journal.preview3.title": {
       "en": "Building Trust Across Borders",
-      "cn": "跨越边界建立信任"
+      "cn": "建立跨境信任"
     },
     "journal.preview3.excerpt": {
       "en": "How authentic relationships form the foundation of successful international partnerships...",
@@ -805,10 +799,9 @@
       "en": "Leadership",
       "cn": "领导力"
     },
-
     "journalPage.article1.title": {
       "en": "To Every Person Who Lives with Purpose",
-      "cn": "致每一位有目标而活的人"
+      "cn": "致每一位认真生活的人"
     },
     "journalPage.article1.subtitle": {
       "en": "2026 New Year Message",
@@ -820,7 +813,7 @@
     },
     "journalPage.article1.readTime": {
       "en": "6 min read",
-      "cn": "阅读约6分钟"
+      "cn": "预计阅读约6分钟"
     },
     "journalPage.article1.category": {
       "en": "Reflections",
@@ -828,9 +821,8 @@
     },
     "journalPage.article1.excerpt": {
       "en": "A stroke to the left, a stroke to the right: The Making of 'Person' in Chinese. Not a coincidence of structure, but a deliberate choice of direction.",
-      "cn": "一撇一捺：汉字'人'的构成。不是结构的巧合，而是方向的刻意选择。"
+      "cn": "一撇一捺，铸就“人”\n不是结构的巧合，而是方向的抉择"
     },
-
     "journalPage.article2.title": {
       "en": "Appointed Head of China Desk at Grant Thornton UK & Gateley Plc",
       "cn": "出任致同英国及盖特利律师事务所中国业务主管"
@@ -853,16 +845,15 @@
     },
     "journalPage.article2.excerpt": {
       "en": "Providing comprehensive English law system support for Chinese enterprises in international competition, bridging the gap in cross-border dispute resolution.",
-      "cn": "为参与国际竞争的中国企业提供全面的英国法律体系支持，弥合跨境争议解决的缺口。"
+      "cn": "为国际竞争中的中国企业提供全方位的英国法律体系支持，弥补跨国争议解决领域的空白。"
     },
-
     "journalPage.article3.title": {
       "en": "Finding Certainty in a Changing World",
       "cn": "在变局中寻找确定性"
     },
     "journalPage.article3.subtitle": {
       "en": "2025 Sino-European Entrepreneurs Summit Observations",
-      "cn": "2025年中欧企业家峰会观察"
+      "cn": "2025年中欧企业家峰会洞察"
     },
     "journalPage.article3.date": {
       "en": "June 4, 2025",
@@ -880,7 +871,6 @@
       "en": "On the 50th anniversary of China-EU diplomatic relations, exploring new opportunities for Chinese enterprises at the crossroads of global cooperation and transformation.",
       "cn": "在中欧建交50周年之际，探索中国企业在全球合作与变革十字路口的新机遇。"
     },
-
     "insightsPage.videoLibrary.title": {
       "en": "Video Library",
       "cn": "视频库"
@@ -921,7 +911,6 @@
       "en": "Try adjusting your search or filter criteria.",
       "cn": "请尝试调整搜索或筛选条件。"
     },
-
     "insightsPage.reports.report1.title": {
       "en": "Tou Ying Tracker 2018",
       "cn": "投英追踪 2018"
@@ -946,7 +935,6 @@
       "en": "Grant Thornton × China Daily",
       "cn": "致同 × 中国日报"
     },
-
     "insightsPage.reports.report3.title": {
       "en": "Tou Ying Tracker 2019",
       "cn": "投英追踪 2019"
@@ -959,7 +947,6 @@
       "en": "Grant Thornton × China Daily",
       "cn": "致同 × 中国日报"
     },
-
     "insightsPage.reports.report4.title": {
       "en": "Tou Ying Tracker 2020",
       "cn": "投英追踪 2020"
@@ -972,7 +959,6 @@
       "en": "Grant Thornton × CBBC",
       "cn": "致同 × 英中贸易协会"
     },
-
     "insightsPage.reports.report5.title": {
       "en": "Tou Ying Tracker 2021",
       "cn": "投英追踪 2021"
@@ -985,7 +971,6 @@
       "en": "Grant Thornton × China Daily",
       "cn": "致同 × 中国日报"
     },
-
     "insightsPage.reports.report6.title": {
       "en": "Tou Ying Tracker 2023",
       "cn": "投英追踪 2023"
@@ -998,7 +983,6 @@
       "en": "Grant Thornton",
       "cn": "致同"
     },
-
     "insightsPage.reports.report7.title": {
       "en": "Tou Ying Tracker 2024",
       "cn": "投英追踪 2024"
@@ -1011,7 +995,6 @@
       "en": "Grant Thornton",
       "cn": "致同"
     },
-
     "insightsPage.research.mna.topic1": {
       "en": "Deal Structuring",
       "cn": "交易架构"
