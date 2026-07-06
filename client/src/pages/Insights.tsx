@@ -40,6 +40,46 @@ function useTouYingReports() {
   const { t } = useLanguage();
   return [
     {
+      year: "2024",
+      title: t("insightsPage.reports.report7.title"),
+      subtitle: t("insightsPage.reports.report7.subtitle"),
+      publisher: t("insightsPage.reports.report7.publisher"),
+      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/lYAetEniVgKTEldN.jpg",
+      downloadUrl: "https://www.grantthornton.co.uk/insights/tou-ying-tracker-2024-chinese-investments-in-the-uk-remain-robust/",
+    },
+    {
+      year: "2023",
+      title: t("insightsPage.reports.report6.title"),
+      subtitle: t("insightsPage.reports.report6.subtitle"),
+      publisher: t("insightsPage.reports.report6.publisher"),
+      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/lYAetEniVgKTEldN.jpg",
+      downloadUrl: "https://www.grantthornton.co.uk/insights/chinese-investment-in-the-uk-growth-continued-in-2023/",
+    },
+    {
+      year: "2021",
+      title: t("insightsPage.reports.report5.title"),
+      subtitle: t("insightsPage.reports.report5.subtitle"),
+      publisher: t("insightsPage.reports.report5.publisher"),
+      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/publication/2022/tou-ying-tracker-english-2021.pdf",
+    },
+    {
+      year: "2020",
+      title: t("insightsPage.reports.report4.title"),
+      subtitle: t("insightsPage.reports.report4.subtitle"),
+      publisher: t("insightsPage.reports.report4.publisher"),
+      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      downloadUrl: "https://www.cbbc.org/sites/default/files/2021-03/20210225_189651_TouYingTrackerreportinEnglish.pdf",
+    },
+    {
+      year: "2019",
+      title: t("insightsPage.reports.report3.title"),
+      subtitle: t("insightsPage.reports.report3.subtitle"),
+      publisher: t("insightsPage.reports.report3.publisher"),
+      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/publication/2020/tou-ying-tracker-2019-english.pdf",
+    },
+    {
       year: "2018",
       title: t("insightsPage.reports.report1.title"),
       subtitle: t("insightsPage.reports.report1.subtitle"),
