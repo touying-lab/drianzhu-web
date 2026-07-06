@@ -12,35 +12,35 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 
-const journalPosts = [
-  {
-    id: 1,
-    title: "Reflections on Cross-Border Finance",
-    excerpt: "Navigating the complexities of international capital flows in an ever-changing regulatory landscape...",
-    date: "January 2026",
-    category: "Finance",
-  },
-  {
-    id: 2,
-    title: "The Art of Negotiation",
-    excerpt: "Lessons learned from decades of bridging Eastern and Western business cultures...",
-    date: "December 2025",
-    category: "Business",
-  },
-  {
-    id: 3,
-    title: "Building Trust Across Borders",
-    excerpt: "How authentic relationships form the foundation of successful international partnerships...",
-    date: "November 2025",
-    category: "Leadership",
-  },
-];
-
 export default function JournalSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [, setLocation] = useLocation();
   const { t } = useLanguage();
+
+  const journalPosts = [
+    {
+      id: 1,
+      title: t("journal.preview1.title"),
+      excerpt: t("journal.preview1.excerpt"),
+      date: t("journal.preview1.date"),
+      category: t("journal.preview1.category"),
+    },
+    {
+      id: 2,
+      title: t("journal.preview2.title"),
+      excerpt: t("journal.preview2.excerpt"),
+      date: t("journal.preview2.date"),
+      category: t("journal.preview2.category"),
+    },
+    {
+      id: 3,
+      title: t("journal.preview3.title"),
+      excerpt: t("journal.preview3.excerpt"),
+      date: t("journal.preview3.date"),
+      category: t("journal.preview3.category"),
+    },
+  ];
 
   const handleClick = () => {
     setLocation('/journal');

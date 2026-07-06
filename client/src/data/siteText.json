@@ -578,6 +578,422 @@
     "cookiePage.required": {
       "en": "Required",
       "cn": "必要"
+    },
+
+    "legacy.phase1.years": {
+      "en": "1998 – 2013",
+      "cn": "1998 – 2013"
+    },
+    "legacy.phase1.title": {
+      "en": "Industrial Trade & Cross-Border Supply Chain Management",
+      "cn": "工业贸易与跨境供应链管理"
+    },
+    "legacy.phase1.kw1": {
+      "en": "Supply Chain Management",
+      "cn": "供应链管理"
+    },
+    "legacy.phase1.kw2": {
+      "en": "Technical Implementation",
+      "cn": "技术实施"
+    },
+    "legacy.phase1.kw3": {
+      "en": "Strategic Negotiation",
+      "cn": "战略谈判"
+    },
+    "legacy.phase1.ach1": {
+      "en": "Eight consecutive Canton Fair sessions, mastering international trade fundamentals",
+      "cn": "连续八届广交会，精通国际贸易基础"
+    },
+    "legacy.phase1.ach2": {
+      "en": "Managed £30M procurement portfolio for Home Products Ltd",
+      "cn": "为家居产品有限公司管理3000万英镑采购组合"
+    },
+    "legacy.phase1.ach3": {
+      "en": "Achieved $100M+ printing machinery sales in China over five years",
+      "cn": "五年内在中国实现逾1亿美元印刷机械销售额"
+    },
+    "legacy.phase1.ach4": {
+      "en": "Led Sino-European aviation joint venture negotiations",
+      "cn": "主导中欧航空合资企业谈判"
+    },
+    "legacy.phase1.ach5": {
+      "en": "Managed 60% of 2012 London Olympics mascot order contracts",
+      "cn": "管理2012年伦敦奥运会吉祥物60%的订单合同"
+    },
+
+    "legacy.phase2.years": {
+      "en": "2014 – 2017",
+      "cn": "2014 – 2017"
+    },
+    "legacy.phase2.title": {
+      "en": "Primary Market Investment & Secondary Market Value Management",
+      "cn": "一级市场投资与二级市场价值管理"
+    },
+    "legacy.phase2.kw1": {
+      "en": "Capital Operations",
+      "cn": "资本运营"
+    },
+    "legacy.phase2.kw2": {
+      "en": "Post-investment Management",
+      "cn": "投后管理"
+    },
+    "legacy.phase2.kw3": {
+      "en": "Investor Relations",
+      "cn": "投资者关系"
+    },
+    "legacy.phase2.ach1": {
+      "en": "CR Gas (HKG: 1193): Managed ¥4B cross-border treasury system",
+      "cn": "华润燃气（港股：1193）：管理40亿人民币跨境资金系统"
+    },
+    "legacy.phase2.ach2": {
+      "en": "Contributed to market cap growth to HK$65B within 18 months",
+      "cn": "18个月内助力市值增长至650亿港元"
+    },
+    "legacy.phase2.ach3": {
+      "en": "Reignwood Group: Assisted in managing £1B UK asset portfolio",
+      "cn": "英皇集团：协助管理10亿英镑英国资产组合"
+    },
+    "legacy.phase2.ach4": {
+      "en": "Deep involvement in Four Seasons Hotel Trinity Square, Wentworth Golf Club, and VOSS Water acquisitions",
+      "cn": "深度参与四季酒店三一广场、温特沃斯高尔夫俱乐部及VOSS水的收购"
+    },
+
+    "legacy.phase3.years": {
+      "en": "2017 – Present",
+      "cn": "2017 – 至今"
+    },
+    "legacy.phase3.title": {
+      "en": "Cross-Border Dispute Resolution & Professional Services",
+      "cn": "跨境争议解决与专业服务"
+    },
+    "legacy.phase3.kw1": {
+      "en": "Cross-border Restructuring",
+      "cn": "跨境重组"
+    },
+    "legacy.phase3.kw2": {
+      "en": "Dispute Resolution",
+      "cn": "争议解决"
+    },
+    "legacy.phase3.kw3": {
+      "en": "Regulatory Compliance",
+      "cn": "合规监管"
+    },
+    "legacy.phase3.ach1": {
+      "en": "Grant Thornton UK: Led cross-border asset tracing; served 250+ Chinese enterprises",
+      "cn": "致同英国：主导跨境资产追踪；服务逾250家中国企业"
+    },
+    "legacy.phase3.ach2": {
+      "en": "Achieved 727% revenue growth in the practice",
+      "cn": "实现业务收入727%的增长"
+    },
+    "legacy.phase3.ach3": {
+      "en": "Gateley Plc: Leveraged legal structures for cross-border arbitration and compliance",
+      "cn": "盖特利律师事务所：运用法律架构开展跨境仲裁与合规"
+    },
+    "legacy.phase3.ach4": {
+      "en": "Key projects: HNA restructuring, ABP Royal Docks liquidation, Huawei 5G reputation management, Dezhan Healthcare $300M M&A",
+      "cn": "重点项目：海航重组、ABP皇家码头清算、华为5G声誉管理、德展健康3亿美元并购"
+    },
+
+    "legacy.phase4.years": {
+      "en": "Ongoing",
+      "cn": "持续进行"
+    },
+    "legacy.phase4.title": {
+      "en": "Industry Contributions, Social Roles & Professional Qualifications",
+      "cn": "行业贡献、社会角色与专业资质"
+    },
+    "legacy.phase4.kw1": {
+      "en": "Social Impact",
+      "cn": "社会影响"
+    },
+    "legacy.phase4.kw2": {
+      "en": "Intelligence Research",
+      "cn": "情报研究"
+    },
+    "legacy.phase4.kw3": {
+      "en": "Academic Authority",
+      "cn": "学术权威"
+    },
+    "legacy.phase4.ach1": {
+      "en": "Eight consecutive years editing and publishing the officially cited 'Tou Ying Tracker' report",
+      "cn": "连续八年编辑出版被官方引用的《投英追踪》报告"
+    },
+    "legacy.phase4.ach2": {
+      "en": "Founded 'Tou Ying Academy' to cultivate financial talent",
+      "cn": "创立'投英学院'，培育金融人才"
+    },
+    "legacy.phase4.ach3": {
+      "en": "Bromley by Bow Centre recruitment ambassador",
+      "cn": "布罗姆利博中心招募大使"
+    },
+    "legacy.phase4.ach4": {
+      "en": "Engage with China supporter",
+      "cn": "'与中国接触'倡议支持者"
+    },
+
+    "legacy.qual1.title": {
+      "en": "PhD in Finance",
+      "cn": "金融学博士"
+    },
+    "legacy.qual1.institution": {
+      "en": "University of Surrey",
+      "cn": "萨里大学"
+    },
+    "legacy.qual2.title": {
+      "en": "MA in Accounting and Finance",
+      "cn": "会计与金融硕士"
+    },
+    "legacy.qual2.institution": {
+      "en": "University of Leeds",
+      "cn": "利兹大学"
+    },
+    "legacy.qual3.title": {
+      "en": "CISI Level 4 Diploma",
+      "cn": "CISI四级文凭"
+    },
+    "legacy.qual3.institution": {
+      "en": "Investment Advice",
+      "cn": "投资顾问"
+    },
+
+    "journal.preview1.title": {
+      "en": "Reflections on Cross-Border Finance",
+      "cn": "跨境金融的思考"
+    },
+    "journal.preview1.excerpt": {
+      "en": "Navigating the complexities of international capital flows in an ever-changing regulatory landscape...",
+      "cn": "在瞬息万变的监管环境中驾驭国际资本流动的复杂性……"
+    },
+    "journal.preview1.date": {
+      "en": "January 2026",
+      "cn": "2026年1月"
+    },
+    "journal.preview1.category": {
+      "en": "Finance",
+      "cn": "金融"
+    },
+    "journal.preview2.title": {
+      "en": "The Art of Negotiation",
+      "cn": "谈判的艺术"
+    },
+    "journal.preview2.excerpt": {
+      "en": "Lessons learned from decades of bridging Eastern and Western business cultures...",
+      "cn": "数十年沟通东西方商业文化所积累的经验……"
+    },
+    "journal.preview2.date": {
+      "en": "December 2025",
+      "cn": "2025年12月"
+    },
+    "journal.preview2.category": {
+      "en": "Business",
+      "cn": "商业"
+    },
+    "journal.preview3.title": {
+      "en": "Building Trust Across Borders",
+      "cn": "跨越边界建立信任"
+    },
+    "journal.preview3.excerpt": {
+      "en": "How authentic relationships form the foundation of successful international partnerships...",
+      "cn": "真诚的关系如何成为成功国际合作的基础……"
+    },
+    "journal.preview3.date": {
+      "en": "November 2025",
+      "cn": "2025年11月"
+    },
+    "journal.preview3.category": {
+      "en": "Leadership",
+      "cn": "领导力"
+    },
+
+    "journalPage.article1.title": {
+      "en": "To Every Person Who Lives with Purpose",
+      "cn": "致每一位有目标而活的人"
+    },
+    "journalPage.article1.subtitle": {
+      "en": "2026 New Year Message",
+      "cn": "2026年新年寄语"
+    },
+    "journalPage.article1.date": {
+      "en": "December 31, 2025",
+      "cn": "2025年12月31日"
+    },
+    "journalPage.article1.readTime": {
+      "en": "6 min read",
+      "cn": "阅读约6分钟"
+    },
+    "journalPage.article1.category": {
+      "en": "Reflections",
+      "cn": "感悟"
+    },
+    "journalPage.article1.excerpt": {
+      "en": "A stroke to the left, a stroke to the right: The Making of 'Person' in Chinese. Not a coincidence of structure, but a deliberate choice of direction.",
+      "cn": "一撇一捺：汉字'人'的构成。不是结构的巧合，而是方向的刻意选择。"
+    },
+
+    "journalPage.article2.title": {
+      "en": "Appointed Head of China Desk at Grant Thornton UK & Gateley Plc",
+      "cn": "出任致同英国及盖特利律师事务所中国业务主管"
+    },
+    "journalPage.article2.subtitle": {
+      "en": "English Law System Support for Chinese Enterprises",
+      "cn": "为中国企业提供英国法律体系支持"
+    },
+    "journalPage.article2.date": {
+      "en": "November 26, 2025",
+      "cn": "2025年11月26日"
+    },
+    "journalPage.article2.readTime": {
+      "en": "8 min read",
+      "cn": "阅读约8分钟"
+    },
+    "journalPage.article2.category": {
+      "en": "Professional",
+      "cn": "职业"
+    },
+    "journalPage.article2.excerpt": {
+      "en": "Providing comprehensive English law system support for Chinese enterprises in international competition, bridging the gap in cross-border dispute resolution.",
+      "cn": "为参与国际竞争的中国企业提供全面的英国法律体系支持，弥合跨境争议解决的缺口。"
+    },
+
+    "journalPage.article3.title": {
+      "en": "Finding Certainty in a Changing World",
+      "cn": "在变局中寻找确定性"
+    },
+    "journalPage.article3.subtitle": {
+      "en": "2025 Sino-European Entrepreneurs Summit Observations",
+      "cn": "2025年中欧企业家峰会观察"
+    },
+    "journalPage.article3.date": {
+      "en": "June 4, 2025",
+      "cn": "2025年6月4日"
+    },
+    "journalPage.article3.readTime": {
+      "en": "10 min read",
+      "cn": "阅读约10分钟"
+    },
+    "journalPage.article3.category": {
+      "en": "Industry Insights",
+      "cn": "行业洞察"
+    },
+    "journalPage.article3.excerpt": {
+      "en": "On the 50th anniversary of China-EU diplomatic relations, exploring new opportunities for Chinese enterprises at the crossroads of global cooperation and transformation.",
+      "cn": "在中欧建交50周年之际，探索中国企业在全球合作与变革十字路口的新机遇。"
+    },
+
+    "insightsPage.videoLibrary.title": {
+      "en": "Video Library",
+      "cn": "视频库"
+    },
+    "insightsPage.videoLibrary.desc": {
+      "en": "Search by topic, browse by city category, and watch the available Bilibili and YouTube content directly in the library.",
+      "cn": "按主题搜索，按城市分类浏览，直接在库中观看哔哩哔哩和YouTube内容。"
+    },
+    "insightsPage.videoLibrary.searchPlaceholder": {
+      "en": "Search videos, city categories or platforms",
+      "cn": "搜索视频、城市分类或平台"
+    },
+    "insightsPage.videoLibrary.categoryLabel": {
+      "en": "Category",
+      "cn": "分类"
+    },
+    "insightsPage.videoLibrary.platformLabel": {
+      "en": "Platform",
+      "cn": "平台"
+    },
+    "insightsPage.videoLibrary.allVideos": {
+      "en": "All Videos",
+      "cn": "全部视频"
+    },
+    "insightsPage.videoLibrary.showMore": {
+      "en": "Show More",
+      "cn": "显示更多"
+    },
+    "insightsPage.videoLibrary.subheading": {
+      "en": "Video Library",
+      "cn": "视频库"
+    },
+    "insightsPage.videoLibrary.noResults": {
+      "en": "No Matching Videos",
+      "cn": "暂无匹配视频"
+    },
+    "insightsPage.videoLibrary.noResultsDesc": {
+      "en": "Try adjusting your search or filter criteria.",
+      "cn": "请尝试调整搜索或筛选条件。"
+    },
+
+    "insightsPage.reports.report1.title": {
+      "en": "Tou Ying Tracker 2018",
+      "cn": "投英追踪 2018"
+    },
+    "insightsPage.reports.report1.subtitle": {
+      "en": "The latest trends in Chinese investment in the UK",
+      "cn": "中国在英投资最新趋势"
+    },
+    "insightsPage.reports.report1.publisher": {
+      "en": "Grant Thornton × China Daily",
+      "cn": "致同 × 中国日报"
+    },
+    "insightsPage.reports.report2.title": {
+      "en": "Tou Ying Tracker 2017",
+      "cn": "投英追踪 2017"
+    },
+    "insightsPage.reports.report2.subtitle": {
+      "en": "The latest trends in Chinese investment in the UK",
+      "cn": "中国在英投资最新趋势"
+    },
+    "insightsPage.reports.report2.publisher": {
+      "en": "Grant Thornton × China Daily",
+      "cn": "致同 × 中国日报"
+    },
+
+    "insightsPage.research.mna.topic1": {
+      "en": "Deal Structuring",
+      "cn": "交易架构"
+    },
+    "insightsPage.research.mna.topic2": {
+      "en": "Regulatory Compliance",
+      "cn": "合规监管"
+    },
+    "insightsPage.research.mna.topic3": {
+      "en": "Due Diligence",
+      "cn": "尽职调查"
+    },
+    "insightsPage.research.mna.topic4": {
+      "en": "Post-Merger Integration",
+      "cn": "并购后整合"
+    },
+    "insightsPage.research.ukChina.topic1": {
+      "en": "Trade Policy",
+      "cn": "贸易政策"
+    },
+    "insightsPage.research.ukChina.topic2": {
+      "en": "Investment Trends",
+      "cn": "投资趋势"
+    },
+    "insightsPage.research.ukChina.topic3": {
+      "en": "Economic Diplomacy",
+      "cn": "经济外交"
+    },
+    "insightsPage.research.ukChina.topic4": {
+      "en": "Market Access",
+      "cn": "市场准入"
+    },
+    "insightsPage.research.dispute.topic1": {
+      "en": "Arbitration",
+      "cn": "仲裁"
+    },
+    "insightsPage.research.dispute.topic2": {
+      "en": "Insolvency",
+      "cn": "破产"
+    },
+    "insightsPage.research.dispute.topic3": {
+      "en": "Asset Recovery",
+      "cn": "资产追回"
+    },
+    "insightsPage.research.dispute.topic4": {
+      "en": "Regulatory Enforcement",
+      "cn": "监管执法"
     }
   }
 }

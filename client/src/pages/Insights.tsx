@@ -36,24 +36,27 @@ const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
 const INITIAL_VIDEO_LIMIT = 4;
 
-const touYingReports = [
-  {
-    year: "2018",
-    title: "Tou Ying Tracker 2018",
-    subtitle: "The latest trends in Chinese investment in the UK",
-    publisher: "Grant Thornton × China Daily",
-    cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
-    downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/documents/tou-ying-tracker-2018.pdf",
-  },
-  {
-    year: "2017",
-    title: "Tou Ying Tracker 2017",
-    subtitle: "The latest trends in Chinese investment in the UK",
-    publisher: "Grant Thornton × China Daily",
-    cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ZIOpyMlgZhkvrabL.jpg",
-    downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/documents/tou-ying-tracker-2017-english-version.pdf",
-  },
-];
+function useTouYingReports() {
+  const { t } = useLanguage();
+  return [
+    {
+      year: "2018",
+      title: t("insightsPage.reports.report1.title"),
+      subtitle: t("insightsPage.reports.report1.subtitle"),
+      publisher: t("insightsPage.reports.report1.publisher"),
+      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/documents/tou-ying-tracker-2018.pdf",
+    },
+    {
+      year: "2017",
+      title: t("insightsPage.reports.report2.title"),
+      subtitle: t("insightsPage.reports.report2.subtitle"),
+      publisher: t("insightsPage.reports.report2.publisher"),
+      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ZIOpyMlgZhkvrabL.jpg",
+      downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/documents/tou-ying-tracker-2017-english-version.pdf",
+    },
+  ];
+}
 
 export default function Insights() {
   return (
@@ -167,12 +170,12 @@ function VideoLibrarySection() {
           <div className="mb-4 flex items-center justify-center gap-3">
             <LibraryBig className="h-6 w-6" style={{ color: BRAND_GOLD }} />
             <h2 className="font-cinzel text-2xl font-bold tracking-[0.15em] md:text-3xl" style={{ color: BRAND_GOLD }}>
-              Video Library
+              {t("insightsPage.videoLibrary.title")}
             </h2>
           </div>
           <div className="mx-auto mb-8 h-0.5 w-20" style={{ backgroundColor: BRAND_GOLD }} />
           <p className="font-cormorant-garamond text-lg font-semibold leading-relaxed md:text-xl" style={{ color: "rgba(255, 255, 255, 0.74)" }}>
-            Search by topic, browse by city category, and watch the available Bilibili and YouTube content directly in the library.
+            {t("insightsPage.videoLibrary.desc")}
           </p>
         </motion.div>
 
@@ -191,7 +194,7 @@ function VideoLibrarySection() {
                 setQuery(event.target.value);
                 setShowAllVideos(false);
               }}
-              placeholder="Search videos, city categories or platforms"
+              placeholder={t("insightsPage.videoLibrary.searchPlaceholder")}
               className="w-full bg-transparent font-eb-garamond text-base outline-none placeholder:text-white/38"
               style={{ color: "rgba(245, 245, 245, 0.88)" }}
             />
@@ -199,7 +202,7 @@ function VideoLibrarySection() {
 
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
             <div>
-              <p className="font-cormorant mb-3 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>Category</p>
+              <p className="font-cormorant mb-3 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>{t("insightsPage.videoLibrary.categoryLabel")}</p>
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
                   <FilterButton
@@ -216,7 +219,7 @@ function VideoLibrarySection() {
               </div>
             </div>
             <div>
-              <p className="font-cormorant mb-3 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>Platform</p>
+              <p className="font-cormorant mb-3 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>{t("insightsPage.videoLibrary.platformLabel")}</p>
               <div className="flex flex-wrap gap-2 lg:justify-end">
                 <FilterButton active={platformFilter === "all"} onClick={() => { setPlatformFilter("all"); setShowAllVideos(false); }}>All</FilterButton>
                 <FilterButton active={platformFilter === "youtube"} onClick={() => { setPlatformFilter("youtube"); setShowAllVideos(false); }}>YouTube</FilterButton>
@@ -234,10 +237,10 @@ function VideoLibrarySection() {
         >
           <div>
             <p className="mb-3 font-cormorant text-sm font-semibold uppercase tracking-[0.18em]" style={{ color: "rgba(201, 162, 39, 0.72)" }}>
-              Video Library
+              {t("insightsPage.videoLibrary.subheading")}
             </p>
             <h3 className="font-cinzel text-2xl font-bold tracking-[0.12em] md:text-3xl" style={{ color: BRAND_GOLD }}>
-              {categoryFilter === "All" ? "All Videos" : `${categoryFilter} Videos`}
+              {categoryFilter === "All" ? t("insightsPage.videoLibrary.allVideos") : `${categoryFilter} Videos`}
             </h3>
           </div>
           <p className="font-eb-garamond text-lg font-medium leading-relaxed md:text-right" style={{ color: "rgba(245, 245, 245, 0.72)" }}>
@@ -266,7 +269,7 @@ function VideoLibrarySection() {
                     boxShadow: "0 18px 40px rgba(0, 0, 0, 0.18)",
                   }}
                 >
-                  Show More
+                  {t("insightsPage.videoLibrary.showMore")}
                   <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </button>
               </div>
@@ -471,8 +474,9 @@ function TouYingSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
+  const touYingReports = useTouYingReports();
 
-  const handleDownload = (report: typeof touYingReports[0]) => {
+  const handleDownload = (report: ReturnType<typeof useTouYingReports>[0]) => {
     window.open(report.downloadUrl, "_blank", "noopener,noreferrer");
   };
 
@@ -564,19 +568,19 @@ function ResearchAreasSection() {
       icon: TrendingUp,
       title: t("insightsPage.research.mna"),
       description: t("insightsPage.research.mnaDesc"),
-      topics: ["Deal Structuring", "Regulatory Compliance", "Due Diligence", "Post-Merger Integration"],
+      topics: [t("insightsPage.research.mna.topic1"), t("insightsPage.research.mna.topic2"), t("insightsPage.research.mna.topic3"), t("insightsPage.research.mna.topic4")],
     },
     {
       icon: Globe,
       title: t("insightsPage.research.ukChina"),
       description: t("insightsPage.research.ukChinaDesc"),
-      topics: ["Trade Policy", "Investment Trends", "Economic Diplomacy", "Market Access"],
+      topics: [t("insightsPage.research.ukChina.topic1"), t("insightsPage.research.ukChina.topic2"), t("insightsPage.research.ukChina.topic3"), t("insightsPage.research.ukChina.topic4")],
     },
     {
       icon: Scale,
       title: t("insightsPage.research.dispute"),
       description: t("insightsPage.research.disputeDesc"),
-      topics: ["Arbitration", "Insolvency", "Asset Recovery", "Regulatory Enforcement"],
+      topics: [t("insightsPage.research.dispute.topic1"), t("insightsPage.research.dispute.topic2"), t("insightsPage.research.dispute.topic3"), t("insightsPage.research.dispute.topic4")],
     },
   ];
 

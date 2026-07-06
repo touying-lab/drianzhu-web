@@ -11,77 +11,69 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 
-interface TimelinePhase {
-  id: number;
-  years: string;
-  title: string;
-  keywords: string[];
-  achievements: string[];
-}
-
-const timelineData: TimelinePhase[] = [
-  {
-    id: 1,
-    years: "1998 – 2013",
-    title: "Industrial Trade & Cross-Border Supply Chain Management",
-    keywords: ["Supply Chain Management", "Technical Implementation", "Strategic Negotiation"],
-    achievements: [
-      "Eight consecutive Canton Fair sessions, mastering international trade fundamentals",
-      "Managed £30M procurement portfolio for Home Products Ltd",
-      "Achieved $100M+ printing machinery sales in China over five years",
-      "Led Sino-European aviation joint venture negotiations",
-      "Managed 60% of 2012 London Olympics mascot order contracts",
-    ],
-  },
-  {
-    id: 2,
-    years: "2014 – 2017",
-    title: "Primary Market Investment & Secondary Market Value Management",
-    keywords: ["Capital Operations", "Post-investment Management", "Investor Relations"],
-    achievements: [
-      "CR Gas (HKG: 1193): Managed ¥4B cross-border treasury system",
-      "Contributed to market cap growth to HK$65B within 18 months",
-      "Reignwood Group: Assisted in managing £1B UK asset portfolio",
-      "Deep involvement in Four Seasons Hotel Trinity Square, Wentworth Golf Club, and VOSS Water acquisitions",
-    ],
-  },
-  {
-    id: 3,
-    years: "2017 – Present",
-    title: "Cross-Border Dispute Resolution & Professional Services",
-    keywords: ["Cross-border Restructuring", "Dispute Resolution", "Regulatory Compliance"],
-    achievements: [
-      "Grant Thornton UK: Led cross-border asset tracing; served 250+ Chinese enterprises",
-      "Achieved 727% revenue growth in the practice",
-      "Gateley Plc: Leveraged legal structures for cross-border arbitration and compliance",
-      "Key projects: HNA restructuring, ABP Royal Docks liquidation, Huawei 5G reputation management, Dezhan Healthcare $300M M&A",
-    ],
-  },
-  {
-    id: 4,
-    years: "Ongoing",
-    title: "Industry Contributions, Social Roles & Professional Qualifications",
-    keywords: ["Social Impact", "Intelligence Research", "Academic Authority"],
-    achievements: [
-      "Eight consecutive years editing and publishing the officially cited 'Tou Ying Tracker' report",
-      "Founded 'Tou Ying Academy' to cultivate financial talent",
-      "Bromley by Bow Centre recruitment ambassador",
-      "Engage with China supporter",
-    ],
-  },
-];
-
-const qualifications = [
-  { title: "PhD in Finance", institution: "University of Surrey" },
-  { title: "MA in Accounting and Finance", institution: "University of Leeds" },
-  { title: "CISI Level 4 Diploma", institution: "Investment Advice" },
-];
-
 export default function LegacyPath() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [hoveredPhase, setHoveredPhase] = useState<number | null>(null);
   const { t } = useLanguage();
+
+  const timelineData = [
+    {
+      id: 1,
+      years: t("legacy.phase1.years"),
+      title: t("legacy.phase1.title"),
+      keywords: [t("legacy.phase1.kw1"), t("legacy.phase1.kw2"), t("legacy.phase1.kw3")],
+      achievements: [
+        t("legacy.phase1.ach1"),
+        t("legacy.phase1.ach2"),
+        t("legacy.phase1.ach3"),
+        t("legacy.phase1.ach4"),
+        t("legacy.phase1.ach5"),
+      ],
+    },
+    {
+      id: 2,
+      years: t("legacy.phase2.years"),
+      title: t("legacy.phase2.title"),
+      keywords: [t("legacy.phase2.kw1"), t("legacy.phase2.kw2"), t("legacy.phase2.kw3")],
+      achievements: [
+        t("legacy.phase2.ach1"),
+        t("legacy.phase2.ach2"),
+        t("legacy.phase2.ach3"),
+        t("legacy.phase2.ach4"),
+      ],
+    },
+    {
+      id: 3,
+      years: t("legacy.phase3.years"),
+      title: t("legacy.phase3.title"),
+      keywords: [t("legacy.phase3.kw1"), t("legacy.phase3.kw2"), t("legacy.phase3.kw3")],
+      achievements: [
+        t("legacy.phase3.ach1"),
+        t("legacy.phase3.ach2"),
+        t("legacy.phase3.ach3"),
+        t("legacy.phase3.ach4"),
+      ],
+    },
+    {
+      id: 4,
+      years: t("legacy.phase4.years"),
+      title: t("legacy.phase4.title"),
+      keywords: [t("legacy.phase4.kw1"), t("legacy.phase4.kw2"), t("legacy.phase4.kw3")],
+      achievements: [
+        t("legacy.phase4.ach1"),
+        t("legacy.phase4.ach2"),
+        t("legacy.phase4.ach3"),
+        t("legacy.phase4.ach4"),
+      ],
+    },
+  ];
+
+  const qualifications = [
+    { title: t("legacy.qual1.title"), institution: t("legacy.qual1.institution") },
+    { title: t("legacy.qual2.title"), institution: t("legacy.qual2.institution") },
+    { title: t("legacy.qual3.title"), institution: t("legacy.qual3.institution") },
+  ];
 
   return (
     <section
