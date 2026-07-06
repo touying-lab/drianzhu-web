@@ -6,7 +6,7 @@
  */
 
 import { motion, useInView } from "framer-motion";
-import { useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Calendar,
   Download,
@@ -511,19 +511,110 @@ function PlatformBadges({ platforms }: { platforms: VideoPlatform[] }) {
 }
 
 
+// ── Carousel helpers ──────────────────────────────────────────────────────────
+function useCarousel(total: number, perPage: number) {
+  const [index, setIndex] = useState(0);
+  const pageCount = Math.ceil(total / perPage);
+
+  const prev = useCallback(() =>
+    setIndex((i) => (i - 1 + pageCount) % pageCount), [pageCount]);
+  const next = useCallback(() =>
+    setIndex((i) => (i + 1) % pageCount), [pageCount]);
+  const goTo = useCallback((p: number) => setIndex(p), []);
+
+  // reset when perPage changes (resize)
+  useEffect(() => { setIndex(0); }, [perPage]);
+
+  return { index, pageCount, prev, next, goTo };
+}
+
+function usePerPage() {
+  const getPerPage = () => {
+    if (typeof window === "undefined") return 3;
+    if (window.innerWidth < 640) return 1;
+    if (window.innerWidth < 1024) return 2;
+    return 3;
+  };
+  const [perPage, setPerPage] = useState(getPerPage);
+  useEffect(() => {
+    const handler = () => setPerPage(getPerPage());
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+  return perPage;
+}
+
+// ── Carousel arrow button ─────────────────────────────────────────────────────
+function CarouselArrow({ direction, onClick, label }: { direction: "left" | "right"; onClick: () => void; label: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className="group flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2"
+      style={{
+        border: `1px solid rgba(201, 162, 39, 0.36)`,
+        backgroundColor: "rgba(13, 27, 42, 0.72)",
+        color: BRAND_GOLD,
+        boxShadow: "0 8px 24px rgba(0,0,0,0.28)",
+      }}
+    >
+      <span
+        className="font-cinzel text-xl font-bold leading-none transition-transform duration-300"
+        style={{
+          display: "inline-block",
+          transform: direction === "left" ? "translateX(0)" : "translateX(0)",
+        }}
+      >
+        {direction === "left" ? "←" : "→"}
+      </span>
+    </button>
+  );
+}
+
+// ── Main section ──────────────────────────────────────────────────────────────
 function TouYingSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
   const touYingReports = useTouYingReports();
+  const perPage = usePerPage();
+  const { index, pageCount, prev, next, goTo } = useCarousel(touYingReports.length, perPage);
+
+  // Touch / swipe support
+  const touchStartX = useRef<number | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) delta > 0 ? next() : prev();
+    touchStartX.current = null;
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [prev, next]);
 
   const handleDownload = (report: ReturnType<typeof useTouYingReports>[0]) => {
     window.open(report.downloadUrl, "_blank", "noopener,noreferrer");
   };
 
+  // Visible slice (with wrap-around for infinite feel)
+  const visibleReports = Array.from({ length: perPage }, (_, i) => {
+    const realIndex = (index * perPage + i) % touYingReports.length;
+    return touYingReports[realIndex];
+  });
+
   return (
     <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: "#132238" }}>
       <div className="container mx-auto px-6">
+
         {/* Section Header */}
         <motion.div
           className="text-center mb-16"
@@ -542,58 +633,142 @@ function TouYingSection() {
           </p>
         </motion.div>
 
-        {/* Report Cards */}
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-          {touYingReports.map((report, index) => (
-            <motion.div
-              key={report.year}
-              className="group cursor-pointer"
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              onClick={() => handleDownload(report)}
-            >
-              <div 
-                className="relative overflow-hidden rounded-sm transition-all duration-500 group-hover:shadow-2xl"
-                style={{ border: `1px solid rgba(201, 162, 39, 0.2)` }}
-              >
-                {/* Report Cover Image */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-white">
-                  <img
-                    src={report.cover}
-                    alt={report.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
-                    <motion.div
-                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-3 px-6 py-3 rounded-sm"
-                      style={{ backgroundColor: "rgba(13, 27, 42, 0.9)", border: `1px solid ${BRAND_GOLD}` }}
-                    >
-                      <Download className="w-5 h-5" style={{ color: BRAND_GOLD }} />
-                      <span className="font-cormorant tracking-wider font-bold" style={{ color: BRAND_GOLD }}>
-                        {t("insightsPage.reports.download").toUpperCase()}
-                      </span>
-                    </motion.div>
-                  </div>
-                </div>
+        {/* Carousel row */}
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.15 }}
+        >
+          {/* Left edge fade */}
+          <div
+            className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 z-10 hidden md:block"
+            style={{ background: "linear-gradient(to right, #132238 0%, transparent 100%)" }}
+          />
+          {/* Right edge fade */}
+          <div
+            className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 z-10 hidden md:block"
+            style={{ background: "linear-gradient(to left, #132238 0%, transparent 100%)" }}
+          />
 
-                {/* Report Info */}
-                <div className="p-6" style={{ backgroundColor: "rgba(13, 27, 42, 0.8)" }}>
-                  <h3 className="font-cinzel text-lg mb-1 font-bold" style={{ color: "#F5F5F5" }}>
-                    {report.title}
-                  </h3>
-                  <p className="font-eb-garamond text-sm font-medium" style={{ color: "rgba(245, 245, 245, 0.6)" }}>
-                    {report.subtitle}
-                  </p>
-                  <p className="font-cormorant text-xs mt-3 tracking-wider font-semibold" style={{ color: `rgba(201, 162, 39, 0.7)` }}>
-                    {report.publisher}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+          <div className="flex items-center gap-4 md:gap-6">
+            {/* Prev arrow */}
+            <div className="flex-shrink-0 z-20">
+              <CarouselArrow direction="left" onClick={prev} label="Previous reports" />
+            </div>
+
+            {/* Cards viewport */}
+            <div
+              className="flex-1 overflow-hidden"
+              onTouchStart={onTouchStart}
+              onTouchEnd={onTouchEnd}
+            >
+              <motion.div
+                key={index}
+                className="grid gap-6"
+                style={{ gridTemplateColumns: `repeat(${perPage}, minmax(0, 1fr))` }}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                {visibleReports.map((report, i) => (
+                  <div
+                    key={`${report.year}-${i}`}
+                    className="group cursor-pointer"
+                    onClick={() => handleDownload(report)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Open ${report.title}`}
+                    onKeyDown={(e) => e.key === "Enter" && handleDownload(report)}
+                  >
+                    <div
+                      className="relative overflow-hidden rounded-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-1"
+                      style={{ border: `1px solid rgba(201, 162, 39, 0.2)` }}
+                    >
+                      {/* Cover image */}
+                      <div className="relative aspect-[3/4] overflow-hidden bg-white">
+                        <img
+                          src={report.cover}
+                          alt={report.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        {/* Hover overlay */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
+                          <div
+                            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-3 px-6 py-3 rounded-sm"
+                            style={{ backgroundColor: "rgba(13, 27, 42, 0.9)", border: `1px solid ${BRAND_GOLD}` }}
+                          >
+                            <Download className="w-5 h-5" style={{ color: BRAND_GOLD }} />
+                            <span className="font-cormorant tracking-wider font-bold" style={{ color: BRAND_GOLD }}>
+                              {t("insightsPage.reports.download").toUpperCase()}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card info */}
+                      <div className="p-6" style={{ backgroundColor: "rgba(13, 27, 42, 0.8)" }}>
+                        <h3 className="font-cinzel text-lg mb-1 font-bold" style={{ color: "#F5F5F5" }}>
+                          {report.title}
+                        </h3>
+                        <p className="font-eb-garamond text-sm font-medium" style={{ color: "rgba(245, 245, 245, 0.6)" }}>
+                          {report.subtitle}
+                        </p>
+                        <p className="font-cormorant text-xs mt-3 tracking-wider font-semibold" style={{ color: `rgba(201, 162, 39, 0.7)` }}>
+                          {report.publisher}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Next arrow */}
+            <div className="flex-shrink-0 z-20">
+              <CarouselArrow direction="right" onClick={next} label="Next reports" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Pagination dots */}
+        <motion.div
+          className="flex items-center justify-center gap-3 mt-10"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          role="tablist"
+          aria-label="Report pages"
+        >
+          {Array.from({ length: pageCount }).map((_, p) => (
+            <button
+              key={p}
+              type="button"
+              role="tab"
+              aria-selected={p === index}
+              aria-label={`Go to page ${p + 1}`}
+              onClick={() => goTo(p)}
+              className="transition-all duration-300 rounded-full focus:outline-none focus-visible:ring-2"
+              style={{
+                width: p === index ? 28 : 10,
+                height: 10,
+                backgroundColor: p === index ? BRAND_GOLD : "rgba(201, 162, 39, 0.28)",
+                border: p === index ? `1px solid ${BRAND_GOLD}` : "1px solid rgba(201, 162, 39, 0.18)",
+              }}
+            />
           ))}
-        </div>
+        </motion.div>
+
+        {/* Report counter */}
+        <p
+          className="text-center mt-4 font-cormorant text-sm tracking-[0.14em] font-semibold"
+          style={{ color: "rgba(201, 162, 39, 0.52)" }}
+        >
+          {index * perPage + 1}–{Math.min((index + 1) * perPage, touYingReports.length)} of {touYingReports.length} reports
+        </p>
+
       </div>
     </section>
   );
