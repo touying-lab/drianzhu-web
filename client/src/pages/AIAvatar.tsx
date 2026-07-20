@@ -7,7 +7,7 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, ArrowLeft, Sparkles, Brain, Globe, Zap, Target, Users } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowLeft, Sparkles, Brain, Globe, Zap, Target, Users, Coffee, Music } from "lucide-react";
 import { useLocation } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -397,10 +397,10 @@ export default function AIAvatar() {
       </section>
 
       {/* ===== SECTION 2: Core Positioning ===== */}
-      <CorePositioning />
+      <CorePositioning painPoints={painPoints} />
 
       {/* ===== SECTION 3: The Six Personas Detail Grid ===== */}
-      <PersonaGrid />
+      <PersonaGrid personas={personas} />
 
       {/* ===== SECTION 4: Business Logic ===== */}
       <BusinessLogic />
@@ -414,7 +414,7 @@ export default function AIAvatar() {
 }
 
 /* --- Core Positioning Section --- */
-function CorePositioning() {
+function CorePositioning({ painPoints }: { painPoints: { label: string; solution: string; icon: string }[] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -524,7 +524,7 @@ function CorePositioning() {
 }
 
 /* --- Persona Detail Grid --- */
-function PersonaGrid() {
+function PersonaGrid({ personas }: { personas: any[] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 

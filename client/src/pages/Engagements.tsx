@@ -31,6 +31,7 @@ interface EngagementStory {
 
 export default function Engagements() {
   const { t } = useLanguage();
+  const [, setLocation] = useLocation();
 
   const stories: EngagementStory[] = [
     {

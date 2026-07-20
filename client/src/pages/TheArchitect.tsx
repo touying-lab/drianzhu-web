@@ -186,7 +186,7 @@ function NarrativeIntro() {
   );
 }
 
-function CareerChapter({ chapter, index }: { chapter: typeof careerChapters[0]; index: number }) {
+function CareerChapter({ chapter, index }: { chapter: { period: string; title: string; subtitle: string; narrative: string; highlights: string[] }; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const isEven = index % 2 === 0;

@@ -72,6 +72,7 @@ export default function SocialFabric() {
       size: "medium",
     },
   ];
+  const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [, setLocation] = useLocation();
 
