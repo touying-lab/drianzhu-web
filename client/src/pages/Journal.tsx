@@ -53,22 +53,22 @@ function useArticles() {
     coverImage: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=80",
     source: "https://mp.weixin.qq.com/s/jJ8Va5-XbCApDl9SepR3Ow",
     content: [
-      { type: "heading", text: "A Stroke to the Left, a Stroke to the Right" },
-      { type: "paragraph", text: "Not a coincidence of structure, but a deliberate choice of direction — A stroke to the left, rooted in reality; a stroke to the right, reaching toward the horizon." },
-      { type: "paragraph", text: "Over the past year, we stood at a rare rupture in time. Technology advanced at breakneck speed, AI reshaped countless industries, and capital and order were reshuffled again and again. The world did not become simpler — only more complex, louder, and more demanding." },
-      { type: "paragraph", text: "Some were pushed forward by the era's momentum; others quietly grew weary in the rush. Yet the more turbulent the times, the more we need to awaken the soul: Do not become mere cogs in a system — Remember, before anything else, you are a person." },
-      { type: "heading", text: "Pressing Forward" },
-      { type: "paragraph", text: "In 2025, I witnessed countless people pressing forward — professionals working late beneath office lights, entrepreneurs redrawing the future through uncertainty, and the backbone generation building dreams while carrying family, duty, and self. Often unseen, you quietly uphold the foundations of the world." },
-      { type: "quote", text: "A person is not made by labels. A person shines through choices." },
-      { type: "paragraph", text: "Choosing long-termism over short-term temptation, choosing rationality and expertise amid the noise, choosing to perfect the mundane even when misunderstood. These choices may not be dazzling, but they decide how far one can go." },
-      { type: "heading", text: "What Truly Endures" },
-      { type: "paragraph", text: "As a legal professional, a finance practitioner, and a long-time observer at the crossroads of East and West, I firmly believe: What is truly scarce is not clever technique, but steadfast judgment of values; What truly endures is not fleeting luck, but verifiable competence and character." },
-      { type: "paragraph", text: "The world changes, but its core logic remains: Trust is built over time; Respect is earned through kept promises; Real influence never comes from clamor." },
-      { type: "heading", text: "A Blessing for the New Year" },
-      { type: "paragraph", text: "May you stay clear-eyed in a fast-paced world; Keep refining yourself amid uncertainty; Hold on to warmth and boundaries under pressure; And remember your original purpose as you climb." },
-      { type: "paragraph", text: "No need to rush for validation. Let time work with you. Do the work — one solid step at a time. One person's strength may be limited, but when countless earnest, sincere, and professional people stand together, our era will be lifted toward steadiness." },
-      { type: "quote", text: "What makes a person human is not speed, but direction. As the year begins, may you and I take up the brush, drawing our own strokes — steady, powerful, enduring." },
-      { type: "paragraph", text: "Happy New Year!\n\nDr. Ian Zhu\nFounder, Tou Ying Ltd\n31.12.2025" },
+      { type: "heading", text: t("journalPage.article1.c1") },
+      { type: "paragraph", text: t("journalPage.article1.c2") },
+      { type: "paragraph", text: t("journalPage.article1.c3") },
+      { type: "paragraph", text: t("journalPage.article1.c4") },
+      { type: "heading", text: t("journalPage.article1.c5") },
+      { type: "paragraph", text: t("journalPage.article1.c6") },
+      { type: "quote", text: t("journalPage.article1.c7") },
+      { type: "paragraph", text: t("journalPage.article1.c8") },
+      { type: "heading", text: t("journalPage.article1.c9") },
+      { type: "paragraph", text: t("journalPage.article1.c10") },
+      { type: "paragraph", text: t("journalPage.article1.c11") },
+      { type: "heading", text: t("journalPage.article1.c12") },
+      { type: "paragraph", text: t("journalPage.article1.c13") },
+      { type: "paragraph", text: t("journalPage.article1.c14") },
+      { type: "quote", text: t("journalPage.article1.c15") },
+      { type: "paragraph", text: t("journalPage.article1.c16") },
     ] as ArticleSection[],
   },
   {
@@ -159,11 +159,7 @@ function useArticles() {
 // placeholder — real articles are built by useArticles() hook above
 const articles: JournalArticle[] = [];
 
-// ===== JOURNAL LIST PAGE =====
-function JournalList_UNUSED_PLACEHOLDER() {
-  // This function is intentionally empty; JournalList below uses useArticles()
-}
-
+// Unused legacy placeholder removed
 const _articles_placeholder = [
   {
     id: "1",
