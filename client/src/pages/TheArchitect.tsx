@@ -16,65 +16,63 @@ const BRAND_GOLD = "#C9A227";
 const DEEP_BLUE = "#0D1B2A";
 const IVORY = "#F5F0E8";
 
-const careerChapters = [
-  {
-    period: "1998 – 2013",
-    title: "The Foundation",
-    subtitle: "Industrial Trade & Cross-Border Supply Chain Management",
-    narrative: `From the bustling halls of the Canton Fair to the boardrooms of London, Dr. Zhu's career began with the raw mechanics of international trade. Over fifteen years, he mastered the art of cross-border supply chain management — negotiating deals worth hundreds of millions, managing procurement portfolios for leading UK firms, and orchestrating complex Sino-European joint ventures.`,
-    highlights: [
-      "Eight consecutive Canton Fair sessions — mastering international trade from the ground up",
-      "Managed £30M procurement portfolio for Home Products Ltd",
-      "$100M+ printing machinery sales across China in five years",
-      "Led Sino-European aviation joint venture negotiations",
-      "Managed 60% of 2012 London Olympics mascot order contracts",
-    ],
-  },
-  {
-    period: "2014 – 2017",
-    title: "The Ascent",
-    subtitle: "Primary Market Investment & Secondary Market Value Management",
-    narrative: `Transitioning from trade to finance, Dr. Zhu entered the world of capital markets with the same intensity that defined his earlier career. At CR Gas and Reignwood Group, he managed billions in cross-border treasury operations and contributed to transformative asset acquisitions that reshaped the UK-China investment landscape.`,
-    highlights: [
-      "CR Gas (HKG: 1193): Managed ¥4B cross-border treasury system",
-      "Contributed to market cap growth to HK$65B within 18 months",
-      "Reignwood Group: Assisted in managing £1B UK asset portfolio",
-      "Deep involvement in Four Seasons Hotel Trinity Square, Wentworth Golf Club, and VOSS Water acquisitions",
-    ],
-  },
-  {
-    period: "2017 – Present",
-    title: "The Authority",
-    subtitle: "Cross-Border Dispute Resolution & Professional Services",
-    narrative: `Today, Dr. Zhu stands at the intersection of law, finance, and international diplomacy. At Grant Thornton UK and Gateley Plc, he has led some of the most complex cross-border restructuring and dispute resolution cases in UK-China relations — from the HNA restructuring to Huawei's 5G reputation management.`,
-    highlights: [
-      "Grant Thornton UK: Led cross-border asset tracing; served 250+ Chinese enterprises",
-      "Achieved 727% revenue growth in the practice",
-      "Gateley Plc: Leveraged legal structures for cross-border arbitration and compliance",
-      "Key projects: HNA restructuring, ABP Royal Docks liquidation, Huawei 5G reputation management, Dezhan Healthcare $300M M&A",
-    ],
-  },
-  {
-    period: "Ongoing",
-    title: "The Legacy",
-    subtitle: "Industry Contributions, Social Roles & Professional Qualifications",
-    narrative: `Beyond the boardroom, Dr. Zhu has dedicated himself to building bridges between cultures and nurturing the next generation of cross-border professionals. His annual Tou Ying Tracker report has become the definitive guide to Chinese investment in the UK, officially cited by government bodies and industry leaders alike.`,
-    highlights: [
-      "Eight consecutive years editing and publishing the officially cited 'Tou Ying Tracker' report",
-      "Founded 'Tou Ying Academy' to cultivate financial talent",
-      "Bromley by Bow Centre recruitment ambassador",
-      "Engage with China supporter",
-    ],
-  },
-];
-
-const qualifications = [
-  { degree: "PhD in Finance", institution: "University of Surrey", detail: "Research focus on cross-border investment patterns" },
-  { degree: "MA in Accounting and Finance", institution: "University of Leeds", detail: "Foundation in financial theory and practice" },
-  { degree: "CISI Level 4 Diploma", institution: "Investment Advice", detail: "Chartered Institute for Securities & Investment" },
-];
+// Data is now generated inside the component to use the translation hook
 
 export default function TheArchitect() {
+  const { t } = useLanguage();
+
+  const careerChapters = [
+    {
+      period: t("architectPage.career.1.period"),
+      title: t("architectPage.career.1.title"),
+      subtitle: t("architectPage.career.1.subtitle"),
+      narrative: t("architectPage.career.1.narrative"),
+      highlights: [
+        t("architectPage.career.1.h1"),
+        t("architectPage.career.1.h2"),
+        t("architectPage.career.1.h3"),
+        t("architectPage.career.1.h4"),
+        t("architectPage.career.1.h5"),
+      ],
+    },
+    {
+      period: t("architectPage.career.2.period"),
+      title: t("architectPage.career.2.title"),
+      subtitle: t("architectPage.career.2.subtitle"),
+      narrative: t("architectPage.career.2.narrative"),
+      highlights: [
+        t("architectPage.career.2.h1"),
+        t("architectPage.career.2.h2"),
+        t("architectPage.career.2.h3"),
+        t("architectPage.career.2.h4"),
+      ],
+    },
+    {
+      period: t("architectPage.career.3.period"),
+      title: t("architectPage.career.3.title"),
+      subtitle: t("architectPage.career.3.subtitle"),
+      narrative: t("architectPage.career.3.narrative"),
+      highlights: [
+        t("architectPage.career.3.h1"),
+        t("architectPage.career.3.h2"),
+        t("architectPage.career.3.h3"),
+        t("architectPage.career.3.h4"),
+      ],
+    },
+    {
+      period: t("architectPage.career.4.period"),
+      title: t("architectPage.career.4.title"),
+      subtitle: t("architectPage.career.4.subtitle"),
+      narrative: t("architectPage.career.4.narrative"),
+      highlights: [
+        t("architectPage.career.4.h1"),
+        t("architectPage.career.4.h2"),
+        t("architectPage.career.4.h3"),
+        t("architectPage.career.4.h4"),
+      ],
+    },
+  ];
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: IVORY }}>
       <Navigation />
@@ -258,9 +256,15 @@ function CareerChapter({ chapter, index }: { chapter: typeof careerChapters[0]; 
 }
 
 function QualificationsSection() {
+  const { t } = useLanguage();
+
+  const qualifications = [
+    { degree: t("legacy.qual1.title"), institution: t("legacy.qual1.institution"), detail: t("architectPage.qualifications.1.detail") },
+    { degree: t("legacy.qual2.title"), institution: t("legacy.qual2.institution"), detail: t("architectPage.qualifications.2.detail") },
+    { degree: t("legacy.qual3.title"), institution: t("legacy.qual3.institution"), detail: t("architectPage.qualifications.3.detail") },
+  ];
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="py-20 md:py-28" style={{ backgroundColor: DEEP_BLUE }}>

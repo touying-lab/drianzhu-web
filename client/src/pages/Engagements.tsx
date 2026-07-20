@@ -27,76 +27,77 @@ interface EngagementStory {
   description: string;
 }
 
-const stories: EngagementStory[] = [
-  {
-    id: 1,
-    date: "15TH NOVEMBER 2024",
-    month: "November 2024",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/baosaDBiOjEiSvEY.jpg",
-    caption: "ADFW 2024 — where global finance converges.",
-    description: "Attending the Abu Dhabi Finance Week 2024, engaging with global leaders in finance, investment, and economic policy. A pivotal gathering at the crossroads of East and West.",
-  },
-  {
-    id: 2,
-    date: "8TH NOVEMBER 2024",
-    month: "",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/WqGhjNGNNiWyPbyE.jpg",
-    caption: "At the crossroads of global capital — Abu Dhabi Finance Week.",
-    description: "Exploring the evolving landscape of sovereign wealth, private capital, and cross-border investment strategies with fellow delegates from across the globe.",
-  },
-  {
-    id: 3,
-    date: "22ND OCTOBER 2024",
-    month: "October 2024",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/BkFxCMSNeMaJWckD.jpg",
-    caption: "Exploring the frontier of AI and knowledge management.",
-    description: "Participating in a forward-looking forum on artificial intelligence and its transformative impact on professional services, legal tech, and cross-border commerce.",
-  },
-  {
-    id: 4,
-    date: "10TH SEPTEMBER 2024",
-    month: "September 2024",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/iJcOwMmmiPvaTrqL.jpg",
-    caption: "Bridging continents at the China-African Entrepreneurs Forum.",
-    description: "Keynote engagement at the China-African Entrepreneurs Forum, fostering dialogue on trade, investment, and sustainable development across emerging markets.",
-  },
-  {
-    id: 5,
-    date: "28TH AUGUST 2024",
-    month: "August 2024",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/iIAraYRLornXxDLE.jpg",
-    caption: "Sharing insights on UK financial regulation and risk management.",
-    description: "Delivering a presentation on the intricacies of UK financial regulation, compliance frameworks, and risk management strategies for international enterprises.",
-  },
-  {
-    id: 6,
-    date: "15TH JULY 2024",
-    month: "July 2024",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/AzBYwOkizmicxQfJ.jpg",
-    caption: "The art of connection — building bridges one conversation at a time.",
-    description: "An intimate networking reception bringing together senior professionals from finance, law, and diplomacy to explore new avenues of cross-border collaboration.",
-  },
-  {
-    id: 7,
-    date: "3RD JUNE 2024",
-    month: "June 2024",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/exJHvESCBAwbYPlG.jpg",
-    caption: "Where East meets West — London's financial heartbeat.",
-    description: "Engaging with the City of London's financial community, discussing bilateral investment opportunities and the evolving UK-China economic corridor.",
-  },
-  {
-    id: 8,
-    date: "18TH MAY 2024",
-    month: "May 2024",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/doytHqneoMTcPWBw.jpg",
-    caption: "Life in the fast lane — embracing precision and performance.",
-    description: "A moment of personal passion — exploring the intersection of engineering excellence, luxury craftsmanship, and the pursuit of perfection beyond the boardroom.",
-  },
-];
+// Stories data is generated inside the component
 
 export default function Engagements() {
-  const [, setLocation] = useLocation();
   const { t } = useLanguage();
+
+  const stories: EngagementStory[] = [
+    {
+      id: 1,
+      date: t("engagementsPage.story.1.date"),
+      month: t("engagementsPage.story.1.month"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/baosaDBiOjEiSvEY.jpg",
+      caption: t("engagementsPage.story.1.caption"),
+      description: t("engagementsPage.story.1.description"),
+    },
+    {
+      id: 2,
+      date: t("engagementsPage.story.2.date"),
+      month: t("engagementsPage.story.2.month"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/WqGhjNGNNiWyPbyE.jpg",
+      caption: t("engagementsPage.story.2.caption"),
+      description: t("engagementsPage.story.2.description"),
+    },
+    {
+      id: 3,
+      date: t("engagementsPage.story.3.date"),
+      month: t("engagementsPage.story.3.month"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/LgqWwEItvGqDXYtH.jpg",
+      caption: t("engagementsPage.story.3.caption"),
+      description: t("engagementsPage.story.3.description"),
+    },
+    {
+      id: 4,
+      date: t("engagementsPage.story.4.date"),
+      month: t("engagementsPage.story.4.month"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/sJkYnKnvWlqNqPjE.jpg",
+      caption: t("engagementsPage.story.4.caption"),
+      description: t("engagementsPage.story.4.description"),
+    },
+    {
+      id: 5,
+      date: t("engagementsPage.story.5.date"),
+      month: t("engagementsPage.story.5.month"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/yOXXfTqKzKqKzVnI.jpg",
+      caption: t("engagementsPage.story.5.caption"),
+      description: t("engagementsPage.story.5.description"),
+    },
+    {
+      id: 6,
+      date: t("engagementsPage.story.6.date"),
+      month: t("engagementsPage.story.6.month"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/yTfHnKnvWlqNqPjE.jpg",
+      caption: t("engagementsPage.story.6.caption"),
+      description: t("engagementsPage.story.6.description"),
+    },
+    {
+      id: 7,
+      date: t("engagementsPage.story.7.date"),
+      month: t("engagementsPage.story.7.month"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/yOXXfTqKzKqKzVnI.jpg",
+      caption: t("engagementsPage.story.7.caption"),
+      description: t("engagementsPage.story.7.description"),
+    },
+    {
+      id: 8,
+      date: t("engagementsPage.story.8.date"),
+      month: t("engagementsPage.story.8.month"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/baosaDBiOjEiSvEY.jpg",
+      caption: t("engagementsPage.story.8.caption"),
+      description: t("engagementsPage.story.8.description"),
+    },
+  ];
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true });
 

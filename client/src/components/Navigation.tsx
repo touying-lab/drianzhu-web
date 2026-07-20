@@ -159,10 +159,10 @@ export default function Navigation() {
         <div className="flex flex-col items-center justify-center h-full gap-7 pt-24">
           {navItems.map((item, index) => (
             <motion.button
-              key={item.label}
+              key={item.key}
               onClick={() => handleNavClick(item)}
               className={`font-cormorant text-xl tracking-[0.2em] transition-colors duration-300 font-semibold ${
-                item.label === "AI AVATAR" ? "font-bold" : ""
+                item.key === "nav.aiAvatar" ? "font-bold" : ""
               }`}
               style={{ color: BRAND_GOLD }}
               initial={{ opacity: 0, y: 20 }}

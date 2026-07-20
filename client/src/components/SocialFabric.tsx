@@ -17,62 +17,63 @@ interface GalleryItem {
   size: "large" | "medium" | "small";
 }
 
-const galleryItems: GalleryItem[] = [
-  {
-    id: 1,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/neBpheatDmiDCeXM.jpg",
-    caption: "Bridging worlds — a moment of cultural exchange at the highest level.",
-    size: "large",
-  },
-  {
-    id: 2,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/EoCVPcOjbVYsltLv.jpg",
-    caption: "The art of negotiation — where trust meets strategy.",
-    size: "medium",
-  },
-  {
-    id: 3,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
-    caption: "Tou Ying Tracker launch — shaping the narrative of UK-China investment.",
-    size: "medium",
-  },
-  {
-    id: 4,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ZIOpyMlgZhkvrabL.jpg",
-    caption: "Knowledge shared is power multiplied — at the podium.",
-    size: "large",
-  },
-  {
-    id: 5,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/TxzTnnzmPiPAIYPg.png",
-    caption: "The digital frontier — where AI meets human expertise.",
-    size: "small",
-  },
-  {
-    id: 6,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/pkDJyJokeELKRFrP.png",
-    caption: "A signature built on decades of trust and excellence.",
-    size: "small",
-  },
-  {
-    id: 7,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/neBpheatDmiDCeXM.jpg",
-    caption: "Global connections forged through genuine relationships.",
-    size: "medium",
-  },
-  {
-    id: 8,
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/doytHqneoMTcPWBw.jpg",
-    caption: "Life in the fast lane — embracing precision and performance.",
-    size: "medium",
-  },
-];
+// Gallery items are now generated dynamically in the component to access the translation function
 
 export default function SocialFabric() {
-  const ref = useRef(null);
+  const { t } = useLanguage();
+
+  const galleryItems: GalleryItem[] = [
+    {
+      id: 1,
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/neBpheatDmiDCeXM.jpg",
+      caption: t("social.gallery.1"),
+      size: "large",
+    },
+    {
+      id: 2,
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/EoCVPcOjbVYsltLv.jpg",
+      caption: t("social.gallery.2"),
+      size: "medium",
+    },
+    {
+      id: 3,
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      caption: t("social.gallery.3"),
+      size: "medium",
+    },
+    {
+      id: 4,
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ZIOpyMlgZhkvrabL.jpg",
+      caption: t("social.gallery.4"),
+      size: "large",
+    },
+    {
+      id: 5,
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/TxzTnnzmPiPAIYPg.png",
+      caption: t("social.gallery.5"),
+      size: "small",
+    },
+    {
+      id: 6,
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/pkDJyJokeELKRFrP.png",
+      caption: t("social.gallery.6"),
+      size: "small",
+    },
+    {
+      id: 7,
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/neBpheatDmiDCeXM.jpg",
+      caption: t("social.gallery.7"),
+      size: "medium",
+    },
+    {
+      id: 8,
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/doytHqneoMTcPWBw.jpg",
+      caption: t("social.gallery.8"),
+      size: "medium",
+    },
+  ];
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [, setLocation] = useLocation();
-  const { t } = useLanguage();
 
   return (
     <section

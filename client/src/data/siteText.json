@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-06T12:51:08.566Z",
+  "updatedAt": "2026-07-20T10:50:26.742598Z",
   "updatedBy": "private-content-editor",
   "translations": {
     "nav.home": {
@@ -1042,6 +1042,894 @@
     "insightsPage.research.dispute.topic4": {
       "en": "Regulatory Enforcement",
       "cn": "监管执法"
+    },
+    "social.gallery.1": {
+      "en": "Bridging worlds — a moment of cultural exchange at the highest level.",
+      "cn": "连接世界——最高层面的文化交流时刻。"
+    },
+    "social.gallery.2": {
+      "en": "The art of negotiation — where trust meets strategy.",
+      "cn": "谈判的艺术——信任与战略交汇之处。"
+    },
+    "social.gallery.3": {
+      "en": "Tou Ying Tracker launch — shaping the narrative of UK-China investment.",
+      "cn": "《投英追踪》发布——塑造中英投资的叙事。"
+    },
+    "social.gallery.4": {
+      "en": "Knowledge shared is power multiplied — at the podium.",
+      "cn": "分享知识即是力量的倍增——在演讲台上。"
+    },
+    "social.gallery.5": {
+      "en": "The digital frontier — where AI meets human expertise.",
+      "cn": "数字前沿——AI与人类专业知识的结合。"
+    },
+    "social.gallery.6": {
+      "en": "A signature built on decades of trust and excellence.",
+      "cn": "建立在数十年信任与卓越之上的签名。"
+    },
+    "social.gallery.7": {
+      "en": "Global connections forged through genuine relationships.",
+      "cn": "通过真诚关系建立的全球联系。"
+    },
+    "social.gallery.8": {
+      "en": "Life in the fast lane — embracing precision and performance.",
+      "cn": "快节奏生活——拥抱精准与表现。"
+    },
+    "architectPage.career.1.period": {
+      "en": "1998 – 2013",
+      "cn": "1998 – 2013"
+    },
+    "architectPage.career.1.title": {
+      "en": "The Foundation",
+      "cn": "基础"
+    },
+    "architectPage.career.1.subtitle": {
+      "en": "Industrial Trade & Cross-Border Supply Chain Management",
+      "cn": "工业贸易与跨境供应链管理"
+    },
+    "architectPage.career.1.narrative": {
+      "en": "From the bustling halls of the Canton Fair to the boardrooms of London, Dr. Zhu's career began with the raw mechanics of international trade. Over fifteen years, he mastered the art of cross-border supply chain management — negotiating deals worth hundreds of millions, managing procurement portfolios for leading UK firms, and orchestrating complex Sino-European joint ventures.",
+      "cn": "从熙熙攘攘的广交会展馆到伦敦的董事会会议室，朱博士的职业生涯始于国际贸易的原始机制。在十五年的时间里，他精通跨境供应链管理的艺术——谈判价值数亿的交易，管理英国领先公司的采购组合，并策划复杂的中欧合资企业。"
+    },
+    "architectPage.career.1.h1": {
+      "en": "Eight consecutive Canton Fair sessions — mastering international trade from the ground up",
+      "cn": "连续八届广交会——从头开始精通国际贸易"
+    },
+    "architectPage.career.1.h2": {
+      "en": "Managed £30M procurement portfolio for Home Products Ltd",
+      "cn": "为Home Products Ltd管理3000万英镑的采购组合"
+    },
+    "architectPage.career.1.h3": {
+      "en": "$100M+ printing machinery sales across China in five years",
+      "cn": "五年内在中国实现超过1亿美元的印刷机械销售额"
+    },
+    "architectPage.career.1.h4": {
+      "en": "Led Sino-European aviation joint venture negotiations",
+      "cn": "领导中欧航空合资企业谈判"
+    },
+    "architectPage.career.1.h5": {
+      "en": "Managed 60% of 2012 London Olympics mascot order contracts",
+      "cn": "管理2012年伦敦奥运会吉祥物60%的订单合同"
+    },
+    "architectPage.career.2.period": {
+      "en": "2014 – 2017",
+      "cn": "2014 – 2017"
+    },
+    "architectPage.career.2.title": {
+      "en": "The Ascent",
+      "cn": "上升"
+    },
+    "architectPage.career.2.subtitle": {
+      "en": "Primary Market Investment & Secondary Market Value Management",
+      "cn": "一级市场投资与二级市场价值管理"
+    },
+    "architectPage.career.2.narrative": {
+      "en": "Transitioning from trade to finance, Dr. Zhu entered the world of capital markets with the same intensity that defined his earlier career. At CR Gas and Reignwood Group, he managed billions in cross-border treasury operations and contributed to transformative asset acquisitions that reshaped the UK-China investment landscape.",
+      "cn": "从贸易转向金融，朱博士以定义其早期职业生涯的同样强度进入资本市场世界。在华润燃气和华彬集团，他管理了数十亿的跨境资金运作，并促成了重塑中英投资格局的变革性资产收购。"
+    },
+    "architectPage.career.2.h1": {
+      "en": "CR Gas (HKG: 1193): Managed ¥4B cross-border treasury system",
+      "cn": "华润燃气（HKG: 1193）：管理40亿人民币跨境资金系统"
+    },
+    "architectPage.career.2.h2": {
+      "en": "Contributed to market cap growth to HK$65B within 18 months",
+      "cn": "18个月内助力市值增长至650亿港元"
+    },
+    "architectPage.career.2.h3": {
+      "en": "Reignwood Group: Assisted in managing £1B UK asset portfolio",
+      "cn": "华彬集团：协助管理10亿英镑英国资产组合"
+    },
+    "architectPage.career.2.h4": {
+      "en": "Deep involvement in Four Seasons Hotel Trinity Square, Wentworth Golf Club, and VOSS Water acquisitions",
+      "cn": "深度参与三一广场四季酒店、温特沃斯高尔夫俱乐部和VOSS水的收购"
+    },
+    "architectPage.career.3.period": {
+      "en": "2017 – Present",
+      "cn": "2017 – 至今"
+    },
+    "architectPage.career.3.title": {
+      "en": "The Authority",
+      "cn": "权威"
+    },
+    "architectPage.career.3.subtitle": {
+      "en": "Cross-Border Dispute Resolution & Professional Services",
+      "cn": "跨境争议解决与专业服务"
+    },
+    "architectPage.career.3.narrative": {
+      "en": "Today, Dr. Zhu stands at the intersection of law, finance, and international diplomacy. At Grant Thornton UK and Gateley Plc, he has led some of the most complex cross-border restructuring and dispute resolution cases in UK-China relations — from the HNA restructuring to Huawei's 5G reputation management.",
+      "cn": "今天，朱博士站在法律、金融和国际外交的交叉点。在致同英国和盖特利律师事务所，他领导了中英关系中最复杂的一些跨境重组和争议解决案件——从海航重组到华为5G声誉管理。"
+    },
+    "architectPage.career.3.h1": {
+      "en": "Grant Thornton UK: Led cross-border asset tracing; served 250+ Chinese enterprises",
+      "cn": "致同英国：领导跨境资产追踪；服务250多家中国企业"
+    },
+    "architectPage.career.3.h2": {
+      "en": "Achieved 727% revenue growth in the practice",
+      "cn": "实现业务收入727%的增长"
+    },
+    "architectPage.career.3.h3": {
+      "en": "Gateley Plc: Leveraged legal structures for cross-border arbitration and compliance",
+      "cn": "盖特利律师事务所：利用法律结构进行跨境仲裁和合规"
+    },
+    "architectPage.career.3.h4": {
+      "en": "Key projects: HNA restructuring, ABP Royal Docks liquidation, Huawei 5G reputation management, Dezhan Healthcare $300M M&A",
+      "cn": "重点项目：海航重组、ABP皇家码头清算、华为5G声誉管理、德展健康3亿美元并购"
+    },
+    "architectPage.career.4.period": {
+      "en": "Ongoing",
+      "cn": "持续进行"
+    },
+    "architectPage.career.4.title": {
+      "en": "The Legacy",
+      "cn": "传承"
+    },
+    "architectPage.career.4.subtitle": {
+      "en": "Industry Contributions, Social Roles & Professional Qualifications",
+      "cn": "行业贡献、社会角色与专业资质"
+    },
+    "architectPage.career.4.narrative": {
+      "en": "Beyond the boardroom, Dr. Zhu has dedicated himself to building bridges between cultures and nurturing the next generation of cross-border professionals. His annual Tou Ying Tracker report has become the definitive guide to Chinese investment in the UK, officially cited by government bodies and industry leaders alike.",
+      "cn": "在董事会会议室之外，朱博士致力于在文化之间架起桥梁，并培养下一代跨境专业人士。他的年度《投英追踪》报告已成为中国在英国投资的权威指南，被政府机构和行业领导者官方引用。"
+    },
+    "architectPage.career.4.h1": {
+      "en": "Eight consecutive years editing and publishing the officially cited 'Tou Ying Tracker' report",
+      "cn": "连续八年编辑出版被官方引用的《投英追踪》报告"
+    },
+    "architectPage.career.4.h2": {
+      "en": "Founded 'Tou Ying Academy' to cultivate financial talent",
+      "cn": "创办“投英学院”培养金融人才"
+    },
+    "architectPage.career.4.h3": {
+      "en": "Bromley by Bow Centre recruitment ambassador",
+      "cn": "Bromley by Bow Centre招聘大使"
+    },
+    "architectPage.career.4.h4": {
+      "en": "Engage with China supporter",
+      "cn": "支持“与中国接触”项目"
+    },
+    "architectPage.qualifications.1.detail": {
+      "en": "Research focus on cross-border investment patterns",
+      "cn": "研究重点为跨境投资模式"
+    },
+    "architectPage.qualifications.2.detail": {
+      "en": "Foundation in financial theory and practice",
+      "cn": "金融理论与实践基础"
+    },
+    "architectPage.qualifications.3.detail": {
+      "en": "Chartered Institute for Securities & Investment",
+      "cn": "特许证券与投资协会"
+    },
+    "engagementsPage.story.1.date": {
+      "en": "15TH NOVEMBER 2024",
+      "cn": "2024年11月15日"
+    },
+    "engagementsPage.story.1.month": {
+      "en": "November 2024",
+      "cn": "2024年11月"
+    },
+    "engagementsPage.story.1.caption": {
+      "en": "ADFW 2024 — where global finance converges.",
+      "cn": "2024阿布扎比金融周——全球金融汇聚之地。"
+    },
+    "engagementsPage.story.1.description": {
+      "en": "Attending the Abu Dhabi Finance Week 2024, engaging with global leaders in finance, investment, and economic policy. A pivotal gathering at the crossroads of East and West.",
+      "cn": "参加2024年阿布扎比金融周，与全球金融、投资和经济政策领域的领导者交流。这是东西方十字路口的一次关键聚会。"
+    },
+    "engagementsPage.story.2.date": {
+      "en": "8TH NOVEMBER 2024",
+      "cn": "2024年11月8日"
+    },
+    "engagementsPage.story.2.month": {
+      "en": "",
+      "cn": ""
+    },
+    "engagementsPage.story.2.caption": {
+      "en": "At the crossroads of global capital — Abu Dhabi Finance Week.",
+      "cn": "在全球资本的十字路口——阿布扎比金融周。"
+    },
+    "engagementsPage.story.2.description": {
+      "en": "Exploring the evolving landscape of sovereign wealth, private capital, and cross-border investment strategies with fellow delegates from across the globe.",
+      "cn": "与来自全球各地的代表一起探索主权财富、私人资本和跨境投资战略的不断演变的格局。"
+    },
+    "engagementsPage.story.3.date": {
+      "en": "22ND OCTOBER 2024",
+      "cn": "2024年10月22日"
+    },
+    "engagementsPage.story.3.month": {
+      "en": "October 2024",
+      "cn": "2024年10月"
+    },
+    "engagementsPage.story.3.caption": {
+      "en": "Exploring the frontier of AI and knowledge management.",
+      "cn": "探索人工智能和知识管理的前沿。"
+    },
+    "engagementsPage.story.3.description": {
+      "en": "Participating in a forward-looking forum on artificial intelligence and its transformative impact on professional services, legal tech, and cross-border commerce.",
+      "cn": "参加一个具有前瞻性的人工智能论坛，探讨其对专业服务、法律科技和跨境商业的变革性影响。"
+    },
+    "engagementsPage.story.4.date": {
+      "en": "10TH SEPTEMBER 2024",
+      "cn": "2024年9月10日"
+    },
+    "engagementsPage.story.4.month": {
+      "en": "September 2024",
+      "cn": "2024年9月"
+    },
+    "engagementsPage.story.4.caption": {
+      "en": "Bridging continents at the China-African Entrepreneurs Forum.",
+      "cn": "在中非企业家论坛上架起跨越大陆的桥梁。"
+    },
+    "engagementsPage.story.4.description": {
+      "en": "Keynote engagement at the China-African Entrepreneurs Forum, fostering dialogue on trade, investment, and sustainable development across emerging markets.",
+      "cn": "在中非企业家论坛上发表主旨演讲，促进有关新兴市场贸易、投资和可持续发展的对话。"
+    },
+    "engagementsPage.story.5.date": {
+      "en": "28TH AUGUST 2024",
+      "cn": "2024年8月28日"
+    },
+    "engagementsPage.story.5.month": {
+      "en": "August 2024",
+      "cn": "2024年8月"
+    },
+    "engagementsPage.story.5.caption": {
+      "en": "Sharing insights on UK financial regulation and risk management.",
+      "cn": "分享对英国金融监管和风险管理的见解。"
+    },
+    "engagementsPage.story.5.description": {
+      "en": "Delivering a presentation on the intricacies of UK financial regulation, compliance frameworks, and risk management strategies for international enterprises.",
+      "cn": "就英国金融监管的复杂性、合规框架以及国际企业的风险管理战略发表演讲。"
+    },
+    "engagementsPage.story.6.date": {
+      "en": "15TH JULY 2024",
+      "cn": "2024年7月15日"
+    },
+    "engagementsPage.story.6.month": {
+      "en": "July 2024",
+      "cn": "2024年7月"
+    },
+    "engagementsPage.story.6.caption": {
+      "en": "The art of connection — building bridges one conversation at a time.",
+      "cn": "连接的艺术——通过每一次对话架起桥梁。"
+    },
+    "engagementsPage.story.6.description": {
+      "en": "An intimate networking reception bringing together senior professionals from finance, law, and diplomacy to explore new avenues of cross-border collaboration.",
+      "cn": "一场私密的社交酒会，汇聚了来自金融、法律和外交领域的资深专业人士，共同探索跨境合作的新途径。"
+    },
+    "engagementsPage.story.7.date": {
+      "en": "3RD JUNE 2024",
+      "cn": "2024年6月3日"
+    },
+    "engagementsPage.story.7.month": {
+      "en": "June 2024",
+      "cn": "2024年6月"
+    },
+    "engagementsPage.story.7.caption": {
+      "en": "Where East meets West — London's financial heartbeat.",
+      "cn": "东西方交汇之处——伦敦的金融心脏。"
+    },
+    "engagementsPage.story.7.description": {
+      "en": "Engaging with the City of London's financial community, discussing bilateral investment opportunities and the evolving UK-China economic corridor.",
+      "cn": "与伦敦金融城社区交流，讨论双边投资机会和不断发展的中英经济走廊。"
+    },
+    "engagementsPage.story.8.date": {
+      "en": "18TH MAY 2024",
+      "cn": "2024年5月18日"
+    },
+    "engagementsPage.story.8.month": {
+      "en": "May 2024",
+      "cn": "2024年5月"
+    },
+    "engagementsPage.story.8.caption": {
+      "en": "Life in the fast lane — embracing precision and performance.",
+      "cn": "快节奏生活——拥抱精准与表现。"
+    },
+    "engagementsPage.story.8.description": {
+      "en": "A moment of personal passion — exploring the intersection of engineering excellence, luxury craftsmanship, and the pursuit of perfection beyond the boardroom.",
+      "cn": "个人热情的时刻——探索卓越工程、奢华工艺和在董事会之外追求完美的交汇点。"
+    },
+    "storePage.product.1.name": {
+      "en": "Château Margaux 2015",
+      "cn": "玛歌酒庄 2015"
+    },
+    "storePage.product.1.subtitle": {
+      "en": "Premier Grand Cru Classé, Bordeaux",
+      "cn": "波尔多一级列级酒庄"
+    },
+    "storePage.product.2.name": {
+      "en": "Macallan 25 Year",
+      "cn": "麦卡伦25年"
+    },
+    "storePage.product.2.subtitle": {
+      "en": "Sherry Oak, Highland Single Malt",
+      "cn": "雪莉橡木桶，高地单一麦芽"
+    },
+    "storePage.product.3.name": {
+      "en": "Da Hong Pao",
+      "cn": "大红袍"
+    },
+    "storePage.product.3.subtitle": {
+      "en": "Wuyi Rock Tea, Fujian Province",
+      "cn": "武夷岩茶，福建省"
+    },
+    "storePage.product.4.name": {
+      "en": "Heritage Briefcase",
+      "cn": "传承公文包"
+    },
+    "storePage.product.4.subtitle": {
+      "en": "Italian Full-Grain Leather, Hand-Stitched",
+      "cn": "意大利全粒面皮革，手工缝制"
+    },
+    "storePage.product.5.name": {
+      "en": "Penfolds Grange 2018",
+      "cn": "奔富葛兰许 2018"
+    },
+    "storePage.product.5.subtitle": {
+      "en": "Shiraz, South Australia",
+      "cn": "西拉，南澳大利亚"
+    },
+    "storePage.product.6.name": {
+      "en": "Signature Crest Tee",
+      "cn": "标志性徽章T恤"
+    },
+    "storePage.product.6.subtitle": {
+      "en": "Egyptian Cotton, Embroidered Logo",
+      "cn": "埃及棉，刺绣标志"
+    },
+    "storePage.product.7.name": {
+      "en": "Longjing Supreme",
+      "cn": "至尊龙井"
+    },
+    "storePage.product.7.subtitle": {
+      "en": "Dragon Well, West Lake, Hangzhou",
+      "cn": "西湖龙井，杭州"
+    },
+    "storePage.product.8.name": {
+      "en": "Hibiki 21 Year",
+      "cn": "响21年"
+    },
+    "storePage.product.8.subtitle": {
+      "en": "Japanese Blended Whisky, Suntory",
+      "cn": "日本调和威士忌，三得利"
+    },
+    "storePage.product.9.name": {
+      "en": "Monogram Card Holder",
+      "cn": "老花卡包"
+    },
+    "storePage.product.9.subtitle": {
+      "en": "Calfskin Leather, Gold Embossed",
+      "cn": "小牛皮，金色压花"
+    },
+    "storePage.product.10.name": {
+      "en": "Opus One 2019",
+      "cn": "作品一号 2019"
+    },
+    "storePage.product.10.subtitle": {
+      "en": "Napa Valley, California",
+      "cn": "纳帕谷，加利福尼亚"
+    },
+    "storePage.product.11.name": {
+      "en": "Classic Polo Shirt",
+      "cn": "经典Polo衫"
+    },
+    "storePage.product.11.subtitle": {
+      "en": "Pima Cotton, Woven Logo Badge",
+      "cn": "比马棉，编织标志徽章"
+    },
+    "storePage.product.12.name": {
+      "en": "Pu-erh Vintage 2005",
+      "cn": "陈年普洱 2005"
+    },
+    "storePage.product.12.subtitle": {
+      "en": "Aged Yunnan Tea Cake, 357g",
+      "cn": "云南陈年茶饼，357克"
+    },
+    "aiPage.persona.1.name": {
+      "en": "The Dealmaker",
+      "cn": "交易撮合者"
+    },
+    "aiPage.persona.1.subtitle": {
+      "en": "Work & Wealth",
+      "cn": "工作与财富"
+    },
+    "aiPage.persona.1.tagline": {
+      "en": "Calm. Efficient. In Control.",
+      "cn": "冷静。高效。掌控全局。"
+    },
+    "aiPage.persona.1.description": {
+      "en": "He navigates the complex, ever-changing business world with absolute rationality — embodying the modern aspiration for financial freedom and professional mastery.",
+      "cn": "他以绝对的理性驾驭复杂多变的商业世界——体现了现代人对财务自由和专业精通的渴望。"
+    },
+    "aiPage.persona.2.name": {
+      "en": "The Athlete",
+      "cn": "运动员"
+    },
+    "aiPage.persona.2.subtitle": {
+      "en": "Sport & Discipline",
+      "cn": "运动与自律"
+    },
+    "aiPage.persona.2.tagline": {
+      "en": "Elegant. Strong. Disciplined.",
+      "cn": "优雅。强壮。自律。"
+    },
+    "aiPage.persona.2.description": {
+      "en": "More than sport — it is the ultimate pursuit of physical mastery. He represents the elite image of health, vitality, and unwavering self-discipline.",
+      "cn": "不仅仅是运动——它是对身体掌控的终极追求。他代表了健康、活力和坚定不移的自律的精英形象。"
+    },
+    "aiPage.persona.3.name": {
+      "en": "The Healer",
+      "cn": "疗愈者"
+    },
+    "aiPage.persona.3.subtitle": {
+      "en": "Wellness & Balance",
+      "cn": "健康与平衡"
+    },
+    "aiPage.persona.3.tagline": {
+      "en": "Grounded. Calm. Balanced.",
+      "cn": "脚踏实地。平静。平衡。"
+    },
+    "aiPage.persona.3.description": {
+      "en": "Blending Eastern wellness with Western health management, he offers inner peace and healing to the anxious urban soul — a sanctuary for mind and body.",
+      "cn": "融合东方养生与西方健康管理，他为焦虑的都市灵魂提供内心的平静与疗愈——身心的避难所。"
+    },
+    "aiPage.persona.4.name": {
+      "en": "The Gourmet",
+      "cn": "美食家"
+    },
+    "aiPage.persona.4.subtitle": {
+      "en": "Taste & Pleasure",
+      "cn": "品味与愉悦"
+    },
+    "aiPage.persona.4.tagline": {
+      "en": "Cultured. Refined. Discerning.",
+      "cn": "有教养。精致。有眼光。"
+    },
+    "aiPage.persona.4.description": {
+      "en": "Representing the highest form of material enjoyment — not merely a connoisseur of food and drink, but a man with a profound, unique understanding of the art of living.",
+      "cn": "代表了最高形式的物质享受——不仅是饮食的鉴赏家，更是一个对生活艺术有深刻、独特理解的人。"
+    },
+    "aiPage.persona.5.name": {
+      "en": "The Voyager",
+      "cn": "航海家"
+    },
+    "aiPage.persona.5.subtitle": {
+      "en": "Global View & Freedom",
+      "cn": "全球视野与自由"
+    },
+    "aiPage.persona.5.tagline": {
+      "en": "Worldly. Visionary. Adventurous.",
+      "cn": "世故。有远见。富有冒险精神。"
+    },
+    "aiPage.persona.5.description": {
+      "en": "Symbolising the freedom and experience that transcend borders — fulfilling the romantic imagination of being 'on the road', exploring the world with open eyes.",
+      "cn": "象征着超越国界的自由与体验——满足“在路上”的浪漫想象，睁开双眼探索世界。"
+    },
+    "aiPage.persona.6.name": {
+      "en": "The Charmer",
+      "cn": "魅力者"
+    },
+    "aiPage.persona.6.subtitle": {
+      "en": "Fun & Social",
+      "cn": "乐趣与社交"
+    },
+    "aiPage.persona.6.tagline": {
+      "en": "Playful. Magnetic. The Life of the Party.",
+      "cn": "顽皮。有磁性。派对的灵魂。"
+    },
+    "aiPage.persona.6.description": {
+      "en": "Fighting boredom and loneliness — he embodies the spirit of entertainment, the joy of releasing pressure, and the art of living fully in the moment.",
+      "cn": "对抗无聊与孤独——他体现了娱乐精神、释放压力的喜悦以及充分活在当下的艺术。"
+    },
+    "aiPage.pain.1.label": {
+      "en": "Stress",
+      "cn": "压力"
+    },
+    "aiPage.pain.1.solution": {
+      "en": "Work & Wealth",
+      "cn": "工作与财富"
+    },
+    "aiPage.pain.2.label": {
+      "en": "Fatigue",
+      "cn": "疲劳"
+    },
+    "aiPage.pain.2.solution": {
+      "en": "Sport & Discipline",
+      "cn": "运动与自律"
+    },
+    "aiPage.pain.3.label": {
+      "en": "Anxiety",
+      "cn": "焦虑"
+    },
+    "aiPage.pain.3.solution": {
+      "en": "Wellness & Balance",
+      "cn": "健康与平衡"
+    },
+    "aiPage.pain.4.label": {
+      "en": "Indulgence",
+      "cn": "放纵"
+    },
+    "aiPage.pain.4.solution": {
+      "en": "Taste & Pleasure",
+      "cn": "品味与愉悦"
+    },
+    "aiPage.pain.5.label": {
+      "en": "Boredom",
+      "cn": "无聊"
+    },
+    "aiPage.pain.5.solution": {
+      "en": "Global View & Freedom",
+      "cn": "全球视野与自由"
+    },
+    "aiPage.pain.6.label": {
+      "en": "Loneliness",
+      "cn": "孤独"
+    },
+    "aiPage.pain.6.solution": {
+      "en": "Fun & Social",
+      "cn": "乐趣与社交"
+    },
+    "aiPage.core.label": {
+      "en": "COMPOUND ELITE LIFESTYLE IP",
+      "cn": "复合精英生活方式IP"
+    },
+    "aiPage.core.title": {
+      "en": "The Emotional Projection Model",
+      "cn": "情感投射模型"
+    },
+    "aiPage.core.desc1": {
+      "en": "Dr. Ian Zhu transcends the conventional IP archetype. He is not a pet to be protected, but an ",
+      "cn": "朱博士超越了传统的IP原型。他不是一个需要被保护的宠物，而是一个"
+    },
+    "aiPage.core.descHighlight": {
+      "en": "ideal self to be projected upon",
+      "cn": "可以投射的理想自我"
+    },
+    "aiPage.core.desc2": {
+      "en": ". Through six highly recognisable persona characters, he provides a comprehensive \"Emotional Shelter\" for high-net-worth individuals pursuing excellence.",
+      "cn": "。通过六个高度可识别的人格角色，他为追求卓越的高净值人群提供了一个全面的“情感避风港”。"
+    },
+    "aiPage.core.quote": {
+      "en": "\"See who I can become.\"",
+      "cn": "“看看我能成为谁。”"
+    },
+    "aiPage.grid.title": {
+      "en": "THE SIX PERSONAS",
+      "cn": "六大人格"
+    },
+    "aiPage.grid.subtitle": {
+      "en": "Six facets of the perfect life, six emotional shelters",
+      "cn": "完美生活的六个侧面，六个情感避风港"
+    },
+    "aiPage.business.title": {
+      "en": "COMMERCIAL VALUE",
+      "cn": "商业价值"
+    },
+    "aiPage.business.subtitle": {
+      "en": "The business logic behind the Dr. Ian Zhu Virtual IP",
+      "cn": "朱博士虚拟IP背后的商业逻辑"
+    },
+    "aiPage.business.pillar1.title": {
+      "en": "Emotional Demand Coverage",
+      "cn": "情感需求覆盖"
+    },
+    "aiPage.business.pillar1.desc": {
+      "en": "This IP system precisely addresses six core pain points of the modern elite: stress, boredom, anxiety, and loneliness. Whatever emotional state a user is in, they can find their 'Emotional Shelter' within the Dr. Ian Zhu matrix.",
+      "cn": "该IP系统精准解决现代精英的六大核心痛点：压力、无聊、焦虑和孤独。无论用户处于何种情绪状态，他们都能在朱博士矩阵中找到自己的“情感避风港”。"
+    },
+    "aiPage.business.pillar2.title": {
+      "en": "Cross-Industry Extensibility",
+      "cn": "跨行业可扩展性"
+    },
+    "aiPage.business.pillar2.desc": {
+      "en": "Dr. Ian Zhu is not a single-track IP — he bridges six trillion-level industries. Each character is an independent brand collaboration portal: luxury goods, wellness, sports, gastronomy, travel, and entertainment.",
+      "cn": "朱博士不是一个单轨IP——他连接了六个万亿级产业。每个角色都是一个独立的品牌合作门户：奢侈品、健康、运动、美食、旅游和娱乐。"
+    },
+    "aiPage.business.pillar3.title": {
+      "en": "Differentiated Competitive Moat",
+      "cn": "差异化竞争护城河"
+    },
+    "aiPage.business.pillar3.desc": {
+      "en": "Unlike emotional toys such as Labubu, Dr. Ian Zhu is a 'Mentor-type' IP with a complete worldview and methodology. He is a dynamic, dependable friend and guide who outputs values and lifestyle philosophy.",
+      "cn": "与Labubu等情感玩具不同，朱博士是一个具有完整世界观和方法论的“导师型”IP。他是一个充满活力、值得信赖的朋友和向导，输出价值观和生活方式哲学。"
+    },
+    "aiPage.vision.title": {
+      "en": "THE VISION",
+      "cn": "愿景"
+    },
+    "aiPage.vision.desc1": {
+      "en": "Traditional collectible toys are like the teddy bear on your bedside table — offering comfort and companionship. Dr. Ian Zhu is the ",
+      "cn": "传统的收藏玩具就像你床头柜上的泰迪熊——提供安慰和陪伴。朱博士是你衣柜里"
+    },
+    "aiPage.vision.descHighlight1": {
+      "en": "perfectly tailored suit",
+      "cn": "完美剪裁的西装"
+    },
+    "aiPage.vision.desc2": {
+      "en": " in your wardrobe and the ",
+      "cn": "和书架上的"
+    },
+    "aiPage.vision.descHighlight2": {
+      "en": "encyclopaedia",
+      "cn": "百科全书"
+    },
+    "aiPage.vision.desc3": {
+      "en": " on your bookshelf — empowering you with strength, confidence, and the wisdom to navigate the world.",
+      "cn": "——赋予你力量、信心和驾驭世界的智慧。"
+    },
+    "aiPage.vision.quote": {
+      "en": "\"He stands in the spotlight, in six perfect forms, guiding and inspiring you to become that more disciplined, more prosperous, more elegant version of yourself.\"",
+      "cn": "“他站在聚光灯下，以六种完美的形态，引导并激励你成为那个更自律、更繁荣、更优雅的自己。”"
+    },
+    "journalPage.article1.c1": {
+      "en": "A Stroke to the Left, a Stroke to the Right",
+      "cn": "一撇一捺"
+    },
+    "journalPage.article1.c2": {
+      "en": "Not a coincidence of structure, but a deliberate choice of direction — A stroke to the left, rooted in reality; a stroke to the right, reaching toward the horizon.",
+      "cn": "不是结构的巧合，而是方向的刻意选择——一撇，扎根现实；一捺，伸向远方。"
+    },
+    "journalPage.article1.c3": {
+      "en": "Over the past year, we stood at a rare rupture in time. Technology advanced at breakneck speed, AI reshaped countless industries, and capital and order were reshuffled again and again. The world did not become simpler — only more complex, louder, and more demanding.",
+      "cn": "过去一年，我们站在一个罕见的时间断层上。科技以惊人的速度发展，人工智能重塑了无数行业，资本和秩序一次又一次地重新洗牌。世界并没有变得更简单——只会变得更复杂、更喧嚣、要求更高。"
+    },
+    "journalPage.article1.c4": {
+      "en": "Some were pushed forward by the era's momentum; others quietly grew weary in the rush. Yet the more turbulent the times, the more we need to awaken the soul: Do not become mere cogs in a system — Remember, before anything else, you are a person.",
+      "cn": "一些人被时代的势头推着向前；另一些人则在匆忙中悄然疲惫。然而，时代越是动荡，我们越需要唤醒灵魂：不要仅仅成为系统中的齿轮——记住，在成为任何其他东西之前，你首先是一个人。"
+    },
+    "journalPage.article1.c5": {
+      "en": "Pressing Forward",
+      "cn": "奋力前行"
+    },
+    "journalPage.article1.c6": {
+      "en": "In 2025, I witnessed countless people pressing forward — professionals working late beneath office lights, entrepreneurs redrawing the future through uncertainty, and the backbone generation building dreams while carrying family, duty, and self. Often unseen, you quietly uphold the foundations of the world.",
+      "cn": "在2025年，我见证了无数人奋力前行——在办公室灯光下加班的专业人士，在不确定性中重绘未来的企业家，以及在背负家庭、责任和自我的同时筑梦的中坚一代。你们常常不为人知，却默默地支撑着世界的根基。"
+    },
+    "journalPage.article1.c7": {
+      "en": "A person is not made by labels. A person shines through choices.",
+      "cn": "人不是由标签定义的。人因选择而闪耀。"
+    },
+    "journalPage.article1.c8": {
+      "en": "Choosing long-termism over short-term temptation, choosing rationality and expertise amid the noise, choosing to perfect the mundane even when misunderstood. These choices may not be dazzling, but they decide how far one can go.",
+      "cn": "在短期诱惑面前选择长期主义，在喧嚣中选择理性和专业，在被误解时仍选择完善平凡。这些选择可能并不耀眼，但它们决定了一个人能走多远。"
+    },
+    "journalPage.article1.c9": {
+      "en": "What Truly Endures",
+      "cn": "什么能真正长存"
+    },
+    "journalPage.article1.c10": {
+      "en": "As a legal professional, a finance practitioner, and a long-time observer at the crossroads of East and West, I firmly believe: What is truly scarce is not clever technique, but steadfast judgment of values; What truly endures is not fleeting luck, but verifiable competence and character.",
+      "cn": "作为一名法律专业人士、金融从业者，以及长期在东西方十字路口的观察者，我坚信：真正稀缺的不是聪明的技巧，而是对价值观的坚定判断；真正长存的不是短暂的运气，而是可验证的能力和品格。"
+    },
+    "journalPage.article1.c11": {
+      "en": "The world changes, but its core logic remains: Trust is built over time; Respect is earned through kept promises; Real influence never comes from clamor.",
+      "cn": "世界在变，但其核心逻辑不变：信任是随着时间建立的；尊重是通过信守承诺赢得的；真正的影响力从来不是来自喧哗。"
+    },
+    "journalPage.article1.c12": {
+      "en": "A Blessing for the New Year",
+      "cn": "新年祝福"
+    },
+    "journalPage.article1.c13": {
+      "en": "May you stay clear-eyed in a fast-paced world; Keep refining yourself amid uncertainty; Hold on to warmth and boundaries under pressure; And remember your original purpose as you climb.",
+      "cn": "愿你在快节奏的世界中保持清醒；在不确定性中不断完善自己；在压力下坚持温暖和底线；在攀登时记住你的初心。"
+    },
+    "journalPage.article1.c14": {
+      "en": "No need to rush for validation. Let time work with you. Do the work — one solid step at a time. One person's strength may be limited, but when countless earnest, sincere, and professional people stand together, our era will be lifted toward steadiness.",
+      "cn": "不需要急于求成。让时间与你合作。踏实工作——一步一个脚印。一个人的力量可能是有限的，但当无数认真、真诚、专业的人站在一起时，我们的时代将被推向稳健。"
+    },
+    "journalPage.article1.c15": {
+      "en": "What makes a person human is not speed, but direction. As the year begins, may you and I take up the brush, drawing our own strokes — steady, powerful, enduring.",
+      "cn": "使人成为人的不是速度，而是方向。在新的一年开始之际，愿你我拿起画笔，画出属于我们自己的一撇一捺——稳健、有力、持久。"
+    },
+    "journalPage.article1.c16": {
+      "en": "Happy New Year!\n\nDr. Ian Zhu\nFounder, Tou Ying Ltd\n31.12.2025",
+      "cn": "新年快乐！\n\n朱博士\n投英有限公司创始人\n2025年12月31日"
+    },
+    "journalPage.article2.c1": {
+      "en": "Dr. Ian Zhu is a cross-border dispute resolution expert, now appointed as Head of China Desk Consultant at both Grant Thornton UK — one of the world's largest insolvency practices under the English legal system — and Gateley Plc, a 200-year-old law firm listed on the London Stock Exchange.",
+      "cn": "朱博士是跨境争议解决专家，现被任命为致同英国（英国法律体系下全球最大的破产业务机构之一）和盖特利律师事务所（一家在伦敦证券交易所上市的拥有200年历史的律师事务所）的中国业务主管顾问。"
+    },
+    "journalPage.article2.c2": {
+      "en": "He works closely with specialist partners at both institutions to provide comprehensive solutions for Chinese enterprises going global, and for Chinese lawyers handling complex cases requiring English law-based risk control and cross-border asset preservation.",
+      "cn": "他与两家机构的专业合伙人密切合作，为走向全球的中国企业，以及处理需要基于英国法律进行风险控制和跨境资产保全的复杂案件的中国律师提供全面的解决方案。"
+    },
+    "journalPage.article2.c3": {
+      "en": "The Scale of English Law",
+      "cn": "英国法律的规模"
+    },
+    "journalPage.article2.c4": {
+      "en": "UK legal services export nearly £10 billion annually worldwide. English law, UK arbitration and the common law judicial system have become the global standard for cross-border transactions, financial arrangements, asset structures, and dispute resolution.",
+      "cn": "英国法律服务每年向全球出口近100英镑。英国法律、英国仲裁和普通法司法体系已成为跨境交易、金融安排、资产结构和争议解决的全球标准。"
+    },
+    "journalPage.article2.c5": {
+      "en": "In regions where Chinese enterprises are widely deployed — such as the Cayman Islands, BVI, Hong Kong, Singapore, Middle East common law zones (DIFC/ADGM), Saudi Arabia, Southeast Asia, Central Asia, and even Latin America and Africa — the vast majority of contracts, financing documents, and arbitration clauses adopt the English legal system.",
+      "cn": "在中国企业广泛布局的地区——如开曼群岛、英属维尔京群岛、香港、新加坡、中东普通法区（DIFC/ADGM）、沙特阿拉伯、东南亚、中亚，甚至拉丁美洲和非洲——绝大多数合同、融资文件和仲裁条款都采用英国法律体系。"
+    },
+    "journalPage.article2.c6": {
+      "en": "Bridging the Gap",
+      "cn": "弥合差距"
+    },
+    "journalPage.article2.c7": {
+      "en": "For a long time, Chinese enterprises have generally lacked systematic support in compliance structure design, asset preservation, and cross-border dispute handling under English law, making them vulnerable to risks overseas.",
+      "cn": "长期以来，中国企业在英国法律下的合规结构设计、资产保全和跨境争议处理方面普遍缺乏系统支持，这使得他们在海外容易面临风险。"
+    },
+    "journalPage.article2.c8": {
+      "en": "Key risk areas include:",
+      "cn": "主要风险领域包括："
+    },
+    "journalPage.article2.c9": {
+      "en": "English law contract structure design",
+      "cn": "英国法律合同结构设计"
+    },
+    "journalPage.article2.c10": {
+      "en": "UK arbitration enforcement pathways",
+      "cn": "英国仲裁执行路径"
+    },
+    "journalPage.article2.c11": {
+      "en": "Overseas asset preservation",
+      "cn": "海外资产保全"
+    },
+    "journalPage.article2.c12": {
+      "en": "Complex cross-border governance disputes",
+      "cn": "复杂的跨境治理争议"
+    },
+    "journalPage.article2.c13": {
+      "en": "Application of common law enforcement mechanisms",
+      "cn": "普通法执行机制的应用"
+    },
+    "journalPage.article2.c14": {
+      "en": "Proven Track Record",
+      "cn": "过往业绩"
+    },
+    "journalPage.article2.c15": {
+      "en": "The UK Insolvency Practitioner (IP) system is widely regarded as one of the world's strongest asset protection and debt restructuring frameworks. Its core value lies in court-granted compulsory investigation powers, cross-border asset freezing and recovery rights, and civil and criminal liability for non-cooperative directors.",
+      "cn": "英国破产从业者（IP）制度被广泛认为是世界上最强大的资产保护和债务重组框架之一。其核心价值在于法院授予的强制调查权、跨境资产冻结和追回权，以及不合作董事的民事和刑事责任。"
+    },
+    "journalPage.article2.c16": {
+      "en": "Notable achievements:",
+      "cn": "显著成就："
+    },
+    "journalPage.article2.c17": {
+      "en": "Gateley: $4 billion in assets preserved for clients",
+      "cn": "盖特利：为客户保全了40亿美元的资产"
+    },
+    "journalPage.article2.c18": {
+      "en": "Grant Thornton UK: $3 billion in cross-border restructuring assets preserved",
+      "cn": "致同英国：保全了30亿美元的跨境重组资产"
+    },
+    "journalPage.article2.c19": {
+      "en": "Three Core Capabilities",
+      "cn": "三大核心能力"
+    },
+    "journalPage.article2.c20": {
+      "en": "The China Desk, led by Dr. Ian Zhu, distills the tools and mechanisms of the UK IP system into three core capabilities of greatest practical value for Chinese enterprises:",
+      "cn": "由朱博士领导的中国业务部，将英国IP系统的工具和机制提炼为对中国企业最具实用价值的三大核心能力："
+    },
+    "journalPage.article2.c21": {
+      "en": "Cross-Border Asset Preservation",
+      "cn": "跨境资产保全"
+    },
+    "journalPage.article2.c22": {
+      "en": "Recovering Corporate Control",
+      "cn": "恢复公司控制权"
+    },
+    "journalPage.article2.c23": {
+      "en": "Rapid Stabilisation of High-Risk Projects",
+      "cn": "高风险项目的快速稳定"
+    },
+    "journalPage.article3.c1": {
+      "en": "In May 2025, the Sino-European Entrepreneurs Summit was held at IESE Business School in Spain. Coinciding with the 50th anniversary of China-EU diplomatic relations, the summit focused on 'Global Cooperation in Transformation,' bringing together heavyweight figures from Chinese and European political and business circles.",
+      "cn": "2025年5月，中欧企业家峰会在西班牙IESE商学院举行。恰逢中欧建交50周年，峰会聚焦“转型中的全球合作”，汇聚了中欧政商界重量级人物。"
+    },
+    "journalPage.article3.c2": {
+      "en": "The summit was co-organized by the China-Foreign Entrepreneurs Association and IESE Business School, with support from the Chinese Embassy in Spain and multiple institutions. Spain's Minister of Industry and Tourism noted in his opening speech that China and Europe, as 'the world's two great powers, two great civilizations, and two great markets,' share broad common interests in multilateralism and green development.",
+      "cn": "本次峰会由中外企业家联合会和IESE商学院共同主办，并得到了中国驻西班牙大使馆及多家机构的支持。西班牙工业和旅游大臣在开幕致辞中指出，中欧作为“世界上两个大国、两大文明、两大市场”，在多边主义和绿色发展方面有着广泛的共同利益。"
+    },
+    "journalPage.article3.c3": {
+      "en": "50 Years of Transformation",
+      "cn": "50年的转型"
+    },
+    "journalPage.article3.c4": {
+      "en": "In 1975, China's share of global GDP was merely 1.6%, with the economy of the then-EEC-9 nations roughly 18 times that of China. By 2025, the world had been transformed beyond recognition: China's GDP had reached 120% of the EEC-9 economies, and bilateral trade exceeded $600 billion annually.",
+      "cn": "1975年，中国占全球GDP的比重仅为1.6%，当时欧共体九国的经济规模大约是中国的18倍。到2025年，世界已经发生了翻天覆地的变化：中国的GDP已经达到了欧共体九国经济体的120%，双边贸易额每年超过6000亿美元。"
+    },
+    "journalPage.article3.c5": {
+      "en": "This signifies that China and the EU have evolved from a relationship of 'volume disparity' to one of 'reciprocal parity,' from 'distant strangers' to 'deeply interdependent.' This is not merely a numbers game — it means that a deep understanding of each other's systems, regulations, and strategies has become a new gateway for Chinese enterprises venturing abroad.",
+      "cn": "这标志着中欧已经从“体量悬殊”的关系演变为“对等平起平坐”的关系，从“遥远的陌生人”变成了“深度相互依存”。这不仅仅是一个数字游戏——这意味着对彼此制度、法规和战略的深刻理解已成为中国企业出海的新门户。"
+    },
+    "journalPage.article3.c6": {
+      "en": "Globalization in Restructuring",
+      "cn": "重组中的全球化"
+    },
+    "journalPage.article3.c7": {
+      "en": "\"The rational response should be a coordinated move from the rest of the world against that single country that has started the war.\" — Miguel Sebastián, Spain's Minister of Industry and Tourism",
+      "cn": "“理性的回应应该是世界其他国家采取协调一致的行动，对抗那个发动战争的单一国家。”——米格尔·塞巴斯蒂安，西班牙工业和旅游大臣"
+    },
+    "journalPage.article3.c8": {
+      "en": "The current global landscape faces challenges from new Cold War thinking, geopolitical conflicts, supply chain fragmentation, data sovereignty disputes, and tariff wars. Today's trade barriers are more like policy frictions arising from multiple countries, reminiscent of the 'named tariff wars' of the 1930s.",
+      "cn": "当前的全球格局面临着新冷战思维、地缘政治冲突、供应链碎片化、数据主权争端和关税战的挑战。今天的贸易壁垒更像是多国引发的政策摩擦，让人想起20世纪30年代的“点名关税战”。"
+    },
+    "journalPage.article3.c9": {
+      "en": "Future cooperation priorities:",
+      "cn": "未来合作重点："
+    },
+    "journalPage.article3.c10": {
+      "en": "Coordinating supply chain strategic deployment (semiconductors, pharmaceuticals, key raw materials)",
+      "cn": "协调供应链战略部署（半导体、制药、关键原材料）"
+    },
+    "journalPage.article3.c11": {
+      "en": "Rebuilding trust-based legal frameworks (digital compliance, ESG standards)",
+      "cn": "重建基于信任的法律框架（数字合规、ESG标准）"
+    },
+    "journalPage.article3.c12": {
+      "en": "Establishing third-party market mechanisms jointly (in Africa, Latin America, and other regions)",
+      "cn": "共同建立第三方市场机制（在非洲、拉丁美洲等地区）"
+    },
+    "journalPage.article3.c13": {
+      "en": "Seven Opportunity Zones in Europe",
+      "cn": "欧洲的七大机遇区"
+    },
+    "journalPage.article3.c14": {
+      "en": "Over the past decade, Chinese investment in Europe has been shifting from traditional energy and real estate toward new energy, high-tech, and digital infrastructure. The summit identified key areas where China-EU cooperation should focus:",
+      "cn": "过去十年来，中国对欧洲的投资一直从传统能源和房地产转向新能源、高科技和数字基础设施。峰会确定了中欧合作应重点关注的关键领域："
+    },
+    "journalPage.article3.c15": {
+      "en": "Green Energy & Climate Technology",
+      "cn": "绿色能源与气候技术"
+    },
+    "journalPage.article3.c16": {
+      "en": "Digital Economy & Innovative Manufacturing",
+      "cn": "数字经济与创新制造"
+    },
+    "journalPage.article3.c17": {
+      "en": "Healthcare & Biotechnology",
+      "cn": "医疗保健与生物技术"
+    },
+    "journalPage.article3.c18": {
+      "en": "Logistics & Transportation Infrastructure",
+      "cn": "物流与交通基础设施"
+    },
+    "journalPage.article3.c19": {
+      "en": "New Energy Vehicles & Automotive Supply Chain",
+      "cn": "新能源汽车与汽车供应链"
+    },
+    "journalPage.article3.c20": {
+      "en": "Third-Place Cooperation: China-EU + Africa, Latin America, ASEAN",
+      "cn": "第三方合作：中欧+非洲、拉美、东盟"
+    },
+    "journalPage.article3.c21": {
+      "en": "Professional Services & Cross-Border Legal Support",
+      "cn": "专业服务与跨境法律支持"
+    },
+    "journalPage.article3.c22": {
+      "en": "The Path Forward",
+      "cn": "前进之路"
+    },
+    "journalPage.article3.c23": {
+      "en": "China-EU cooperation under the 'Belt and Road' and 'Global Gateway' strategies is highly complementary, particularly in Africa and other third-party markets — in infrastructure, healthcare, education, and digital interconnection — with shared potential for advancing high standards, green development, and inclusive growth.",
+      "cn": "“一带一路”和“全球门户”战略下的中欧合作具有高度互补性，特别是在非洲和其他第三方市场——在基础设施、医疗保健、教育和数字互联互通方面——在推进高标准、绿色发展和包容性增长方面具有共同潜力。"
+    },
+    "journalPage.article3.c24": {
+      "en": "\"What is truly scarce between China and Europe is not opportunity, but executable pathway design. Tou Ying is committed to providing professional, grounded solutions and execution support for Chinese enterprises in the UK and European markets.\"",
+      "cn": "“中欧之间真正稀缺的不是机会，而是可执行的路径设计。投英致力于为中国企业在英国和欧洲市场提供专业、落地的解决方案和执行支持。”"
     }
   }
 }

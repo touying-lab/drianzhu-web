@@ -15,84 +15,88 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const BRAND_GOLD = "#C9A227";
 
-const personas = [
-  {
-    name: "The Dealmaker",
-    subtitle: "Work & Wealth",
-    tagline: "Calm. Efficient. In Control.",
-    description: "He navigates the complex, ever-changing business world with absolute rationality — embodying the modern aspiration for financial freedom and professional mastery.",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ySRLcwTWzAKRICTD.jpg",
-    icon: Target,
-    color: "#1a3a5c",
-    accentColor: "#D4AF37",
-  },
-  {
-    name: "The Athlete",
-    subtitle: "Sport & Discipline",
-    tagline: "Elegant. Strong. Disciplined.",
-    description: "More than sport — it is the ultimate pursuit of physical mastery. He represents the elite image of health, vitality, and unwavering self-discipline.",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/VdTdSRXBanFsNtcW.jpg",
-    icon: Zap,
-    color: "#2d5a27",
-    accentColor: "#8BC34A",
-  },
-  {
-    name: "The Healer",
-    subtitle: "Wellness & Balance",
-    tagline: "Grounded. Calm. Balanced.",
-    description: "Blending Eastern wellness with Western health management, he offers inner peace and healing to the anxious urban soul — a sanctuary for mind and body.",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ddbUeGEUjLrqdeYE.jpg",
-    icon: Sparkles,
-    color: "#4a2d6b",
-    accentColor: "#CE93D8",
-  },
-  {
-    name: "The Gourmet",
-    subtitle: "Taste & Pleasure",
-    tagline: "Cultured. Refined. Discerning.",
-    description: "Representing the highest form of material enjoyment — not merely a connoisseur of food and drink, but a man with a profound, unique understanding of the art of living.",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/dKiSHZSYnbKHVDYa.jpg",
-    icon: Globe,
-    color: "#5c2a1a",
-    accentColor: "#FFAB91",
-  },
-  {
-    name: "The Voyager",
-    subtitle: "Global View & Freedom",
-    tagline: "Worldly. Visionary. Adventurous.",
-    description: "Symbolising the freedom and experience that transcend borders — fulfilling the romantic imagination of being 'on the road', exploring the world with open eyes.",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/PZnmHaMiRbURVWKE.jpg",
-    icon: Globe,
-    color: "#1a3a5c",
-    accentColor: "#81D4FA",
-  },
-  {
-    name: "The Charmer",
-    subtitle: "Fun & Social",
-    tagline: "Playful. Magnetic. The Life of the Party.",
-    description: "Fighting boredom and loneliness — he embodies the spirit of entertainment, the joy of releasing pressure, and the art of living fully in the moment.",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/palhOUKeUaTOSeLe.jpg",
-    icon: Users,
-    color: "#1a4a3a",
-    accentColor: "#80CBC4",
-  },
-];
+// Personas generated dynamically in the component
 
-const painPoints = [
-  { label: "Stress", solution: "Work & Wealth", icon: "💼" },
-  { label: "Fatigue", solution: "Sport & Discipline", icon: "🏋️" },
-  { label: "Anxiety", solution: "Wellness & Balance", icon: "🧘" },
-  { label: "Indulgence", solution: "Taste & Pleasure", icon: "🍷" },
-  { label: "Boredom", solution: "Global View & Freedom", icon: "✈️" },
-  { label: "Loneliness", solution: "Fun & Social", icon: "🎉" },
-];
+// Pain points generated dynamically
 
 export default function AIAvatar() {
+  const { t } = useLanguage();
+
+  const personas = [
+    {
+      name: t("aiPage.persona.1.name"),
+      subtitle: t("aiPage.persona.1.subtitle"),
+      tagline: t("aiPage.persona.1.tagline"),
+      description: t("aiPage.persona.1.description"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ySRLcwTWzAKRICTD.jpg",
+      icon: Target,
+      color: "#1a3a5c",
+      accentColor: "#D4AF37",
+    },
+    {
+      name: t("aiPage.persona.2.name"),
+      subtitle: t("aiPage.persona.2.subtitle"),
+      tagline: t("aiPage.persona.2.tagline"),
+      description: t("aiPage.persona.2.description"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/VdTdSRXBanFsNtcW.jpg",
+      icon: Zap,
+      color: "#2d5a27",
+      accentColor: "#8BC34A",
+    },
+    {
+      name: t("aiPage.persona.3.name"),
+      subtitle: t("aiPage.persona.3.subtitle"),
+      tagline: t("aiPage.persona.3.tagline"),
+      description: t("aiPage.persona.3.description"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ddbUeGEUjLrqdeYE.jpg",
+      icon: Sparkles,
+      color: "#4a2d6b",
+      accentColor: "#CE93D8",
+    },
+    {
+      name: t("aiPage.persona.4.name"),
+      subtitle: t("aiPage.persona.4.subtitle"),
+      tagline: t("aiPage.persona.4.tagline"),
+      description: t("aiPage.persona.4.description"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/lEemKxXqTebsVfXW.jpg",
+      icon: Coffee,
+      color: "#6b2d2d",
+      accentColor: "#FFAB91",
+    },
+    {
+      name: t("aiPage.persona.5.name"),
+      subtitle: t("aiPage.persona.5.subtitle"),
+      tagline: t("aiPage.persona.5.tagline"),
+      description: t("aiPage.persona.5.description"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/TjJtJzQhBthdGgRk.jpg",
+      icon: Globe,
+      color: "#2d5a6b",
+      accentColor: "#81D4FA",
+    },
+    {
+      name: t("aiPage.persona.6.name"),
+      subtitle: t("aiPage.persona.6.subtitle"),
+      tagline: t("aiPage.persona.6.tagline"),
+      description: t("aiPage.persona.6.description"),
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/mQpXnKvWlqNqPjEz.jpg",
+      icon: Music,
+      color: "#6b4a2d",
+      accentColor: "#FFCC80",
+    },
+  ];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [, setLocation] = useLocation();
-  const { t } = useLanguage();
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  const painPoints = [
+    { label: t("aiPage.pain.1.label"), solution: t("aiPage.pain.1.solution"), icon: "💼" },
+    { label: t("aiPage.pain.2.label"), solution: t("aiPage.pain.2.solution"), icon: "🏋️" },
+    { label: t("aiPage.pain.3.label"), solution: t("aiPage.pain.3.solution"), icon: "🧘" },
+    { label: t("aiPage.pain.4.label"), solution: t("aiPage.pain.4.solution"), icon: "🍷" },
+    { label: t("aiPage.pain.5.label"), solution: t("aiPage.pain.5.solution"), icon: "✈️" },
+    { label: t("aiPage.pain.6.label"), solution: t("aiPage.pain.6.solution"), icon: "🎉" },
+  ];
 
   // Auto-play carousel
   useEffect(() => {
