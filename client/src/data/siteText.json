@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-20T10:50:26.742598Z",
+  "updatedAt": "2026-07-20T11:45:00.000000Z",
   "updatedBy": "private-content-editor",
   "translations": {
     "nav.home": {
@@ -1930,6 +1930,42 @@
     "journalPage.article3.c24": {
       "en": "“What is truly scarce between China and Europe is not opportunity, but executable pathway design. Tou Ying is committed to providing professional, grounded solutions and execution support for Chinese enterprises in the UK and European markets.”",
       "cn": "“中欧之间真正稀缺的不是机会，而是可执行的路径设计。投英致力于为中国企业在英国和欧洲市场提供专业、落地的解决方案和执行支持。”"
+    },
+    "insightsPage.reports.report8.title": {
+      "en": "Tou Ying Tracker 2016",
+      "cn": "投英追踪 2016"
+    },
+    "insightsPage.reports.report8.subtitle": {
+      "en": "The latest trends in Chinese investment in the UK",
+      "cn": "中国在英投资最新趋势"
+    },
+    "insightsPage.reports.report8.publisher": {
+      "en": "Grant Thornton × China Daily",
+      "cn": "致同 × 中国日报"
+    },
+    "insightsPage.reports.report9.title": {
+      "en": "Tou Ying Tracker 2015",
+      "cn": "投英追踪 2015"
+    },
+    "insightsPage.reports.report9.subtitle": {
+      "en": "The latest trends in Chinese investment in the UK",
+      "cn": "中国在英投资最新趋势"
+    },
+    "insightsPage.reports.report9.publisher": {
+      "en": "Grant Thornton × China Daily",
+      "cn": "致同 × 中国日报"
+    },
+    "insightsPage.reports.report10.title": {
+      "en": "Tou Ying Tracker 2014",
+      "cn": "投英追踪 2014"
+    },
+    "insightsPage.reports.report10.subtitle": {
+      "en": "The latest trends in Chinese investment in the UK",
+      "cn": "中国在英投资最新趋势"
+    },
+    "insightsPage.reports.report10.publisher": {
+      "en": "Grant Thornton × China Daily",
+      "cn": "致同 × 中国日报"
     }
   }
 }

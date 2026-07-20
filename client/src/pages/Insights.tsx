@@ -46,6 +46,7 @@ function useTouYingReports() {
       publisher: t("insightsPage.reports.report7.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/lYAetEniVgKTEldN.jpg",
       downloadUrl: "https://www.grantthornton.co.uk/insights/tou-ying-tracker-2024-chinese-investments-in-the-uk-remain-robust/",
+      downloadUrlCn: "",
     },
     {
       year: "2023",
@@ -54,6 +55,7 @@ function useTouYingReports() {
       publisher: t("insightsPage.reports.report6.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/lYAetEniVgKTEldN.jpg",
       downloadUrl: "https://www.grantthornton.co.uk/insights/chinese-investment-in-the-uk-growth-continued-in-2023/",
+      downloadUrlCn: "",
     },
     {
       year: "2021",
@@ -62,6 +64,7 @@ function useTouYingReports() {
       publisher: t("insightsPage.reports.report5.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
       downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/publication/2022/tou-ying-tracker-english-2021.pdf",
+      downloadUrlCn: "https://www.chinachamber.org.uk/wp-content/uploads/Grant-Thornton-UK_Tou-Ying-Tracker-2021_Chinese-report-FINAL.pdf",
     },
     {
       year: "2020",
@@ -70,6 +73,7 @@ function useTouYingReports() {
       publisher: t("insightsPage.reports.report4.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
       downloadUrl: "https://www.cbbc.org/sites/default/files/2021-03/20210225_189651_TouYingTrackerreportinEnglish.pdf",
+      downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/sEuxpWZaQnQJaWSn.pdf",
     },
     {
       year: "2019",
@@ -78,6 +82,7 @@ function useTouYingReports() {
       publisher: t("insightsPage.reports.report3.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
       downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/publication/2020/tou-ying-tracker-2019-english.pdf",
+      downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/HiTjyVbDDlZKkFOf.pdf",
     },
     {
       year: "2018",
@@ -86,6 +91,7 @@ function useTouYingReports() {
       publisher: t("insightsPage.reports.report1.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
       downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/documents/tou-ying-tracker-2018.pdf",
+      downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/xWXUTohmLkJrvCUu.pdf",
     },
     {
       year: "2017",
@@ -94,6 +100,34 @@ function useTouYingReports() {
       publisher: t("insightsPage.reports.report2.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ZIOpyMlgZhkvrabL.jpg",
       downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/documents/tou-ying-tracker-2017-english-version.pdf",
+      downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/WRoIcfQqrMGemZaN.pdf",
+    },
+    {
+      year: "2016",
+      title: t("insightsPage.reports.report8.title"),
+      subtitle: t("insightsPage.reports.report8.subtitle"),
+      publisher: t("insightsPage.reports.report8.publisher"),
+      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      downloadUrl: "",
+      downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/CPqTdEzqHJMpqxNl.pdf",
+    },
+    {
+      year: "2015",
+      title: t("insightsPage.reports.report9.title"),
+      subtitle: t("insightsPage.reports.report9.subtitle"),
+      publisher: t("insightsPage.reports.report9.publisher"),
+      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      downloadUrl: "",
+      downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/oihqozOdkZetKErJ.pdf",
+    },
+    {
+      year: "2014",
+      title: t("insightsPage.reports.report10.title"),
+      subtitle: t("insightsPage.reports.report10.subtitle"),
+      publisher: t("insightsPage.reports.report10.publisher"),
+      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      downloadUrl: "",
+      downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/MUEAtCcJpBUcmTBu.pdf",
     },
   ];
 }
@@ -576,8 +610,13 @@ function CarouselArrow({ direction, onClick, label }: { direction: "left" | "rig
 function TouYingSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { t } = useLanguage();
-  const touYingReports = useTouYingReports();
+  const { t, language } = useLanguage();
+  const allReports = useTouYingReports();
+  // Filter: only show reports that have a download URL for the current language
+  const touYingReports = allReports.filter((r) => {
+    if (language === "cn") return !!r.downloadUrlCn;
+    return !!r.downloadUrl;
+  });
   const perPage = usePerPage();
   const { index, pageCount, prev, next, goTo } = useCarousel(touYingReports.length, perPage);
 
@@ -602,7 +641,10 @@ function TouYingSection() {
   }, [prev, next]);
 
   const handleDownload = (report: ReturnType<typeof useTouYingReports>[0]) => {
-    window.open(report.downloadUrl, "_blank", "noopener,noreferrer");
+    const url = language === "cn" && report.downloadUrlCn ? report.downloadUrlCn : report.downloadUrl;
+    if (url) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
   };
 
   // Visible slice (with wrap-around for infinite feel)
