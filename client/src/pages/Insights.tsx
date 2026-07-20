@@ -45,6 +45,7 @@ function useTouYingReports() {
       subtitle: t("insightsPage.reports.report7.subtitle"),
       publisher: t("insightsPage.reports.report7.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/lYAetEniVgKTEldN.jpg",
+      coverCn: "",
       downloadUrl: "https://www.grantthornton.co.uk/insights/tou-ying-tracker-2024-chinese-investments-in-the-uk-remain-robust/",
       downloadUrlCn: "",
     },
@@ -54,6 +55,7 @@ function useTouYingReports() {
       subtitle: t("insightsPage.reports.report6.subtitle"),
       publisher: t("insightsPage.reports.report6.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/lYAetEniVgKTEldN.jpg",
+      coverCn: "",
       downloadUrl: "https://www.grantthornton.co.uk/insights/chinese-investment-in-the-uk-growth-continued-in-2023/",
       downloadUrlCn: "",
     },
@@ -63,6 +65,7 @@ function useTouYingReports() {
       subtitle: t("insightsPage.reports.report5.subtitle"),
       publisher: t("insightsPage.reports.report5.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      coverCn: "",
       downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/publication/2022/tou-ying-tracker-english-2021.pdf",
       downloadUrlCn: "https://www.chinachamber.org.uk/wp-content/uploads/Grant-Thornton-UK_Tou-Ying-Tracker-2021_Chinese-report-FINAL.pdf",
     },
@@ -72,6 +75,7 @@ function useTouYingReports() {
       subtitle: t("insightsPage.reports.report4.subtitle"),
       publisher: t("insightsPage.reports.report4.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      coverCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/aCiSWlldvjlDRPEB.jpg",
       downloadUrl: "https://www.cbbc.org/sites/default/files/2021-03/20210225_189651_TouYingTrackerreportinEnglish.pdf",
       downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/sEuxpWZaQnQJaWSn.pdf",
     },
@@ -81,6 +85,7 @@ function useTouYingReports() {
       subtitle: t("insightsPage.reports.report3.subtitle"),
       publisher: t("insightsPage.reports.report3.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      coverCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/KKrkPXHRQfDlFUaW.jpg",
       downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/publication/2020/tou-ying-tracker-2019-english.pdf",
       downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/HiTjyVbDDlZKkFOf.pdf",
     },
@@ -90,6 +95,7 @@ function useTouYingReports() {
       subtitle: t("insightsPage.reports.report1.subtitle"),
       publisher: t("insightsPage.reports.report1.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      coverCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/DQWJINDMXUDOcBgt.jpg",
       downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/documents/tou-ying-tracker-2018.pdf",
       downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/xWXUTohmLkJrvCUu.pdf",
     },
@@ -99,6 +105,7 @@ function useTouYingReports() {
       subtitle: t("insightsPage.reports.report2.subtitle"),
       publisher: t("insightsPage.reports.report2.publisher"),
       cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/ZIOpyMlgZhkvrabL.jpg",
+      coverCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/uDTXuUsevutbzhKa.jpg",
       downloadUrl: "https://www.grantthornton.co.uk/globalassets/1.-member-firms/united-kingdom/pdf/documents/tou-ying-tracker-2017-english-version.pdf",
       downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/WRoIcfQqrMGemZaN.pdf",
     },
@@ -107,7 +114,8 @@ function useTouYingReports() {
       title: t("insightsPage.reports.report8.title"),
       subtitle: t("insightsPage.reports.report8.subtitle"),
       publisher: t("insightsPage.reports.report8.publisher"),
-      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      cover: "",
+      coverCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/XkXjSrLNvMFPQVkQ.jpg",
       downloadUrl: "",
       downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/CPqTdEzqHJMpqxNl.pdf",
     },
@@ -116,7 +124,8 @@ function useTouYingReports() {
       title: t("insightsPage.reports.report9.title"),
       subtitle: t("insightsPage.reports.report9.subtitle"),
       publisher: t("insightsPage.reports.report9.publisher"),
-      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      cover: "",
+      coverCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/YyaaoTWyHncREpgC.jpg",
       downloadUrl: "",
       downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/oihqozOdkZetKErJ.pdf",
     },
@@ -125,7 +134,8 @@ function useTouYingReports() {
       title: t("insightsPage.reports.report10.title"),
       subtitle: t("insightsPage.reports.report10.subtitle"),
       publisher: t("insightsPage.reports.report10.publisher"),
-      cover: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663292252689/IoJsFXoJTTtbZNvC.jpg",
+      cover: "",
+      coverCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/JomfzeHoNwoCZLdd.jpg",
       downloadUrl: "",
       downloadUrlCn: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663739914563/MUEAtCcJpBUcmTBu.pdf",
     },
@@ -731,7 +741,7 @@ function TouYingSection() {
                       {/* Cover image */}
                       <div className="relative aspect-[3/4] overflow-hidden bg-white">
                         <img
-                          src={report.cover}
+                          src={language === "cn" && report.coverCn ? report.coverCn : report.cover}
                           alt={report.title}
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           loading="lazy"
